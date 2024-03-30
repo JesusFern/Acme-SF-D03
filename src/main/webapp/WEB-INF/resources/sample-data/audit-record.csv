@@ -1,0 +1,16 @@
+key,code,period-start,period-end,mark,link,key:code-audit,key:auditor
+audit-record-01,AU-1234-000,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-02,AU-0000-000,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-03,AU-0001-001,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-04,AU-5555-555,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-05,AU-9998-998,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-06,AU-9999-999,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-07,AU-1234-001,2000/01/01 00:00,2000/01/01 01:00,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-08,AU-1234-002,2000/01/01 01:00,2000/01/01 02:00,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-09,AU-1234-003,2022/07/29 00:00,2022/07/30 01:00,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-10,AU-1234-004,2022/07/29 23:59,2022/07/30 00:59,A_PLUS,https://example.com/objective,code-audit-01,auditor-01
+audit-record-11,AU-1234-005,2022/07/29 23:59,2022/07/30 00:59,B,https://example.com/objective,code-audit-01,auditor-01
+audit-record-12,AU-1234-006,2022/07/29 23:59,2022/07/30 00:59,C,https://example.com/objective,code-audit-01,auditor-01
+audit-record-13,AU-1234-007,2022/07/29 23:59,2022/07/30 00:59,F,https://example.com/objective,code-audit-01,auditor-01
+audit-record-14,AU-1234-008,2022/07/29 23:59,2022/07/30 00:59,F_MINUS,https://example.com/objective,code-audit-01,auditor-01
+audit-record-15,AU-1234-009,2022/07/29 23:59,2022/07/30 00:59,B,,code-audit-01,auditor-01

@@ -1,0 +1,20 @@
+key,code,execution,type,corrective-actions,mark,link,key:project
+code-audit-01,A-000,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-02,AB-555,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-03,ZZZ-999,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-04,A-001,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-05,A-002,1990/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-06,A-003,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-07,A-004,2022/07/29 23:59,Dynamic,Text,B,https://example.com/objective,project-01
+code-audit-08,A-005,2022/07/29 23:59,Static,L,B,https://example.com/objective,project-01
+code-audit-09,A-006,2022/07/29 23:59,Static,Li.,B,https://example.com/objective,project-01
+code-audit-10,A-007,2022/07/29 23:59,Static,Li Europan lingues es membres del sam familie. Lor,B,https://example.com/objective,project-01
+code-audit-11,A-008,2022/07/29 23:59,Static,Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie mus,B,https://example.com/objective,project-01
+code-audit-12,A-009,2022/07/29 23:59,Static,Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie music,B,https://example.com/objective,project-01
+code-audit-13,A-010,2022/07/29 23:59,Static,Text,A_PLUS,https://example.com/objective,project-01
+code-audit-14,A-011,2022/07/29 23:59,Static,Text,A,https://example.com/objective,project-01
+code-audit-15,A-012,2022/07/29 23:59,Static,Text,B,https://example.com/objective,project-01
+code-audit-16,A-013,2022/07/29 23:59,Static,Text,C,https://example.com/objective,project-01
+code-audit-17,A-014,2022/07/29 23:59,Static,Text,F,https://example.com/objective,project-01
+code-audit-18,A-015,2022/07/29 23:59,Static,Text,F_MINUS,https://example.com/objective,project-01
+code-audit-19,A-016,2022/07/29 23:59,Static,Text,B,,project-01
