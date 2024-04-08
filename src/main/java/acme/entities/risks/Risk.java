@@ -50,8 +50,8 @@ public class Risk extends AbstractEntity {
 	private double				impact;
 
 	@Min(0)
-	@Max(100)
-	@Digits(integer = 3, fraction = 2)
+	@Max(1)
+	@Digits(integer = 1, fraction = 2)
 	private double				probability;
 
 	@NotBlank
@@ -59,6 +59,7 @@ public class Risk extends AbstractEntity {
 	private String				description;
 
 	@URL
+	@Length(min = 0, max = 255)
 	private String				link;
 
 	// Derived attributes -----------------------------------------------------

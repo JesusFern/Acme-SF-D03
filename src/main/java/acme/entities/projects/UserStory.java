@@ -46,6 +46,7 @@ public class UserStory extends AbstractEntity {
 	private Priority			priority;
 
 	@URL
+	@Length(min = 0, max = 255)
 	private String				link;
 
 	// Relationships ----------------------------------------------------------
