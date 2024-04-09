@@ -14,11 +14,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import acme.entities.codeAudits.CodeAudit;
-import acme.roles.Auditor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class AuditRecord extends AbstractEntity {
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "^AU-[0-9]{4}-[0-9]{3}$", message = "{validation.pattern} + AU-0000-000")
+	@Pattern(regexp = "^AU-[0-9]{4}-[0-9]{3}$", message = "{validation.pattern}  AU-0000-000")
 	private String				code;
 
 	@NotNull
@@ -50,6 +50,7 @@ public class AuditRecord extends AbstractEntity {
 	private Mark				mark;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 	// Relationships ----------------------------------------------------------
@@ -58,10 +59,5 @@ public class AuditRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private CodeAudit			codeAudit;
-
-	@NotNull
-	@Valid
-	@ManyToOne(optional = false)
-	private Auditor				auditor;
 
 }
