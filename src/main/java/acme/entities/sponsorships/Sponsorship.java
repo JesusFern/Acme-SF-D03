@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -36,7 +37,7 @@ public class Sponsorship extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern} + AUE-000")
+	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern}  AUE-000")
 	@Column(unique = true)
 	private String				code;
 
@@ -60,9 +61,11 @@ public class Sponsorship extends AbstractEntity {
 	private Type				type;
 
 	@Email
+	@Length(max = 255)
 	private String				email;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 	// Relationships ----------------------------------------------------------

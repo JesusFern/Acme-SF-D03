@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -37,7 +38,7 @@ public class Invoice extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	@Pattern(regexp = "^IN-[0-9]{4}-[0-9]{4}$", message = "{validation.pattern} + IN-0244-4532")
+	@Pattern(regexp = "^IN-[0-9]{4}-[0-9]{4}$", message = "{validation.pattern}  IN-0244-4532")
 	@Column(unique = true)
 	private String				code;
 
@@ -63,6 +64,7 @@ public class Invoice extends AbstractEntity {
 	private double				tax;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 	// Derived attributes ----------------------------------------------------------
