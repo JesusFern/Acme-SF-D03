@@ -13,7 +13,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
@@ -33,7 +34,7 @@ public class Contract extends AbstractEntity {
 	@NotBlank
 	@Column(unique = true)
 
-	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern} + AA-111")
+	@Pattern(regexp = "^[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern}  AA-111")
 
 	private String				code;
 
@@ -43,15 +44,15 @@ public class Contract extends AbstractEntity {
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				providerName;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				customerName;
 
 	@NotBlank
-	@Size(max = 100)
+	@Length(max = 100)
 	private String				goals;
 
 	@NotNull
