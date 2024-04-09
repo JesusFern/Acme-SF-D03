@@ -4,7 +4,7 @@ code-audit-02,AB-555,2020/07/29 23:59,Static,false,Text,B,https://example.com/ob
 code-audit-03,ZZZ-999,2020/07/29 23:59,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
 code-audit-04,A-001,2000/01/01 00:00,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
 code-audit-05,A-002,2000/01/01 00:01,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
-code-audit-06,A-003,2012/02/29 00:00,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
+code-audit-06,A-003,2012/02/29 01:00,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
 code-audit-07,A-004,2022/07/29 23:58,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
 code-audit-08,A-005,2022/07/29 23:59,Static,false,Text,B,https://example.com/objective,project-01,auditor-01
 code-audit-09,A-006,2020/07/29 23:59,Dynamic,false,Text,B,https://example.com/objective,project-01,auditor-01
