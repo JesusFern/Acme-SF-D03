@@ -31,7 +31,7 @@ public class Claim extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@Pattern(regexp = "^C-[0-9]{4}$", message = "{validation.pattern} + C-0000")
+	@Pattern(regexp = "^C-[0-9]{4}$", message = "{validation.pattern}  C-0000")
 	@Column(unique = true)
 	@NotBlank
 	private String				code;
@@ -54,9 +54,11 @@ public class Claim extends AbstractEntity {
 	private String				department;
 
 	@Email
+	@Length(max = 255)
 	private String				email;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 }
