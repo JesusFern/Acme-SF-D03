@@ -54,10 +54,12 @@ public class TrainingSession extends AbstractEntity {
 	private String				instructor;
 
 	@Email
-	@NotNull
+	@NotBlank
+	@Length(max = 255)
 	private String				email;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 	@ManyToOne(optional = false)
