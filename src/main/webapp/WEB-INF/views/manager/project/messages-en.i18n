@@ -1,0 +1,5 @@
+manager.project.list.title = Listing of projects
+
+manager.project.list.label.code = Code
+manager.project.list.label.title = Title
+manager.project.list.label.abstractString = Abstract
