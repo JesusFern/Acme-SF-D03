@@ -47,6 +47,10 @@
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">	
 			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>	
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">	
+			<acme:menu-suboption code="master.menu.sponsor.my-sponsorships" action="/sponsor/sponsorship/list-mine"/>	
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>
