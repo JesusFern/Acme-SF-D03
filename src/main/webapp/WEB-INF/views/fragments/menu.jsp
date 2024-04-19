@@ -47,6 +47,10 @@
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">	
 			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>	
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">	
+			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>	
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>

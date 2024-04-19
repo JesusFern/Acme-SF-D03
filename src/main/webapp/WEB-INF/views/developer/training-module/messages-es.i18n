@@ -1,0 +1,15 @@
+developer.training-module.list.title = Lista de módulos de entrenamiento
+developer.training-module.form.title = Detalles de módulos de entrenamiento
+
+developer.training-module.list.label.code = Código
+developer.training-module.list.label.details = Detalles
+
+developer.training-module.form.label.code = Código:
+developer.training-module.form.label.creationMoment = Momento de la creación:
+developer.training-module.form.label.details = Detalles:
+developer.training-module.form.label.difficulty = Dificultad:
+developer.training-module.form.label.startMoment = Momento de inicio:
+developer.training-module.form.label.endMoment = Momento del fin:
+developer.training-module.form.label.link = Link:
+developer.training-module.form.label.time = Tiempo:
+
