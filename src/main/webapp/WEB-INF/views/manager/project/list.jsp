@@ -18,5 +18,4 @@
 <acme:list>
 	<acme:list-column code="manager.project.list.label.code" path="code" width="10%"/>
 	<acme:list-column code="manager.project.list.label.title" path="title" width="10%"/>
-	<acme:list-column code="manager.project.list.label.abstractString" path="abstractString" width="80%"/>	
 </acme:list>
