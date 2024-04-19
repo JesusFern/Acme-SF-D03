@@ -24,4 +24,10 @@
 	<acme:input-textarea code="sponsor.sponsorship.form.label.type" path="type" readonly="true" />
 	<acme:input-textarea code="sponsor.sponsorship.form.label.email" path="email" readonly="true" />
 	<acme:input-textarea code="sponsor.sponsorship.form.label.link" path="link" readonly="true" />
+
+	<jstl:choose>	 
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="sponsor.sponsorship.form.button.create" action="/sponsor/sponsorship/create"/>
+		</jstl:when>		
+	</jstl:choose>
 </acme:form>

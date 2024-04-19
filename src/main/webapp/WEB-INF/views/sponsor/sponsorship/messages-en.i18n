@@ -10,6 +10,8 @@
 
 sponsor.sponsorship.form.title = Sponsorship form
 sponsor.sponsorship.list.title = Listing of sponsorships
+sponsor.sponsorship.list.button.create = Create sponsorship
+sponsor.sponsorship.form.button.create = Create sponsorship
 
 sponsor.sponsorship.form.label.code = Code:
 sponsor.sponsorship.form.label.moment = Moment:
