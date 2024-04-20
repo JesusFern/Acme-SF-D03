@@ -4,6 +4,9 @@ manager.project.form.title = Project form
 manager.project.list.label.code = Código
 manager.project.list.label.title = Título
 
+manager.project.list.button.create = Crear
+manager.project.form.button.create = Crear
+
 manager.project.form.label.code = Código
 manager.project.form.label.title = Título
 manager.project.form.label.abstractString = Resumen
@@ -12,3 +15,5 @@ manager.project.form.label.cost = Coste
 manager.project.form.label.link = Enlace
 
 manager.project.form.placeholder.cost = 0 - 10000
+manager.project.form.error.duplicated = Este código no está libre
+manager.project.form.error.fatal-error = No puedes crear un proyecto con errores fatales

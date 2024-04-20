@@ -4,10 +4,20 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-<acme:input-textbox code="manager.project.form.label.code" path="code"/>
-<acme:input-textbox code="manager.project.form.label.title" path="title"/>
-<acme:input-textbox code="manager.project.form.label.abstractString" path="abstractString"/>
-<acme:input-select code="manager.project.form.label.indication" path="indication" choices="${indications}"/>	
-<acme:input-double code="manager.project.form.label.cost" path="cost" placeholder="manager.project.form.placeholder.cost"/>
-<acme:input-url code="manager.project.form.label.link" path="link"/>
+	<acme:input-textbox code="manager.project.form.label.code" path="code"/>
+	<acme:input-textbox code="manager.project.form.label.title" path="title"/>
+	<acme:input-textbox code="manager.project.form.label.abstractString" path="abstractString"/>
+	<acme:input-textbox code="manager.project.form.label.indication" path="indication" placeholder="manager.project.form.placeholder.indication"/>	
+	<acme:input-double code="manager.project.form.label.cost" path="cost" placeholder="manager.project.form.placeholder.cost"/>
+	<acme:input-url code="manager.project.form.label.link" path="link"/>
+	
+	<jstl:choose>
+	<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">
+			<acme:submit code="manager.project.form.button.delete" action="/manager/project/delete"/>
+		</jstl:when>
+	<jstl:when test="${_command == 'create'}">
+			<acme:submit code="manager.project.form.button.create" action="/manager/project/create"/>
+		</jstl:when>	
+	
+	</jstl:choose>
 </acme:form>
