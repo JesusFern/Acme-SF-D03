@@ -65,3 +65,10 @@ master.menu.developer = Developer
 master.menu.developer.favourite-link = Favourite link
 master.menu.developer.my-modules = List my modules	
 
+# master.menu.auditor ####################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.favourite-link = Favourite link
+master.menu.auditor.my-code-audit = List my Code audits	
+master.menu.auditor.create-code-audit = Create Code audits
+
