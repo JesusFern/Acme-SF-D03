@@ -1,12 +1,9 @@
 
 package acme.features.developer.trainingModules;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.trainingModule.TrainingModule;
@@ -31,22 +28,21 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 	@Override
 	public void load() {
-		Collection<TrainingModule> objects;
-		Principal principal;
+		TrainingModule objects;
+		int id;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyTrainingModulesByDeveloperId(principal.getActiveRoleId());
+		id = super.getRequest().getData("id", int.class);
+		objects = this.repository.findOneTrainingModuleById(id);
 
 		super.getBuffer().addData(objects);
 	}
-
 	@Override
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficulty", "startMoment", "endMoment", "link", "time");
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time");
 
 		super.getResponse().addData(dataset);
 	}

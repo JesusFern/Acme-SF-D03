@@ -48,8 +48,10 @@
 			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>	
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">	
-			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>	
+		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">
+			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list"/>	
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.developer.create-module" action="/developer/training-module/create"/>	
 		</acme:menu-option>
 	</acme:menu-left>
 

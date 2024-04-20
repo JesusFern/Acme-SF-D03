@@ -13,6 +13,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
@@ -51,15 +52,11 @@ public class TrainingModule extends AbstractEntity {
 	private String				details;
 
 	@NotNull
-	private Level				difficulty;
+	private DifficultyLevel		difficultyLevel;
 
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotNull
-	private Date				startMoment;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@NotNull
-	private Date				endMoment;
+	private Date				updateMoment;
 
 	@URL
 	private String				link;

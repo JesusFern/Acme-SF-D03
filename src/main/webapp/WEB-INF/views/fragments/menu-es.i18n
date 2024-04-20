@@ -62,5 +62,5 @@ master.menu.manager.my-projects = Ver mis proyectos
 # master.menu.developer ####################################################
 
 master.menu.developer = Desarrollador
-master.menu.developer.favourite-link = Enlace favorito
-master.menu.developer.my-modules = Ver mis modulos	
+master.menu.developer.my-modules = Ver mis módulos	
+master.menu.developer.create-module = Crear un módulo	
