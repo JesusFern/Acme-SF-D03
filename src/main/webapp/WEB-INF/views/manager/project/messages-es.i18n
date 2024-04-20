@@ -7,6 +7,9 @@ manager.project.list.label.title = Título
 manager.project.list.button.create = Crear
 manager.project.form.button.create = Crear
 
+manager.project.form.button.update = Actualizar
+manager.project.form.button.delete = Borrar
+
 manager.project.form.label.code = Código
 manager.project.form.label.title = Título
 manager.project.form.label.abstractString = Resumen
