@@ -45,7 +45,8 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">	
-			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>	
+			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>
+			<acme:menu-suboption code="master.menu.manager.all-projects" action="/manager/project/list-all"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">	
@@ -55,6 +56,11 @@
 		<acme:menu-option code="master.menu.client" access="hasRole('Client')">	
 			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>	
 			<acme:menu-suboption code="master.menu.client.create-contracts" action="/client/contract/create"/>
+    </acme:menu-option>
+    
+		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">	
+			<acme:menu-suboption code="master.menu.sponsor.my-sponsorships" action="/sponsor/sponsorship/list-mine"/>	
+			<acme:menu-suboption code="master.menu.sponsor.all-sponsorships" action="/sponsor/sponsorship/list-all"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

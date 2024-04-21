@@ -59,14 +59,29 @@ master.menu.manager = Director
 master.menu.manager.favourite-link = Enlace favorito
 master.menu.manager.my-projects = Ver mis proyectos	
 
+# master.menu.sponsor ####################################################
+
+master.menu.sponsor = Patrocinador
+master.menu.sponsor.favourite-link = Enlace favorito
+master.menu.sponsor.my-sponsorships = Ver mis patrocinios
+master.menu.sponsor.all-sponsorships = Ver todos los patrocinios
+
 # master.menu.developer ####################################################
 
 master.menu.developer = Desarrollador
 master.menu.developer.favourite-link = Enlace favorito
 master.menu.developer.my-modules = Ver mis modulos	
 
+
 # master.menu.client ####################################################
 
 master.menu.client = Cliente
 master.menu.client.my-contracts = Ver mis contratos
+<<<<<<< HEAD
 master.menu.client.create-contracts = Crear un contrato
+=======
+master.menu.client.create-contracts = Crear mis contratos
+
+master.menu.manager.all-projects = Ver todos los proyectos
+
+>>>>>>> branch 'Task-I2---001---Clients-on-Contracts' of https://github.com/JesusFern/Acme-SF-D03.git
