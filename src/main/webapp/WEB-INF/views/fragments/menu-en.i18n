@@ -58,6 +58,13 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.manager = Manager
 master.menu.manager.favourite-link = Favourite link
 master.menu.manager.my-projects = List my projects
+master.menu.manager.all-projects = List All Projects
+
+# master.menu.developer ####################################################
+
+master.menu.developer = Developer
+master.menu.developer.favourite-link = Favourite link
+master.menu.developer.my-modules = List my modules	
 
 # master.menu.sponsor ####################################################
 
