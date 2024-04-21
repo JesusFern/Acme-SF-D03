@@ -72,3 +72,6 @@ master.menu.auditor.favourite-link = Favourite link
 master.menu.auditor.my-code-audit = List my Code audits	
 master.menu.auditor.create-code-audit = Create Code audits
 
+
+master.menu.auditor.my-audit-record= List my Audit records	
+master.menu.auditor.all-code-audit= List all Code audit

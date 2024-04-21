@@ -12,11 +12,17 @@
 
 package acme.features.auditor.codeAudit;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.codeAudits.CodeAudit;
+import acme.entities.codeAudits.Type;
+import acme.entities.projects.Project;
 import acme.roles.Auditor;
 
 @Service
@@ -26,97 +32,69 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Autowired
 	private AuditorCodeAuditRepository repository;
 
-	// AbstractService<Employer, Job> -------------------------------------
 
-	/*
-	 * @Override
-	 * public void authorise() {
-	 * boolean status;
-	 * int masterId;
-	 * Job job;
-	 * Employer employer;
-	 * 
-	 * masterId = super.getRequest().getData("id", int.class);
-	 * job = this.repository.findOneJobById(masterId);
-	 * employer = job == null ? null : job.getEmployer();
-	 * status = job != null && job.isDraftMode() && super.getRequest().getPrincipal().hasRole(employer);
-	 * 
-	 * super.getResponse().setAuthorised(status);
-	 * }
-	 * 
-	 * @Override
-	 * public void load() {
-	 * Job object;
-	 * int id;
-	 * 
-	 * id = super.getRequest().getData("id", int.class);
-	 * object = this.repository.findOneJobById(id);
-	 * 
-	 * super.getBuffer().addData(object);
-	 * }
-	 * 
-	 * @Override
-	 * public void bind(final Job object) {
-	 * assert object != null;
-	 * 
-	 * int contractorId;
-	 * Company contractor;
-	 * 
-	 * contractorId = super.getRequest().getData("contractor", int.class);
-	 * contractor = this.repository.findOneContractorById(contractorId);
-	 * 
-	 * super.bind(object, "reference", "title", "deadline", "salary", "score", "moreInfo", "description");
-	 * object.setContractor(contractor);
-	 * }
-	 * 
-	 * @Override
-	 * public void validate(final Job object) {
-	 * assert object != null;
-	 * 
-	 * if (!super.getBuffer().getErrors().hasErrors("deadline")) {
-	 * Date minimumDeadline;
-	 * 
-	 * minimumDeadline = MomentHelper.deltaFromCurrentMoment(7, ChronoUnit.DAYS);
-	 * super.state(MomentHelper.isAfter(object.getDeadline(), minimumDeadline), "deadline", "employer.job.form.error.too-close");
-	 * }
-	 * 
-	 * if (!super.getBuffer().getErrors().hasErrors("reference")) {
-	 * Job existing;
-	 * 
-	 * existing = this.repository.findOneJobByReference(object.getReference());
-	 * super.state(existing == null || existing.equals(object), "reference", "employer.job.form.error.duplicated");
-	 * }
-	 * 
-	 * if (!super.getBuffer().getErrors().hasErrors("salary"))
-	 * super.state(object.getSalary().getAmount() > 0, "salary", "employer.job.form.error.negative-salary");
-	 * }
-	 * 
-	 * @Override
-	 * public void perform(final Job object) {
-	 * assert object != null;
-	 * 
-	 * this.repository.save(object);
-	 * }
-	 * 
-	 * @Override
-	 * public void unbind(final Job object) {
-	 * assert object != null;
-	 * 
-	 * int employerId;
-	 * Collection<Company> contractors;
-	 * SelectChoices choices;
-	 * Dataset dataset;
-	 * 
-	 * employerId = super.getRequest().getPrincipal().getActiveRoleId();
-	 * contractors = this.repository.findManyContractorsByEmployerId(employerId);
-	 * choices = SelectChoices.from(contractors, "name", object.getContractor());
-	 * 
-	 * dataset = super.unbind(object, "reference", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
-	 * dataset.put("contractor", choices.getSelected().getKey());
-	 * dataset.put("contractors", choices);
-	 * 
-	 * super.getResponse().addData(dataset);
-	 * }
-	 * 
-	 */
+	@Override
+	public void authorise() {
+		boolean status;
+		super.getResponse().setAuthorised(true);
+	}
+
+	@Override
+	public void load() {
+		CodeAudit object;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneCodeAuditById(id);
+
+		super.getBuffer().addData(object);
+	}
+
+	@Override
+	public void bind(final CodeAudit object) {
+		assert object != null;
+
+		int projectId;
+		Project project;
+
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.repository.findOneProjectById(projectId);
+
+		super.bind(object, "code", "execution", "type", "correctiveActions", "link", "draftMode");
+		object.setProject(project);
+	}
+
+	@Override
+	public void validate(final CodeAudit object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final CodeAudit object) {
+		assert object != null;
+
+		this.repository.save(object);
+	}
+
+	@Override
+	public void unbind(final CodeAudit object) {
+		assert object != null;
+		SelectChoices choices;
+		SelectChoices choicesP;
+		Dataset dataset;
+
+		Collection<Project> projects;
+
+		choices = SelectChoices.from(Type.class, object.getType());
+		projects = this.repository.findManyProjectsByAvailability();
+		choicesP = SelectChoices.from(projects, "code", object.getProject());
+
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "link", "draftMode");
+		dataset.put("types", choices);
+		dataset.put("project", choicesP.getSelected().getKey());
+		dataset.put("projects", choicesP);
+
+		super.getResponse().addData(dataset);
+	}
+
 }

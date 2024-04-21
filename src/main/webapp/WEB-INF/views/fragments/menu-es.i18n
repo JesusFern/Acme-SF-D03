@@ -69,5 +69,5 @@ master.menu.developer.my-modules = Ver mis modulos
 
 master.menu.auditor = Auditor
 master.menu.auditor.favourite-link = Enlace favorito
-master.menu.auditor.my-code-audit = Ver mis auditorias de codigo	
-master.menu.auditor.create-code-audit = Crear auditoria de codigo
+master.menu.auditor.my-code-audit = Ver mis auditorias de código	
+master.menu.auditor.all-code-audit= Ver todas las auditorias de código

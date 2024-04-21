@@ -50,8 +50,9 @@
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">	
 			<acme:menu-suboption code="master.menu.auditor.my-code-audit" action="/auditor/code-audit/list-mine"/>
-			<acme:menu-suboption code="master.menu.auditor.create-code-audit" action="/auditor/code-audit/create"/>		
+			<acme:menu-suboption code="master.menu.auditor.all-code-audit" action="/auditor/code-audit/list-all"/>
 		</acme:menu-option>
+		
 		
 		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">	
 			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>	

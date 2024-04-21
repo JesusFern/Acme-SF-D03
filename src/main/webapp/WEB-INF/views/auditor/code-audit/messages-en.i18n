@@ -11,4 +11,8 @@ auditor.code-audit.form.label.type= Type
 auditor.code-audit.form.label.correctiveActions= Corrective actions
 auditor.code-audit.form.label.link= Link
 
+
+auditor.code-audit.list.button.create= Create Code audit
 auditor.codeAudit.form.button.create= Create
+auditor.code-audit.form.button.delete= Delete
+auditor.code-audit.form.button.update= Update

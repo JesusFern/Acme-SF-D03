@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.auditRecords.AuditRecord;
 import acme.entities.codeAudits.CodeAudit;
 import acme.entities.projects.Project;
 import acme.roles.Auditor;
@@ -26,7 +27,10 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 	@Query("select p from Project p where p.id = :projectId")
 	Project findOneProjectById(int projectId);
 
-	@Query("select p from Project p where p.id not in (select ca.project.id from CodeAudit ca where ca.auditor.id = :auditorId)")
-	Collection<Project> findManyAvailableProjectByAuditorId(int auditorId);
+	@Query("select p from Project p where p.draftMode = false")
+	Collection<Project> findManyProjectsByAvailability();
+
+	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
+	Collection<AuditRecord> findManyAuditRecordByCodeAuditId(int codeAuditId);
 
 }

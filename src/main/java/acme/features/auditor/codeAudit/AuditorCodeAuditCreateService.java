@@ -1,5 +1,5 @@
 /*
- * EmployerJobCreateService.java
+ * AuditorCodeAuditCreateService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -58,7 +58,6 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 		object.setExecution(moment);
 		object.setProject(null);
 		object.setAuditor(auditor);
-
 		super.getBuffer().addData(object);
 	}
 
@@ -93,16 +92,13 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 		SelectChoices choicesP;
 		Dataset dataset;
 
-		int auditorId;
 		Collection<Project> projects;
 
-		auditorId = object.getAuditor().getId();
-
 		choices = SelectChoices.from(Type.class, object.getType());
-		projects = this.repository.findManyAvailableProjectByAuditorId(auditorId);
+		projects = this.repository.findManyProjectsByAvailability();
 		choicesP = SelectChoices.from(projects, "code", object.getProject());
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "link");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "link", "draftMode");
 		dataset.put("types", choices);
 		dataset.put("project", choicesP.getSelected().getKey());
 		dataset.put("projects", choicesP);

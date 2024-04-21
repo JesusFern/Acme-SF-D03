@@ -16,10 +16,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="auditor.code-audit.list.label.code" path="code" width="20%"/>
-	<acme:list-column code="auditor.code-audit.list.label.corrective-actions" path="correctiveActions" width="80%"/>	
+	<acme:list-column code="auditor.audit-record.list.label.code" path="code" width="20%"/>
+	<acme:list-column code="auditor.audit-record.list.label.mark" path="mark" width="80%"/>	
 </acme:list>
 
-	<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="auditor.code-audit.list.button.create" action="/auditor/code-audit/create"/>
+	<jstl:if test="${_command == 'list'}">
+	<acme:button code="auditor.audit-record.list.button.create" action="/auditor/audit-record/create?masterId=${masterId}"/>
 </jstl:if>		
+		
+		
