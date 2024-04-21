@@ -103,18 +103,18 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		assert object != null;
 
 		Collection<Project> projects;
-		SelectChoices choices;
+		SelectChoices levelChoices;
 		SelectChoices projectChoices;
 		Dataset dataset;
 
 		projects = this.repository.findAllProjects();
 		projectChoices = SelectChoices.from(projects, "code", object.getProject());
-		choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
 		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "draftMode");
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projects", projectChoices);
-		dataset.put("difficultyLevels", choices);
+		dataset.put("difficultyLevels", levelChoices);
 
 		super.getResponse().addData(dataset);
 	}
