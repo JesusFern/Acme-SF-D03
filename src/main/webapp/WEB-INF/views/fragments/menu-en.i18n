@@ -69,4 +69,4 @@ master.menu.developer.my-modules = List my modules
 
 master.menu.client = Client
 master.menu.client.my-contracts = List my contracts
-master.menu.client.create-contracts = Create my contracts
+master.menu.client.create-contracts = Create a contract
