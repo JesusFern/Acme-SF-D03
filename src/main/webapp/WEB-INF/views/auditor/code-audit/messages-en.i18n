@@ -16,3 +16,5 @@ auditor.code-audit.list.button.create= Create Code audit
 auditor.codeAudit.form.button.create= Create
 auditor.code-audit.form.button.delete= Delete
 auditor.code-audit.form.button.update= Update
+
+auditor.code-audit.form.error.duplicated= Code is taken

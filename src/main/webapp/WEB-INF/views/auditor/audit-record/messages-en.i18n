@@ -17,3 +17,6 @@ auditor.auditRecord.form.button.create= Create
 auditor.audit-record.list.button.create= Create audit record
 auditor.audit-record.form.button.update= Update
 auditor.audit-record.form.button.delete= Delete
+
+auditor.code-audit.form.error.duplicated= Code is taken
+auditor.audit-record.form.error.too-close= Period should be at least 1 hour long

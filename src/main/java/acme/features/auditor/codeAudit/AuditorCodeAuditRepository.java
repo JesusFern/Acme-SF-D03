@@ -35,4 +35,7 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 
 	@Query("select ca from CodeAudit ca where ca.draftMode = false")
 	Collection<CodeAudit> findManyCodeAuditsByAvailability();
+
+	@Query("select ca from CodeAudit ca where ca.code = :code")
+	CodeAudit findOneCodeAuditByCode(String code);
 }
