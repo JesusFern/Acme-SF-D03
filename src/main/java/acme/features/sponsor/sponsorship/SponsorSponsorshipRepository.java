@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.projects.Project;
+import acme.entities.sponsorships.Invoice;
 import acme.entities.sponsorships.Sponsorship;
 import acme.roles.Sponsor;
 
@@ -25,4 +26,16 @@ public interface SponsorSponsorshipRepository extends AbstractRepository {
 
 	@Query("select p from Project p where p.id = :id")
 	Project findOneProjectById(int id);
+
+	//@Query("select p from Project p where p.id not in (select s.project.id from Sponsorship s where s.sponsor.id = :sponsorId)")
+	//Collection<Project> findManyAvailableProjectBySponsorId(int sponsorId);
+
+	@Query("select i from Invoice i where i.sponsorship.id = :sponsorshipId")
+	Collection<Invoice> findManyInvoicesBySponsorshipId(int sponsorshipId);
+
+	@Query("select p from Project p where p.draftMode = false")
+	Collection<Project> findManyProjectsByAvailability();
+
+	@Query("select s from Sponsorship s where s.draftMode = false")
+	Collection<Sponsorship> findManySponsorshipsByAvailability();
 }

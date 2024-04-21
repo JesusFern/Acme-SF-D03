@@ -11,7 +11,9 @@
 sponsor.sponsorship.form.title = Detalles de patrocinios
 sponsor.sponsorship.list.title = Lista de patrocinios
 sponsor.sponsorship.list.button.create = Crear un patrocinio
-sponsor.sponsorship.form.button.create = Crear un patrocinio
+sponsor.sponsorship.form.button.create = Crear patrocinio
+sponsor.sponsorship.form.button.delete = Eliminar patrocinio
+sponsor.sponsorship.form.button.update = Actualizar patrocinio
 
 sponsor.sponsorship.form.label.code = Código:
 sponsor.sponsorship.form.label.moment = Momento:
@@ -21,6 +23,7 @@ sponsor.sponsorship.form.label.amount = Cantidad:
 sponsor.sponsorship.form.label.type = Tipo:
 sponsor.sponsorship.form.label.email = Correo:
 sponsor.sponsorship.form.label.link = Enlace:
+sponsor.sponsorship.form.label.project = Proyecto:
 
 sponsor.sponsorship.list.label.code = Código
 sponsor.sponsorship.list.label.amount = Cantidad

@@ -15,8 +15,7 @@ import acme.entities.sponsorships.Type;
 import acme.roles.Sponsor;
 
 @Service
-public class SponsorSponsorshipListShowService extends AbstractService<Sponsor, Sponsorship> {
-
+public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sponsorship> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -27,7 +26,17 @@ public class SponsorSponsorshipListShowService extends AbstractService<Sponsor, 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		Sponsorship sponsorship;
+		Sponsor sponsor;
+
+		masterId = super.getRequest().getData("id", int.class);
+		sponsorship = this.ssr.findOneSponsorshipById(masterId);
+		sponsor = sponsorship == null ? null : sponsorship.getSponsor();
+		status = sponsorship != null && sponsorship.isDraftMode() && super.getRequest().getPrincipal().hasRole(sponsor);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -39,6 +48,31 @@ public class SponsorSponsorshipListShowService extends AbstractService<Sponsor, 
 		object = this.ssr.findOneSponsorshipById(id);
 
 		super.getBuffer().addData(object);
+	}
+
+	@Override
+	public void bind(final Sponsorship object) {
+		assert object != null;
+		int projectId;
+		Project project;
+
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.ssr.findOneProjectById(projectId);
+
+		super.bind(object, "code", "moment", "startSponsor", "endSponsor", "amount", "type", "email", "link");
+		object.setProject(project);
+	}
+
+	@Override
+	public void validate(final Sponsorship object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final Sponsorship object) {
+		assert object != null;
+
+		this.ssr.save(object);
 	}
 
 	@Override
