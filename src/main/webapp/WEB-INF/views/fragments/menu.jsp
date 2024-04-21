@@ -53,6 +53,11 @@
 			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>	
 		</acme:menu-option>
 		
+		<acme:menu-option code="master.menu.client" access="hasRole('Client')">	
+			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>	
+			<acme:menu-suboption code="master.menu.client.create-contracts" action="/client/contract/create"/>
+    </acme:menu-option>
+    
 		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">	
 			<acme:menu-suboption code="master.menu.sponsor.my-sponsorships" action="/sponsor/sponsorship/list-mine"/>	
 			<acme:menu-suboption code="master.menu.sponsor.all-sponsorships" action="/sponsor/sponsorship/list-all"/>
