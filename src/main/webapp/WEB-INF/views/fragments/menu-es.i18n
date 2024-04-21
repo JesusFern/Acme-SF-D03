@@ -72,13 +72,30 @@ master.menu.developer = Desarrollador
 master.menu.developer.favourite-link = Enlace favorito
 master.menu.developer.my-modules = Ver mis modulos	
 
+# master.menu.auditor ####################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.favourite-link = Enlace favorito
+master.menu.auditor.my-code-audit = Ver mis auditorias de código	
+master.menu.auditor.all-code-audit= Ver todas las auditorias de código
+
 
 # master.menu.client ####################################################
 
 master.menu.client = Cliente
 master.menu.client.my-contracts = Ver mis contratos
 master.menu.client.create-contracts = Crear un contrato
+<<<<<<< HEAD
 master.menu.client.all-contracts = Ver todos los contratos
+=======
+master.menu.client.create.all-contracts = Ver todos los contratos
+>>>>>>> branch 'Task-I2---001---Clients-on-Contracts' of https://github.com/JesusFern/Acme-SF-D03.git
 
 master.menu.manager.all-projects = Ver todos los proyectos
+
+
+master.menu.client.create-contracts = Crear un contrato
+
+master.menu.manager.all-projects = Ver todos los proyectos
+
 
