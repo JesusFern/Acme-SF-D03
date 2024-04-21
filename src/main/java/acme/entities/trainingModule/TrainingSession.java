@@ -32,7 +32,7 @@ public class TrainingSession extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@Pattern(regexp = "^TS-[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern} + TS-ABC-000")
+	@Pattern(regexp = "^TS-[A-Z]{1,3}-[0-9]{3}$", message = "{validation.pattern} TS-ABC-000")
 	@Column(unique = true)
 	@NotBlank
 	private String				code;
@@ -61,6 +61,8 @@ public class TrainingSession extends AbstractEntity {
 	@URL
 	@Length(max = 255)
 	private String				link;
+
+	private boolean				draftMode;
 
 	@ManyToOne(optional = false)
 	@Valid

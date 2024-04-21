@@ -64,3 +64,5 @@ master.menu.manager.my-projects = Ver mis proyectos
 master.menu.developer = Desarrollador
 master.menu.developer.my-modules = Ver mis módulos	
 master.menu.developer.create-module = Crear un módulo	
+master.menu.developer.my-sessions = Ver mis sesiones	
+

@@ -33,6 +33,7 @@
 	<acme:input-moment code="developer.training-module.form.label.updateMoment" path="updateMoment"/>
 	<acme:input-url code="developer.training-module.form.label.link" path="link"/>
 	<acme:input-integer code="developer.training-module.form.label.time" path="time"/>
+	<acme:button code="developer.training-module.form.button.trainingsessions" action="/developer/training-session/list-in-training-module?trainingModuleId=${id}"/>
 	
 						
 	<jstl:choose>
