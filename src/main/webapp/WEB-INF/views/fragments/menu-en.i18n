@@ -65,3 +65,8 @@ master.menu.developer = Developer
 master.menu.developer.favourite-link = Favourite link
 master.menu.developer.my-modules = List my modules	
 
+# master.menu.client ####################################################
+
+master.menu.client = Client
+master.menu.client.my-contracts = List my contracts
+master.menu.client.create-contracts = Create my contracts

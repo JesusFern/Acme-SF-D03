@@ -51,6 +51,11 @@
 		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">	
 			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>	
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.client" access="hasRole('Client')">	
+			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>	
+			<acme:menu-suboption code="master.menu.client.create-contracts" action="/client/contract/create"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>
