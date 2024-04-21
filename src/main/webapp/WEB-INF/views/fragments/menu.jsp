@@ -63,6 +63,7 @@
 			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>
 			<acme:menu-suboption code="master.menu.client.all-contracts" action="/client/contract/list-all"/>	
 			<acme:menu-suboption code="master.menu.client.create-contracts" action="/client/contract/create"/>
+			
     </acme:menu-option>
     
 		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">	

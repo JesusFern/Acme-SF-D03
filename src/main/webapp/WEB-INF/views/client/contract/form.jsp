@@ -26,7 +26,8 @@
 
 
 	<jstl:choose>
-    <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+    		<acme:button code="client.progress-log.list.title" action="/client/progress-log/list?masterId=${id}"/>
             <acme:submit code="client.contract.form.button.delete" action="/client/contract/delete"/>
             <acme:submit code="client.contract.form.button.update" action="/client/contract/update"/>
         </jstl:when>
