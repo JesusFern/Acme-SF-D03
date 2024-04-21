@@ -36,7 +36,16 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Override
 	public void authorise() {
 		boolean status;
-		super.getResponse().setAuthorised(true);
+		int masterId;
+		CodeAudit codeAudit;
+		Auditor auditor;
+
+		masterId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		auditor = codeAudit == null ? null : codeAudit.getAuditor();
+		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(auditor);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -67,6 +76,12 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			CodeAudit existing;
+
+			existing = this.repository.findOneCodeAuditByCode(object.getCode());
+			super.state(existing == null, "code", "auditor.code-audit.form.error.duplicated");
+		}
 	}
 
 	@Override

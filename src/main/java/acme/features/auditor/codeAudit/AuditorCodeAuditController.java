@@ -19,6 +19,9 @@ public class AuditorCodeAuditController extends AbstractController<Auditor, Code
 	private AuditorCodeAuditListMineService	listMineService;
 
 	@Autowired
+	private AuditorCodeAuditListAllService	listAllService;
+
+	@Autowired
 	private AuditorCodeAuditShowService		showService;
 
 	@Autowired
@@ -36,6 +39,7 @@ public class AuditorCodeAuditController extends AbstractController<Auditor, Code
 	@PostConstruct
 	protected void initialise() {
 		super.addCustomCommand("list-mine", "list", this.listMineService);
+		super.addCustomCommand("list-all", "list", this.listAllService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);

@@ -12,16 +12,19 @@
 
 package acme.features.auditor.auditRecord;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.auditRecords.AuditRecord;
 import acme.entities.auditRecords.Mark;
 import acme.entities.codeAudits.CodeAudit;
-import acme.features.auditor.codeAudit.AuditorCodeAuditRepository;
 import acme.roles.Auditor;
 
 @Service
@@ -29,13 +32,22 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
-	private AuditorCodeAuditRepository repository;
+	private AuditorAuditRecordRepository repository;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		super.getResponse().setAuthorised(true);
+		int masterId;
+		AuditRecord auditRecord;
+		Auditor auditor;
+
+		masterId = super.getRequest().getData("id", int.class);
+		auditRecord = this.repository.findOneAuditRecordById(masterId);
+		auditor = auditRecord == null ? null : auditRecord.getCodeAudit().getAuditor();
+		status = auditRecord != null && super.getRequest().getPrincipal().hasRole(auditor);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -64,6 +76,18 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 	@Override
 	public void validate(final AuditRecord object) {
 		assert object != null;
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			AuditRecord existing;
+
+			existing = this.repository.findOneAuditRecordByCode(object.getCode());
+			super.state(existing == null, "code", "auditor.audit-record.form.error.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("periodEnd")) {
+			Date minimumEnd;
+
+			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.HOURS);
+			super.state(MomentHelper.isAfter(object.getPeriodEnd(), minimumEnd), "periodEnd", "auditor.audit-record.form.error.too-close");
+		}
 	}
 
 	@Override

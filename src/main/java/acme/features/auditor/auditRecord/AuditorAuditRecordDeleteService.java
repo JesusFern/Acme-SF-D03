@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.auditRecords.AuditRecord;
-import acme.entities.codeAudits.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
@@ -34,15 +33,15 @@ public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, Au
 	public void authorise() {
 		boolean status;
 		int masterId;
-		CodeAudit codeAudit;
+		AuditRecord auditRecord;
 		Auditor auditor;
 
 		masterId = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
-		auditor = codeAudit == null ? null : codeAudit.getAuditor();
-		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(auditor);
+		auditRecord = this.repository.findOneAuditRecordById(masterId);
+		auditor = auditRecord == null ? null : auditRecord.getCodeAudit().getAuditor();
+		status = auditRecord != null && super.getRequest().getPrincipal().hasRole(auditor);
 
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

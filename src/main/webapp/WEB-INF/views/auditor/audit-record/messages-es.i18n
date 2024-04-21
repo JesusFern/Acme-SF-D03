@@ -17,3 +17,6 @@ auditor.auditRecord.form.button.create= Crear
 auditor.audit-record.list.button.create=Crear registro de auditoria
 auditor.audit-record.form.button.delete= Borrar
 auditor.audit-record.form.button.update= Actualizar
+
+auditor.audit-record.form.error.too-close= El periodo debe ser almenos de 1 hora
+auditor.code-audit.form.error.duplicated= El código ya esta siendo utilizado
