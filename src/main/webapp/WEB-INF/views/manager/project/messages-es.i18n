@@ -3,6 +3,7 @@ manager.project.form.title = Project form
 
 manager.project.list.label.code = Código
 manager.project.list.label.title = Título
+manager.project.list.label.abstractString = Resumen
 
 manager.project.list.button.create = Crear
 manager.project.form.button.create = Crear

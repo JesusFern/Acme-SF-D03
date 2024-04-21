@@ -17,7 +17,8 @@
 
 <acme:list>
 	<acme:list-column code="manager.project.list.label.code" path="code" width="10%"/>
-	<acme:list-column code="manager.project.list.label.title" path="title" width="10%"/>
+	<acme:list-column code="manager.project.list.label.title" path="title" width="60%"/>
+	<acme:list-column code="manager.project.list.label.abstractString" path="title" width="80%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list-mine'}">
