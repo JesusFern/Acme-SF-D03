@@ -84,6 +84,11 @@ master.menu.auditor.all-code-audit= Ver todas las auditorias de código
 
 master.menu.client = Cliente
 master.menu.client.my-contracts = Ver mis contratos
+master.menu.client.create-contracts = Crear un contrato
+master.menu.client.create.all-contracts = Ver todos los contratos
+
+master.menu.manager.all-projects = Ver todos los proyectos
+
 
 master.menu.client.create-contracts = Crear un contrato
 

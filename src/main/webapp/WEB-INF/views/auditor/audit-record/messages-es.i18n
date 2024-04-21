@@ -15,3 +15,5 @@ auditor.audit-record.form.label.link= Link
 
 auditor.auditRecord.form.button.create= Crear
 auditor.audit-record.list.button.create=Crear registro de auditoria
+auditor.audit-record.form.button.delete= Borrar
+auditor.audit-record.form.button.update= Actualizar

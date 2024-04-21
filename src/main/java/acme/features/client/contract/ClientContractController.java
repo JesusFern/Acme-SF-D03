@@ -18,6 +18,9 @@ public class ClientContractController extends AbstractController<Client, Contrac
 	private ClientContractListMineService	listMineService;
 
 	@Autowired
+	private ClientContractListAllService	listAllService;
+
+	@Autowired
 	private ClientContractShowService		listShowService;
 
 	@Autowired
@@ -35,6 +38,7 @@ public class ClientContractController extends AbstractController<Client, Contrac
 	@PostConstruct
 	protected void initialise() {
 		super.addCustomCommand("list-mine", "list", this.listMineService);
+		super.addCustomCommand("list-all", "list", this.listAllService);
 		super.addBasicCommand("show", this.listShowService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("delete", this.deleteService);

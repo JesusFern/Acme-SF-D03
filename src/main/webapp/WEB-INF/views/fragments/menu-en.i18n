@@ -81,7 +81,8 @@ master.menu.auditor.all-code-audit= List all Code audit
 
 master.menu.client = Client
 master.menu.client.my-contracts = List my contracts
-master.menu.client.create-contracts = Create my contracts
+master.menu.client.all-contracts = List all contracts
+master.menu.client.create-contracts = Create a contract
 
 # master.menu.sponsor ####################################################
 
