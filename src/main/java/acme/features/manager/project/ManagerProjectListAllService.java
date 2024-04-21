@@ -30,7 +30,7 @@ public class ManagerProjectListAllService extends AbstractService<Manager, Proje
 	public void load() {
 		Collection<Project> objects;
 
-		objects = this.repository.findManyJobsByAvailability();
+		objects = this.repository.findManyProjectsByAvailability();
 
 		super.getBuffer().addData(objects);
 	}
