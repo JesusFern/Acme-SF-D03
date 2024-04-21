@@ -58,6 +58,7 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.manager = Manager
 master.menu.manager.favourite-link = Favourite link
 master.menu.manager.my-projects = List my projects
+master.menu.manager.all-projects = List All Projects
 
 # master.menu.developer ####################################################
 
@@ -75,3 +76,16 @@ master.menu.auditor.create-code-audit = Create Code audits
 
 master.menu.auditor.my-audit-record= List my Audit records	
 master.menu.auditor.all-code-audit= List all Code audit
+
+# master.menu.client ####################################################
+
+master.menu.client = Client
+master.menu.client.my-contracts = List my contracts
+master.menu.client.create-contracts = Create my contracts
+
+# master.menu.sponsor ####################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.favourite-link = Favourite link
+master.menu.sponsor.my-sponsorships = List my sponsorships
+master.menu.sponsor.all-sponsorships = List all sponsorships
