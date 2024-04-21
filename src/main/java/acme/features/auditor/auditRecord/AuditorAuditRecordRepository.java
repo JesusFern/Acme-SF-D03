@@ -1,5 +1,5 @@
 
-package acme.features.auditor.codeAudit;
+package acme.features.auditor.auditRecord;
 
 import java.util.Collection;
 
@@ -13,7 +13,7 @@ import acme.entities.projects.Project;
 import acme.roles.Auditor;
 
 @Repository
-public interface AuditorCodeAuditRepository extends AbstractRepository {
+public interface AuditorAuditRecordRepository extends AbstractRepository {
 
 	@Query("select ca from CodeAudit ca where ca.id = :id")
 	CodeAudit findOneCodeAuditById(int id);
@@ -24,15 +24,18 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 	@Query("select a from Auditor a where a.id = :id")
 	Auditor findOneAuditorById(int id);
 
+	@Query("select ar from AuditRecord ar where ar.id = :id")
+	AuditRecord findOneAuditRecordById(int id);
+
 	@Query("select p from Project p where p.id = :projectId")
 	Project findOneProjectById(int projectId);
 
-	@Query("select p from Project p where p.draftMode = false")
-	Collection<Project> findManyProjectsByAvailability();
+	@Query("select ca from CodeAudit ca where ca.auditor.id = :auditorId")
+	Collection<CodeAudit> findManyAvailableCodeAuditByAuditorId(int auditorId);
 
 	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
 	Collection<AuditRecord> findManyAuditRecordByCodeAuditId(int codeAuditId);
 
-	@Query("select ca from CodeAudit ca where ca.draftMode = false")
-	Collection<CodeAudit> findManyCodeAuditsByAvailability();
+	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :masterId")
+	Collection<AuditRecord> findManyAuditRecordByMasterId(int masterId);
 }
