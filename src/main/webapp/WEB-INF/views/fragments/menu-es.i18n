@@ -78,6 +78,7 @@ master.menu.developer.my-modules = Ver mis modulos
 master.menu.client = Cliente
 master.menu.client.my-contracts = Ver mis contratos
 master.menu.client.create-contracts = Crear un contrato
-master.menu.client.create.all-contracts = Ver todos los contratos
+master.menu.client.all-contracts = Ver todos los contratos
+
 master.menu.manager.all-projects = Ver todos los proyectos
 
