@@ -14,7 +14,7 @@ import acme.entities.projects.Project;
 import acme.roles.Client;
 
 @Service
-public class ClientContractShowService extends AbstractService<Client, Contract> {
+public class ClientContractUpdateService extends AbstractService<Client, Contract> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -26,7 +26,17 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		Contract contract;
+		Client client;
+
+		masterId = super.getRequest().getData("id", int.class);
+		contract = this.ccr.findOneContractById(masterId);
+		client = contract == null ? null : contract.getClient();
+		status = contract != null && contract.isDraftMode() && super.getRequest().getPrincipal().hasRole(client);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -41,9 +51,30 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 	}
 
 	@Override
-	public void unbind(final Contract object) {
+	public void bind(final Contract object) {
+		assert object != null;
+		int projectId;
+		Project project;
+
+		projectId = super.getRequest().getData("project", int.class);
+		project = this.ccr.findOneProjectById(projectId);
+
+		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
+		object.setProject(project);
+	}
+	@Override
+	public void validate(final Contract object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final Contract object) {
 		assert object != null;
 
+		this.ccr.save(object);
+	}
+	@Override
+	public void unbind(final Contract object) {
 		assert object != null;
 
 		SelectChoices choicesP;

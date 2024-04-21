@@ -41,6 +41,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		object.setCode("");
 		object.setCustomerName("");
 		object.setGoals("");
+		object.setDraftMode(true);
 		object.setInstantiationMoment(moment);
 		object.setProject(null);
 		object.setProviderName("");
