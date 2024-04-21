@@ -66,3 +66,10 @@ master.menu.developer = Developer
 master.menu.developer.favourite-link = Favourite link
 master.menu.developer.my-modules = List my modules	
 
+# master.menu.sponsor ####################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.favourite-link = Favourite link
+master.menu.sponsor.my-sponsorships = List my sponsorships
+master.menu.sponsor.all-sponsorships = List all sponsorships
+

@@ -58,10 +58,17 @@ master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.manager = Director
 master.menu.manager.favourite-link = Enlace favorito
 master.menu.manager.my-projects = Ver mis proyectos	
-master.menu.manager.all-projects = Ver todos los proyectos
+
+# master.menu.sponsor ####################################################
+
+master.menu.sponsor = Patrocinador
+master.menu.sponsor.favourite-link = Enlace favorito
+master.menu.sponsor.my-sponsorships = Ver mis patrocinios
+master.menu.sponsor.all-sponsorships = Ver todos los patrocinios
 
 # master.menu.developer ####################################################
 
 master.menu.developer = Desarrollador
 master.menu.developer.favourite-link = Enlace favorito
 master.menu.developer.my-modules = Ver mis modulos	
+master.menu.manager.all-projects = Ver todos los proyectos
