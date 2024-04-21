@@ -71,10 +71,7 @@ master.menu.developer.my-modules = List my modules
 
 master.menu.client = Client
 master.menu.client.my-contracts = List my contracts
-<<<<<<< HEAD
 master.menu.client.create-contracts = Create a contract
-=======
-master.menu.client.create-contracts = Create my contracts
 
 # master.menu.sponsor ####################################################
 
