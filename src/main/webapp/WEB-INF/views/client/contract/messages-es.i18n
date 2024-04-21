@@ -12,6 +12,8 @@ client.contract.form.title = Detalles de contratos
 client.contract.list.title = Lista de Contratos
 client.contract.list.button.create = Crear un Contrato
 client.contract.form.button.create = Crear un Contrato
+client.contract.form.button.delete = Eliminar un Contrato
+client.contract.form.button.update = Actualizar un Contrato
 
 client.contract.form.label.code = Código:
 client.contract.form.label.instantiationMoment = Momento Iniciación:

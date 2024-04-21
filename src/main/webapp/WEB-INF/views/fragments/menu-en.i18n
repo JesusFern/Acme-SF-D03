@@ -71,6 +71,9 @@ master.menu.developer.my-modules = List my modules
 
 master.menu.client = Client
 master.menu.client.my-contracts = List my contracts
+<<<<<<< HEAD
+master.menu.client.create-contracts = Create a contract
+=======
 master.menu.client.create-contracts = Create my contracts
 
 # master.menu.sponsor ####################################################
@@ -80,3 +83,4 @@ master.menu.sponsor.favourite-link = Favourite link
 master.menu.sponsor.my-sponsorships = List my sponsorships
 master.menu.sponsor.all-sponsorships = List all sponsorships
 
+>>>>>>> branch 'Task-I2---001---Clients-on-Contracts' of https://github.com/JesusFern/Acme-SF-D03.git

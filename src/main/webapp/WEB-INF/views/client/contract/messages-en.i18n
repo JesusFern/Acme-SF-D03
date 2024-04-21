@@ -12,6 +12,8 @@ client.contract.form.title = Contracts form
 client.contract.list.title = Listing of Contracts
 client.contract.list.button.create = Create Contract
 client.contract.form.button.create = Create Contract
+client.contract.form.button.delete = Delete Contract
+client.contract.form.button.update = Update Contract
 
 client.contract.form.label.code = Code:
 client.contract.form.label.instantiationMoment = Instantiation Moment:
