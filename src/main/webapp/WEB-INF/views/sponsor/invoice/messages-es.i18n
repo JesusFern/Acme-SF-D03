@@ -10,10 +10,10 @@
 
 sponsor.invoice.form.title = Detalles de factura
 sponsor.invoice.list.title = Lista de facturas
-sponsor.invoice.list.button.show = Detalles factura
-sponsor.invoice.form.button.create = Crear factura
-sponsor.invoice.form.button.delete = Eliminar factura
-sponsor.invoice.form.button.update = Actualizar factura
+sponsor.invoice.list.button.create = Crear una factura
+sponsor.invoice.form.button.create = Crear
+sponsor.invoice.form.button.delete = Eliminar
+sponsor.invoice.form.button.update = Actualizar
 
 sponsor.invoice.form.label.code = Código:
 sponsor.invoice.form.label.registrationTime = Tiempo de registro:

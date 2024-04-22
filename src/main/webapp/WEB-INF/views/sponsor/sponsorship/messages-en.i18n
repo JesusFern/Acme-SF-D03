@@ -11,9 +11,10 @@
 sponsor.sponsorship.form.title = Sponsorship form
 sponsor.sponsorship.list.title = Listing of sponsorships
 sponsor.sponsorship.list.button.create = Create sponsorship
-sponsor.sponsorship.form.button.create = Create sponsorship
-sponsor.sponsorship.form.button.delete = Delete sponsorship
-sponsor.sponsorship.form.button.update = Update sponsorship
+sponsor.sponsorship.form.button.create = Create
+sponsor.sponsorship.form.button.delete = Delete
+sponsor.sponsorship.form.button.update = Update
+sponsor.sponsorship.form.button.invoice = Invoices
 
 sponsor.sponsorship.form.label.code = Code:
 sponsor.sponsorship.form.label.moment = Moment:

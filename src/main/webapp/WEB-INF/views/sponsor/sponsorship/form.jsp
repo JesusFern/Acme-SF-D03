@@ -31,7 +31,7 @@
 			<acme:button code="sponsor.sponsorship.form.button.invoice" action="/sponsor/invoice/list-mine?masterId=${id}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
-			<acme:button code="sponsor.sponsorship.form.button.invoice" action="/sponsor/invoice/list?masterId=${id}"/>
+			<acme:button code="sponsor.sponsorship.form.button.invoice" action="/sponsor/invoice/list-mine?masterId=${id}"/>
 			<acme:submit code="sponsor.sponsorship.form.button.update" action="/sponsor/sponsorship/update"/>
 			<acme:submit code="sponsor.sponsorship.form.button.delete" action="/sponsor/sponsorship/delete"/>
 		</jstl:when>
