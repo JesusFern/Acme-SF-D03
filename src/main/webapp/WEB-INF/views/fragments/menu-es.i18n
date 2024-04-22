@@ -63,5 +63,6 @@ master.menu.manager.my-projects = Ver mis proyectos
 
 master.menu.developer = Desarrollador
 master.menu.developer.my-modules = Ver mis módulos	
+master.menu.developer.my-dashboard = Ver mi panel	
 
 
