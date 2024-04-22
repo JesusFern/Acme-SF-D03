@@ -23,3 +23,5 @@ manager.project.form.button.userStories = User Stories
 manager.project.form.placeholder.cost = 0 - 10000
 manager.project.form.error.duplicated = This code is taken
 manager.project.form.error.fatal-error = You can't create a project with fatal errors 
+
+manager.project.list.button.create-relation = Add an US to a project
