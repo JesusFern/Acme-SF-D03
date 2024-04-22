@@ -63,7 +63,8 @@ master.menu.manager.my-user-stories = List my user stories
 # master.menu.developer ####################################################
 
 master.menu.developer = Developer
-master.menu.developer.my-modules = List my modules	
+master.menu.developer.all-modules = List all training modules	
+master.menu.developer.my-modules = List my training modules	
 master.menu.developer.my-dashboard = Show my dashboard
 
 # master.menu.auditor ####################################################

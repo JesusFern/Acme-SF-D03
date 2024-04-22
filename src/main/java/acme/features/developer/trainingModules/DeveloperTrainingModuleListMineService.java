@@ -12,7 +12,7 @@ import acme.entities.trainingModule.TrainingModule;
 import acme.roles.Developer;
 
 @Service
-public class DeveloperTrainingModuleListService extends AbstractService<Developer, TrainingModule> {
+public class DeveloperTrainingModuleListMineService extends AbstractService<Developer, TrainingModule> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -22,6 +22,7 @@ public class DeveloperTrainingModuleListService extends AbstractService<Develope
 	// AbstractService interface ----------------------------------------------
 
 
+	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
@@ -31,7 +32,8 @@ public class DeveloperTrainingModuleListService extends AbstractService<Develope
 	public void load() {
 		Collection<TrainingModule> objects;
 
-		objects = this.repository.findAllTrainingModulesWithoutDraftMode();
+		final int id = super.getRequest().getPrincipal().getActiveRoleId();
+		objects = this.repository.findAllTrainingModulesByDeveloperId(id);
 
 		super.getBuffer().addData(objects);
 	}
@@ -44,5 +46,4 @@ public class DeveloperTrainingModuleListService extends AbstractService<Develope
 
 		super.getResponse().addData(dataset);
 	}
-
 }
