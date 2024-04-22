@@ -54,10 +54,10 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 	public void load() {
 		AuditRecord object;
 
-		int masterId;
+		int id;
 		CodeAudit codeAudit;
-		masterId = super.getRequest().getData("masterId", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		id = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(id);
 
 		object = new AuditRecord();
 		object.setCode("");
@@ -80,13 +80,13 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 			AuditRecord existing;
 
 			existing = this.repository.findOneAuditRecordByCode(object.getCode());
-			super.state(existing == null, "code", "auditor.audit-record.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "auditor.audit-record.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("periodEnd")) {
 			Date minimumEnd;
 
 			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.HOURS);
-			super.state(MomentHelper.isAfter(object.getPeriodEnd(), minimumEnd), "periodEnd", "auditor.audit-record.form.error.too-close");
+			super.state(MomentHelper.isBefore(object.getPeriodEnd(), minimumEnd), "periodEnd", "auditor.audit-record.form.error.too-close");
 		}
 	}
 

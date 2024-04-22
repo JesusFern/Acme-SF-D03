@@ -1,5 +1,5 @@
 
-package acme.features.client.progressLog;
+package acme.features.sponsor.invoice;
 
 import javax.annotation.PostConstruct;
 
@@ -7,37 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.contracts.ProgressLog;
-import acme.roles.Client;
+import acme.entities.sponsorships.Invoice;
+import acme.roles.Sponsor;
 
 @Controller
-public class ClientProgressLogController extends AbstractController<Client, ProgressLog> {
+public class SponsorInvoiceController extends AbstractController<Sponsor, Invoice> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
-	private ClientProgressLogListMineService	listMineService;
+	private SponsorInvoiceListMineService	listMineService;
 
 	@Autowired
-	private ClientProgressLogShowService		listShowService;
+	private SponsorInvoiceListShowService	listShowService;
 
 	@Autowired
-	private ClientProgressLogCreateService		createService;
+	private SponsorInvoiceCreateService		createService;
 
 	@Autowired
-	private ClientProgressLogUpdateService		updateService;
+	private SponsorInvoiceUpdateService		updateService;
 
 	@Autowired
-	private ClientProgressLogDeleteService		deleteService;
-
+	private SponsorInvoiceDeleteService		deleteService;
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("list", this.listMineService);
+		super.addCustomCommand("list-mine", "list", this.listMineService);
 		super.addBasicCommand("show", this.listShowService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 }

@@ -14,10 +14,9 @@ import acme.entities.projects.Project;
 import acme.roles.Client;
 
 @Service
-public class ClientContractUpdateService extends AbstractService<Client, Contract> {
+public class ClientContractPublishService extends AbstractService<Client, Contract> {
 
 	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private ClientContractRepository ccr;
 
@@ -27,12 +26,12 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int contractId;
 		Contract contract;
 		Client client;
 
-		masterId = super.getRequest().getData("id", int.class);
-		contract = this.ccr.findOneContractById(masterId);
+		contractId = super.getRequest().getData("id", int.class);
+		contract = this.ccr.findOneContractById(contractId);
 		client = contract == null ? null : contract.getClient();
 		status = contract != null && contract.isDraftMode() && super.getRequest().getPrincipal().hasRole(client);
 
@@ -53,12 +52,11 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 	@Override
 	public void bind(final Contract object) {
 		assert object != null;
-		int projectId;
 		Project project;
+		int projectId;
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.ccr.findOneProjectById(projectId);
-
 		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
 		object.setProject(project);
 
@@ -73,27 +71,43 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			super.state(existing == null || existing.equals(object), "code", "client.contract.form.error.duplicated");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
+			double totalBudgets = 0.0;
+			Project project = object.getProject();
+			Collection<Contract> contracts = this.ccr.findManyContractsAvailableByProjectId(project.getId());
+			for (Contract c : contracts)
+				totalBudgets += c.getBudget().getAmount();
+			double projectCost = object.getProject().getCost();
+			super.state(totalBudgets <= projectCost, "project", "client.contract.form.error.exceeded-project-cost");
+		}
 	}
 
 	@Override
 	public void perform(final Contract object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.ccr.save(object);
 	}
+
 	@Override
 	public void unbind(final Contract object) {
 		assert object != null;
-
-		SelectChoices choicesP;
 		Dataset dataset;
+		SelectChoices choicesP;
+		int clientId;
 		Collection<Project> projects;
-		projects = this.ccr.findManyProjectsByAvailability();
+
+		clientId = super.getRequest().getPrincipal().getActiveRoleId();
+
+		projects = this.ccr.findManyAvailableProjectByClientId(clientId);
 		choicesP = SelectChoices.from(projects, "code", object.getProject());
+
 		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "draftMode");
 		dataset.put("project", choicesP.getSelected().getKey());
 		dataset.put("projects", choicesP);
-		super.getResponse().addData(dataset);
 
+		super.getResponse().addData(dataset);
 	}
+
 }
