@@ -63,3 +63,4 @@ master.menu.manager.my-projects = List my projects
 
 master.menu.developer = Developer
 master.menu.developer.my-modules = List my modules	
+master.menu.developer.my-dashboard = Show my dashboard
