@@ -36,17 +36,12 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void load() {
 		TrainingModule object;
 		Developer developer;
-		Date moment;
 
 		developer = this.repository.findOneDeveloperById(super.getRequest().getPrincipal().getActiveRoleId());
 
-		moment = MomentHelper.getCurrentMoment();
 		object = new TrainingModule();
 		object.setDraftMode(true);
 		object.setDeveloper(developer);
-		object.setProject(null);
-		object.setCreationMoment(moment);
-		object.setDraftMode(true);
 
 		super.getBuffer().addData(object);
 	}
@@ -61,7 +56,12 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "startMoment", "endMoment", "link", "time");
+		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "project");
+
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date creationMoment = new Date(currentMoment.getTime() - 600000);
+
+		object.setCreationMoment(creationMoment);
 		object.setProject(project);
 
 	}
@@ -78,17 +78,17 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		//			super.state(startBeforeEnd, UPDATE_MOMENT, "developer.trainingModule.form.error.end-before-start");
 		//		}
 
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			final boolean duplicatedCode = this.repository.findAllTrainingModules().stream().anyMatch(e -> e.getCode().equals(object.getCode()));
-
-			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
-		}
-
-		if (!super.getBuffer().getErrors().hasErrors("time")) {
-			final boolean duplicatedCode = object.getTime() < 0;
-
-			super.state(!duplicatedCode, "time", "developer.trainingModule.form.error.negative-time");
-		}
+		//		if (!super.getBuffer().getErrors().hasErrors("code")) {
+		//			final boolean duplicatedCode = this.repository.findAllTrainingModules().stream().anyMatch(e -> e.getCode().equals(object.getCode()));
+		//
+		//			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
+		//		}
+		//
+		//		if (!super.getBuffer().getErrors().hasErrors("time")) {
+		//			final boolean duplicatedCode = object.getTime() < 0;
+		//
+		//			super.state(!duplicatedCode, "time", "developer.trainingModule.form.error.negative-time");
+		//		}
 
 	}
 
@@ -107,11 +107,11 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		SelectChoices projectChoices;
 		Dataset dataset;
 
-		projects = this.repository.findAllProjects();
+		projects = this.repository.findManyProjectsByAvailability();
 		projectChoices = SelectChoices.from(projects, "code", object.getProject());
 		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "draftMode");
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "project", "draftMode");
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projects", projectChoices);
 		dataset.put("difficultyLevels", levelChoices);

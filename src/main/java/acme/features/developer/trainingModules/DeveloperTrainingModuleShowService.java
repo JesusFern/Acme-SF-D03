@@ -53,7 +53,7 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 		projectChoices = SelectChoices.from(projects, "code", object.getProject());
 		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time");
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "draftMode", "project");
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projects", projectChoices);
 		dataset.put("difficultyLevels", levelChoices);

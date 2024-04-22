@@ -45,13 +45,36 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">	
-			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>	
+			<acme:menu-suboption code="master.menu.manager.my-projects" action="/manager/project/list-mine"/>
+			<acme:menu-suboption code="master.menu.manager.all-projects" action="/manager/project/list-all"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.manager.my-user-stories" action="/manager/user-story/list-mine"/>
 		</acme:menu-option>
 		
+		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">	
+			<acme:menu-suboption code="master.menu.auditor.my-code-audit" action="/auditor/code-audit/list-mine"/>
+			<acme:menu-suboption code="master.menu.auditor.all-code-audit" action="/auditor/code-audit/list-all"/>
+		</acme:menu-option>
+		
+
 		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">
-			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list"/>
+			<acme:menu-suboption code="master.menu.developer.all-modules" action="/developer/training-module/list"/>
+			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>
 			<acme:menu-separator/>	
 			<acme:menu-suboption code="master.menu.developer.my-dashboard" action="/developer/developer-dashboard/show"/>
+
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.client" access="hasRole('Client')">	
+			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>
+			<acme:menu-suboption code="master.menu.client.all-contracts" action="/client/contract/list-all"/>	
+			<acme:menu-suboption code="master.menu.client.create-contracts" action="/client/contract/create"/>
+			
+    </acme:menu-option>
+    
+		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">	
+			<acme:menu-suboption code="master.menu.sponsor.my-sponsorships" action="/sponsor/sponsorship/list-mine"/>	
+			<acme:menu-suboption code="master.menu.sponsor.all-sponsorships" action="/sponsor/sponsorship/list-all"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

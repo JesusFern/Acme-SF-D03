@@ -20,5 +20,7 @@
 	<acme:list-column code="developer.training-module.list.label.details" path="details" width="80%"/>
 </acme:list>
 
-<acme:button code="developer.training-module.list.button.create" action="/developer/training-module/create"/>
+<jstl:if test="${_command == 'list-mine'}">
+	<acme:button code="developer.training-module.list.button.create" action="/developer/training-module/create"/>
+</jstl:if>
 
