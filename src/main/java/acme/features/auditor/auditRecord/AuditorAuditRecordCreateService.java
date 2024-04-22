@@ -78,7 +78,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 			Date minimumEnd;
 
 			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.HOURS);
-			super.state(MomentHelper.isAfter(object.getPeriodEnd(), minimumEnd), "periodEnd", "auditor.audit-record.form.error.too-close");
+			super.state(MomentHelper.isBefore(object.getPeriodEnd(), minimumEnd), "periodEnd", "auditor.audit-record.form.error.too-close");
 		}
 	}
 

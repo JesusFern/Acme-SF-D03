@@ -28,8 +28,11 @@
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="auditor.codeAudit.form.button.create" action="/auditor/code-audit/create"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') }">
+		
+		<jstl:when test="${_command == 'show'}">
 			<acme:button code="auditor.audit-record.list.title" action="/auditor/audit-record/list?masterId=${id}"/>
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode==true }">
 			<acme:submit code="auditor.code-audit.form.button.delete" action="/auditor/code-audit/delete"/>
 			<acme:submit code="auditor.code-audit.form.button.update" action="/auditor/code-audit/update"/>
 		</jstl:when>	
