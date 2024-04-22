@@ -12,6 +12,9 @@
 	<acme:input-url code="manager.project.form.label.link" path="link"/>
 	
 	<jstl:choose>
+	<jstl:when test="${_command == 'show' && draftMode == false}">
+			<acme:button code="manager.project.form.button.userStories" action="/manager/user-story/list-project?masterId=${id}"/>			
+		</jstl:when>
 	<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
 			<acme:submit code="manager.project.form.button.delete" action="/manager/project/delete"/>
 			<acme:submit code="manager.project.form.button.update" action="/manager/project/update"/>

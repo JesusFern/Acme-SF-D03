@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.projects.Project;
-import acme.entities.projects.UserStory;
+import acme.entities.projects.ProjectUserStory;
 import acme.roles.Manager;
 
 @Service
@@ -64,10 +64,10 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 	public void perform(final Project object) {
 		assert object != null;
 
-		Collection<UserStory> userStories;
+		Collection<ProjectUserStory> projectUserStories;
 
-		userStories = this.repository.findManyUserStoriesByProjectId(object.getId());
-		this.repository.deleteAll(userStories);
+		projectUserStories = this.repository.findManyProjectUserStoriesByProjectId(object.getId());
+		this.repository.deleteAll(projectUserStories);
 		this.repository.delete(object);
 	}
 
