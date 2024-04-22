@@ -71,8 +71,10 @@ master.menu.sponsor.all-sponsorships = Ver todos los patrocinios
 # master.menu.developer ####################################################
 
 master.menu.developer = Desarrollador
+master.menu.developer.my-modules = Ver mis módulos	
+master.menu.developer.my-dashboard = Ver mi panel	
 master.menu.developer.favourite-link = Enlace favorito
-master.menu.developer.my-modules = Ver mis modulos	
+	
 
 # master.menu.auditor ####################################################
 

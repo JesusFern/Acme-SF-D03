@@ -2,18 +2,18 @@
 package acme.features.developer.trainingModules;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.trainingModule.TrainingModule;
 import acme.roles.Developer;
 
 @Service
-public class DeveloperTrainingModuleListMineService extends AbstractService<Developer, TrainingModule> {
+public class DeveloperTrainingModuleListService extends AbstractService<Developer, TrainingModule> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -23,7 +23,6 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	// AbstractService interface ----------------------------------------------
 
 
-	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
@@ -32,10 +31,9 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	@Override
 	public void load() {
 		Collection<TrainingModule> objects;
-		Principal principal;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyTrainingModulesByDeveloperId(principal.getActiveRoleId());
+		final int id = super.getRequest().getPrincipal().getActiveRoleId();
+		objects = this.repository.findAllTrainingModulesByDeveloperId(id);
 
 		super.getBuffer().addData(objects);
 	}
@@ -44,9 +42,13 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		Dataset dataset;
+		final Dataset dataset = super.unbind(object, "code", "details");
 
-		dataset = super.unbind(object, "code", "details");
+		if (object.isDraftMode()) {
+			final Locale local = super.getRequest().getLocale();
+			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
+		} else
+			dataset.put("draftMode", "No");
 
 		super.getResponse().addData(dataset);
 	}
