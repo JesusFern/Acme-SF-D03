@@ -23,6 +23,8 @@ client.progress-log.form.label.registrationMoment = Momento de Registro:
 client.progress-log.form.label.contract = Contracto:
 client.progress-log.form.label.responsiblePerson = Persona Responsable:
 
+client.progress-log.form.error.duplicated = Id de Registro Duplicatada	q
+
 client.progress-log.list.label.code = Código
 client.progress-log.list.label.recordId = Id de Registro
 client.progress-log.list.label.percentageCompleteness =  Porcentaje de Completitud

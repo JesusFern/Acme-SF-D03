@@ -23,6 +23,8 @@ client.contract.form.label.goals = Goals:
 client.contract.form.label.budget = Budget:
 client.contract.form.label.project = Project:
 
+client.contract.form.error.duplicated = Code Duplicated
+
 client.contract.list.label.code = Code
 client.contract.list.label.providerName = Provider Name
 client.contract.list.label.customerName = Customer Name
