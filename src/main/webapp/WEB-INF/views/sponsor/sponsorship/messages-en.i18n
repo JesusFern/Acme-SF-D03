@@ -29,3 +29,7 @@ sponsor.sponsorship.form.label.project = Project:
 sponsor.sponsorship.list.label.code = Code
 sponsor.sponsorship.list.label.amount = Amount
 sponsor.sponsorship.list.label.type = Type
+
+sponsor.sponsorship.form.error.duplicated = This code is taken
+sponsor.sponsorship.form.error.too-close = Period should be at least 1 hour long
+sponsor.sponsorship.form.error.negative-amount = The amount must be positive

@@ -1,6 +1,7 @@
 
 package acme.features.sponsor.sponsorship;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
 
@@ -69,6 +70,23 @@ public class SponsorSponsorshipCreateService extends AbstractService<Sponsor, Sp
 	@Override
 	public void validate(final Sponsorship object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Sponsorship existing;
+
+			existing = this.ssr.findOneSponsorshipByCode(object.getCode());
+			super.state(existing == null, "code", "sponsor.sponsorship.form.error.duplicated");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("periodEnd")) {
+			Date minimumEnd;
+
+			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MONTHS);
+			super.state(MomentHelper.isBefore(object.getEndSponsor(), minimumEnd), "periodEnd", "sponsor.sponsorship.form.error.too-close");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("amount"))
+			super.state(object.getAmount().getAmount() > 0, "amount", "sponsor.sponsorship.form.error.negative-amount");
 	}
 
 	@Override
