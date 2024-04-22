@@ -10,10 +10,10 @@
 
 client.progress-log.form.title = Detalles de Resgistros de Progreso
 client.progress-log.list.title = Lista de Resgistros de Progreso
-client.progress-log.list.button.create = Crear un Resgistro de Progreso
-client.progress-log.form.button.create = Crear un Resgistros de Progreso
-client.progress-log.form.button.delete = Eliminar un Resgistros de Progreso
-client.progress-log.form.button.update = Actualizar un Resgistros de Progreso
+client.progress-log.list.button.create = Crear Resgistro de Progreso
+client.progress-log.form.button.create = Crear Resgistros de Progreso
+client.progress-log.form.button.delete = Eliminar Resgistros de Progreso
+client.progress-log.form.button.update = Actualizar Resgistros de Progreso
 
 client.progress-log.form.label.code = Código:
 client.progress-log.form.label.recordId = Id de Registro:
@@ -23,7 +23,7 @@ client.progress-log.form.label.registrationMoment = Momento de Registro:
 client.progress-log.form.label.contract = Contracto:
 client.progress-log.form.label.responsiblePerson = Persona Responsable:
 
-client.progress-log.form.error.duplicated = Id de Registro Duplicatada	q
+client.progress-log.form.error.duplicated = Id de Registro Duplicatada
 
 client.progress-log.list.label.code = Código
 client.progress-log.list.label.recordId = Id de Registro

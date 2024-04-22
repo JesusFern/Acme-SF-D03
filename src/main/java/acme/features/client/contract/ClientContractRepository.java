@@ -33,11 +33,20 @@ public interface ClientContractRepository extends AbstractRepository {
 	@Query("select p from Project p where p.id not in (select c.project.id from Contract c where c.client.id = :clientId)")
 	Collection<Project> findManyAvailableProjectByClientId(int clientId);
 
+	@Query("select c.project from Contract c where c.projectc.client.id = :clientId")
+	Collection<Project> findManyProjectByClientId(int clientId);
+
 	@Query("select pl from ProgressLog pl where pl.contract.id = :contractId")
 	Collection<ProgressLog> findManyProgressLogByContractId(int contractId);
 
 	@Query("select c from Contract c where c.client.id = :clientId")
 	Collection<Contract> findManyContractsByClientId(int clientId);
+
+	@Query("select c from Contract c where c.project.id = :projectId")
+	Collection<Contract> findManyContractsByProjectId(int projectId);
+
+	@Query("select c from Contract c where  c.draftMode = false  and c.project.id = :projectId")
+	Collection<Contract> findManyContractsAvailableByProjectId(int projectId);
 
 	@Query("select c from Contract c where c.draftMode = false")
 	Collection<Contract> findManyContractByAvailability();
