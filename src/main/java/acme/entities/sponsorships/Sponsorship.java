@@ -54,6 +54,8 @@ public class Sponsorship extends AbstractEntity {
 	@NotNull
 	private Date				endSponsor;
 
+	private boolean				draftMode;
+
 	@NotNull
 	private Money				amount;
 
