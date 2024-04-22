@@ -17,20 +17,19 @@
 
 <acme:form>
 	<acme:input-textarea code="client.progress-log.form.label.recordId" path="recordId"/>
-	<acme:input-textarea code="client.progress-log.form.label.percentageCompleteness" path="percentageCompleteness"/>
+	<acme:input-double code="client.progress-log.form.label.percentageCompleteness" path="percentageCompleteness"/>
 	<acme:input-textarea code="client.progress-log.form.label.comment" path="comment"/>
-	<acme:input-textarea code="client.progress-log.form.label.registrationMoment" path="registrationMoment"/>
-	<acme:input-select code="client.progress-log.form.label.contract" path="contract" choices="${contracts}" />
-	<acme:input-money code="client.progress-log.form.label.responsiblePerson" path="responsiblePerson"/>
+	<acme:input-moment code="client.progress-log.form.label.registrationMoment" path="registrationMoment"/>
+	<acme:input-textarea code="client.progress-log.form.label.responsiblePerson" path="responsiblePerson"/>
 
 
 	<jstl:choose>
-    <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+   <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') }">
             <acme:submit code="client.progress-log.form.button.delete" action="/client/progress-log/delete"/>
-            <acme:submit code="client.progress-log.form.button.update" action="/client/progress-log/update"/>
+			<acme:submit code="client.progress-log.form.button.update" action="/client/progress-log/update?masterId=${masterId}"/>
         </jstl:when>
     <jstl:when test="${_command == 'create'}">
-            <acme:submit code="client.progress-log.form.button.create" action="/client/progress-log/create?masterId=${id}"/>
+            <acme:submit code="client.progress-log.form.button.create" action="/client/progress-log/create?masterId=${masterId}"/>
         </jstl:when>
 
     </jstl:choose>
