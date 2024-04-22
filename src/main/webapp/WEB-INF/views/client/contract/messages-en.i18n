@@ -14,6 +14,7 @@ client.contract.list.button.create = Create Contract
 client.contract.form.button.create = Create Contract
 client.contract.form.button.delete = Delete Contract
 client.contract.form.button.update = Update Contract
+client.contract.form.button.publish = Publish Contract
 
 client.contract.form.label.code = Code:
 client.contract.form.label.instantiationMoment = Instantiation Moment:
@@ -24,6 +25,7 @@ client.contract.form.label.budget = Budget:
 client.contract.form.label.project = Project:
 
 client.contract.form.error.duplicated = Code Duplicated
+client.contract.form.error.exceeded-project-cost = Exceeded Project Cost
 
 client.contract.list.label.code = Code
 client.contract.list.label.providerName = Provider Name
