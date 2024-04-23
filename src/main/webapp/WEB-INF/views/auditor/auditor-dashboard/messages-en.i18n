@@ -1,22 +1,28 @@
-auditor.audit-record.list.title = Listing of audit records
+auditor.dashboard.form.title.general-indicators= Auditor dashboard
 
-auditor.audit-record.list.label.code = Code
-auditor.audit-record.list.label.mark= Mark
+auditor.dashboard.form.label.totalNumberOfStaticCodeAudit= Total number of static code audits
+auditor.dashboard.form.label.totalNumberOfDynamicCodeAudit= Total number of dynamic code audits
+auditor.dashboard.form.label.averageNumberOfAuditRecords= Average number of audit records
+auditor.dashboard.form.label.deviationNumberOfAuditRecords= Standard deviation of audit records
+auditor.dashboard.form.label.minimumNumberOfAuditRecords= Minimum number of audit records
+auditor.dashboard.form.label.maximumNumberOfAuditRecords= Maximum number of audit records
+auditor.dashboard.form.label.averageNumberOfPeriod= Average period
+auditor.dashboard.form.label.deviationNumberOfPeriod= Standard deviation of period
+auditor.dashboard.form.label.minimumNumberOfPeriod= Minimum period
+auditor.dashboard.form.label.maximumNumberOfPeriod= Maximum period
 
-auditor.audit-record.form.title = Details of audit records
+auditor.auditor-dashboard.form.title= Auditor dashboard
 
-auditor.audit-record.form.label.code= Code
-auditor.audit-record.form.label.periodStart= Start of period
-auditor.audit-record.form.label.periodEnd= End of period
-auditor.audit-record.form.label.mark= Mark
-auditor.code-audit.form.label.project= Proyect
-auditor.code-audit.form.label.draftMode=Draft Mode
-auditor.audit-record.form.label.link= Link
 
-auditor.auditRecord.form.button.create= Create
-auditor.audit-record.list.button.create= Create audit record
-auditor.audit-record.form.button.update= Update
-auditor.audit-record.form.button.delete= Delete
 
-auditor.code-audit.form.error.duplicated= Code is taken
-auditor.audit-record.form.error.too-close= Period should be at least 1 hour long
+
+
+
+
+
+
+
+
+
+
+

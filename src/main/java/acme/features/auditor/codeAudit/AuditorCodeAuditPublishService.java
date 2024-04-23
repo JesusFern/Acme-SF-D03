@@ -1,14 +1,3 @@
-/*
- * EmployerJobUpdateService.java
- *
- * Copyright (C) 2012-2024 Rafael Corchuelo.
- *
- * In keeping with the traditional purpose of furthering education and research, it is
- * the policy of the copyright owner to permit non-commercial use and redistribution of
- * this software. It has been tested carefully, but it is not guaranteed for any particular
- * purposes. The copyright owner does not offer any warranties or representations, nor do
- * they accept any liabilities with respect to them.
- */
 
 package acme.features.auditor.codeAudit;
 
@@ -20,17 +9,21 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
+import acme.entities.auditRecords.AuditRecord;
+import acme.entities.auditRecords.Mark;
 import acme.entities.codeAudits.CodeAudit;
 import acme.entities.codeAudits.Type;
 import acme.entities.projects.Project;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, CodeAudit> {
+public class AuditorCodeAuditPublishService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 	@Autowired
 	private AuditorCodeAuditRepository repository;
+
+	// AbstractService interface ----------------------------------------------
 
 
 	@Override
@@ -62,20 +55,25 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Override
 	public void bind(final CodeAudit object) {
 		assert object != null;
-
-		int projectId;
 		Project project;
+		int projectId;
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
-
-		super.bind(object, "code", "execution", "type", "correctiveActions", "link", "draftMode");
+		super.bind(object, "code", "execution", "type", "correctiveActions", "link");
 		object.setProject(project);
-	}
 
+	}
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
+		Collection<AuditRecord> auditRecords;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		auditRecords = this.repository.findManyAuditRecordByCodeAuditId(id);
+
+		super.state(object.getMark(auditRecords) != Mark.F && object.getMark(auditRecords) != Mark.F_MINUS, "*", "auditor.code-audit.form.error.notEnoughMark");
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			CodeAudit existing;
 
@@ -88,6 +86,7 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	public void perform(final CodeAudit object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 
