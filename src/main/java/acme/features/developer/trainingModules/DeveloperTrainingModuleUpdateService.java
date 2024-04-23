@@ -7,7 +7,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -35,14 +34,10 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		TrainingModule trainingModule;
 		Developer developer;
 
-		Principal principal = super.getRequest().getPrincipal();
-		int userId = principal.getAccountId();
-
 		id = super.getRequest().getData("id", int.class);
 		trainingModule = this.repository.findOneTrainingModuleById(id);
 		developer = trainingModule == null ? null : trainingModule.getDeveloper();
-
-		status = trainingModule != null && trainingModule.isDraftMode() && principal.hasRole(developer) && trainingModule.getDeveloper().getUserAccount().getId() == userId;
+		status = trainingModule != null && trainingModule.isDraftMode() && super.getRequest().getPrincipal().hasRole(developer);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -74,10 +69,18 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		object.setProject(project);
 	}
 
-	//Hacer validaciones
 	@Override
 	public void validate(final TrainingModule object) {
 		assert object != null;
+
+		boolean sameCode;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			sameCode = this.repository.findAllTrainingModules().stream().anyMatch(t -> t.getCode().equals(object.getCode()));
+
+			super.state(!sameCode, "code", "developer.training-module.form.error.same-code");
+
+		}
 	}
 
 	@Override
