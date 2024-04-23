@@ -17,8 +17,7 @@ sponsor.invoice.form.button.update = Actualizar
 
 sponsor.invoice.form.label.code = Código:
 sponsor.invoice.form.label.registrationTime = Tiempo de registro:
-sponsor.invoice.form.label.startDate = Comienzo de factura:
-sponsor.invoice.form.label.endDate = Fin de factura:
+sponsor.invoice.form.label.dueDate = Fecha de vencimiento:
 sponsor.invoice.form.label.quantity = Cantidad:
 sponsor.invoice.form.label.tax = Tax:
 sponsor.invoice.form.label.link = Enlace:

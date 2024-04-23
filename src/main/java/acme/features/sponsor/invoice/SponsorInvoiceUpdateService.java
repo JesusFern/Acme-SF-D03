@@ -53,7 +53,7 @@ public class SponsorInvoiceUpdateService extends AbstractService<Sponsor, Invoic
 	public void bind(final Invoice object) {
 		assert object != null;
 
-		super.bind(object, "code", "registrationTime", "startDate", "endDate", "quantity", "tax", "link");
+		super.bind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "link");
 	}
 
 	@Override
@@ -64,14 +64,14 @@ public class SponsorInvoiceUpdateService extends AbstractService<Sponsor, Invoic
 			Invoice existing;
 
 			existing = this.sir.findOneInvoiceByCode(object.getCode());
-			super.state(existing == null, "code", "sponsor.invoice.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "sponsor.invoice.form.error.duplicated");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("endDate")) {
+		if (!super.getBuffer().getErrors().hasErrors("dueDate")) {
 			Date minimumEnd;
 
 			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MONTHS);
-			super.state(MomentHelper.isBefore(object.getEndDate(), minimumEnd), "endDate", "sponsor.invoice.form.error.too-close");
+			super.state(MomentHelper.isAfter(object.getDueDate(), minimumEnd), "dueDate", "sponsor.invoice.form.error.too-close");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("quantity"))
@@ -91,8 +91,8 @@ public class SponsorInvoiceUpdateService extends AbstractService<Sponsor, Invoic
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "registrationTime", "startDate", "endDate", "quantity", "tax", "link");
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset = super.unbind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "link");
+		dataset.put("masterId", object.getSponsorship().getId());
 		dataset.put("draftMode", object.getSponsorship().isDraftMode());
 	}
 }
