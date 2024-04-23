@@ -34,9 +34,14 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 	@Override
 	public void load() {
 		ProjectUserStory object;
+		int masterId;
+		Project project;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		project = this.repository.findOneProjectById(masterId);
 
 		object = new ProjectUserStory();
-		object.setProject(null);
+		object.setProject(project);
 		object.setUserStory(null);
 
 		super.getBuffer().addData(object);
@@ -45,15 +50,10 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 	@Override
 	public void bind(final ProjectUserStory object) {
 		assert object != null;
-		int projectId, userStoryId;
-		Project project;
+		int userStoryId;
 		UserStory userStory;
 
-		super.bind(object, "id");
-
-		projectId = super.getRequest().getData("project", int.class);
-		project = this.repository.findOneProjectById(projectId);
-		object.setProject(project);
+		super.bind(object, "optional");
 
 		userStoryId = super.getRequest().getData("userStory", int.class);
 		userStory = this.repository.findOneUserStoryById(userStoryId);
@@ -65,8 +65,13 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 	public void validate(final ProjectUserStory object) {
 		assert object != null;
 
-		if (!super.getBuffer().getErrors().hasErrors())
+		if (!super.getBuffer().getErrors().hasErrors()) {
 			super.state(object.getProject().getManager().equals(object.getUserStory().getManager()), "project", "manager.project-user-story.form.error.not-same-manager");
+
+			ProjectUserStory pu;
+			pu = this.repository.findOneProjectUserStoriesByProjectAndUserStoryId(object.getProject().getId(), object.getUserStory().getId());
+			super.state(pu == null, "*", "manager.project-user-story.form.error.existing-p-u-s");
+		}
 	}
 
 	@Override
@@ -80,25 +85,22 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 	public void unbind(final ProjectUserStory object) {
 		assert object != null;
 
-		Collection<Project> projects;
 		Collection<UserStory> userStories;
 
-		SelectChoices choicesP;
 		SelectChoices choicesU;
-		Dataset dataset = new Dataset();
+		Dataset dataset;
+
+		dataset = super.unbind(object, "optional");
 
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
 
-		projects = this.repository.findManyProjectsByManagerId(principal.getActiveRoleId());
-		choicesP = SelectChoices.from(projects, "code", object.getProject());
-
-		userStories = this.repository.findManyUserStoriesByManagerId(principal.getActiveRoleId());
+		userStories = this.repository.findManyUserStoriesByManagerIdNotInProjectId(principal.getActiveRoleId(), super.getRequest().getData("masterId", int.class));
 		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
 
-		dataset.put("projects", choicesP);
 		dataset.put("userStories", choicesU);
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
 	}

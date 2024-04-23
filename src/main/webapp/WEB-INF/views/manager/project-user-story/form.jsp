@@ -5,14 +5,15 @@
 
 <acme:form> 
 
-<acme:input-select code="manager.project-user-story.form.label.project" path="project" choices="${projects}" />	
 <acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${userStories}"/>
-<%-- <acme:input-select code="manager.project-user-story.form.label.project" path="project"  choices="${projects}"/>
-<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${user-stories}"/> --%>
 
 <jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">
+			<acme:submit code="manager.user-story.form.button.delete" action="/manager/project-user-story/delete"/>
+		</jstl:when>
+
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="manager.project-user-story.form.button.create" action="/manager/project-user-story/create"/>
+			<acme:submit code="manager.project-user-story.form.button.create" action="/manager/project-user-story/create?masterId=${masterId}"/>
 		</jstl:when>		
 	</jstl:choose>
 
