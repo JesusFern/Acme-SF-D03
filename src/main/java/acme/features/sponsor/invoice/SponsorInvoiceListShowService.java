@@ -51,7 +51,7 @@ public class SponsorInvoiceListShowService extends AbstractService<Sponsor, Invo
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "registrationTime", "startDate", "endDate", "quantity", "tax", "link");
+		dataset = super.unbind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "link");
 		dataset.put("masterId", object.getSponsorship().getId());
 		dataset.put("draftMode", object.getSponsorship().isDraftMode());
 
