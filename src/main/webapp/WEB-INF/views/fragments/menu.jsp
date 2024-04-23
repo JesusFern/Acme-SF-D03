@@ -74,7 +74,7 @@
 			<acme:menu-suboption code="master.menu.sponsor.my-sponsorships" action="/sponsor/sponsorship/list-mine"/>	
 			<acme:menu-suboption code="master.menu.sponsor.all-sponsorships" action="/sponsor/sponsorship/list-all"/>
 			<acme:menu-separator/>	
-			<acme:menu-suboption code="master.menu.sponsor.my-dashboard" action="/sponsor/dashboard/show"/>
+			<acme:menu-suboption code="master.menu.sponsor.my-dashboard" action="/sponsor/sponsor-dashboard/show"/>
 		</acme:menu-option>
 	</acme:menu-left>
 
