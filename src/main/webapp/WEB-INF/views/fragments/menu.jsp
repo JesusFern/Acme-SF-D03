@@ -58,7 +58,8 @@
 		
 
 		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">
-			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list"/>
+			<acme:menu-suboption code="master.menu.developer.all-modules" action="/developer/training-module/list"/>
+			<acme:menu-suboption code="master.menu.developer.my-modules" action="/developer/training-module/list-mine"/>
 			<acme:menu-separator/>	
 			<acme:menu-suboption code="master.menu.developer.my-dashboard" action="/developer/developer-dashboard/show"/>
 
