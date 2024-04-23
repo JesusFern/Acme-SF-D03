@@ -33,3 +33,6 @@ developer.training-module.form.button.publish = Publish
 developer.training-module.list.button.create = Create a new training module
 
 developer.training-module.form.button.create = Create module
+
+
+developer.training-module.form.error.same-code = Existing code
