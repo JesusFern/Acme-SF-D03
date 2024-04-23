@@ -66,7 +66,10 @@
 		
 		<acme:menu-option code="master.menu.client" access="hasRole('Client')">	
 			<acme:menu-suboption code="master.menu.client.my-contracts" action="/client/contract/list-mine"/>
-			<acme:menu-suboption code="master.menu.client.all-contracts" action="/client/contract/list-all"/>	
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.client.all-contracts" action="/client/contract/list-all"/>
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.client.my-dashboard" action="/client/client-dashboard/show"/>	
 			
     </acme:menu-option>
     
