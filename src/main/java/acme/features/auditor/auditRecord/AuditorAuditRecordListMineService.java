@@ -23,7 +23,6 @@ public class AuditorAuditRecordListMineService extends AbstractService<Auditor, 
 	// AbstractService interface ----------------------------------------------
 
 
-	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
