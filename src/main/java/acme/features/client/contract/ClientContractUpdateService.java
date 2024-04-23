@@ -61,6 +61,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
 		object.setProject(project);
+
 	}
 	@Override
 	public void validate(final Contract object) {
@@ -69,8 +70,9 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			Contract existing;
 
 			existing = this.ccr.findOneContractByCode(object.getCode());
-			super.state(existing == null, "code", "client.contract.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "client.contract.form.error.duplicated");
 		}
+
 	}
 
 	@Override
@@ -85,15 +87,13 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 		SelectChoices choicesP;
 		Dataset dataset;
-
 		Collection<Project> projects;
-
 		projects = this.ccr.findManyProjectsByAvailability();
 		choicesP = SelectChoices.from(projects, "code", object.getProject());
 		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "draftMode");
 		dataset.put("project", choicesP.getSelected().getKey());
 		dataset.put("projects", choicesP);
-
 		super.getResponse().addData(dataset);
+
 	}
 }

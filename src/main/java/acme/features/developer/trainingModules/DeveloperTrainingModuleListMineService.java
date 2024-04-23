@@ -6,7 +6,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.trainingModule.TrainingModule;
@@ -23,7 +22,6 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	// AbstractService interface ----------------------------------------------
 
 
-	//Esto ahora mismo acepta todas las peticiones que lleguen
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
@@ -32,10 +30,10 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	@Override
 	public void load() {
 		Collection<TrainingModule> objects;
-		Principal principal;
+		int id;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyTrainingModulesByDeveloperId(principal.getActiveRoleId());
+		id = super.getRequest().getPrincipal().getActiveRoleId();
+		objects = this.repository.findAllTrainingModulesByDeveloperId(id);
 
 		super.getBuffer().addData(objects);
 	}
@@ -44,9 +42,7 @@ public class DeveloperTrainingModuleListMineService extends AbstractService<Deve
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		Dataset dataset;
-
-		dataset = super.unbind(object, "code", "details");
+		final Dataset dataset = super.unbind(object, "code", "details");
 
 		super.getResponse().addData(dataset);
 	}
