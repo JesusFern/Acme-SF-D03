@@ -4,7 +4,6 @@ package acme.features.sponsor.dashboard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.forms.SponsorDashboard;
@@ -32,13 +31,13 @@ public class SponsorDashboardShowService extends AbstractService<Sponsor, Sponso
 		Integer totalNumberOfInvoicesWithTaxLessOrEquals21;
 		Integer totalNumberOfSponsorshipsLink;
 		Double averageSponsorshipsAmount;
-		Money deviationSponsorshipsAmount;
-		Money minimumSponsorshipsAmount;
-		Money maximumSponsorshipsAmount;
+		Double deviationSponsorshipsAmount;
+		Double minimumSponsorshipsAmount;
+		Double maximumSponsorshipsAmount;
 		Double averageInvoicesQuantity;
-		Money deviationInvoicesQuantity;
-		Money minimumInvoicesQuantity;
-		Money maximumInvoicesQuantity;
+		Double deviationInvoicesQuantity;
+		Double minimumInvoicesQuantity;
+		Double maximumInvoicesQuantity;
 		int id;
 
 		id = super.getRequest().getPrincipal().getActiveRoleId();
