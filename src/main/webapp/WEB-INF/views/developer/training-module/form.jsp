@@ -23,16 +23,18 @@
 	<acme:input-url code="developer.training-module.form.label.link" path="link"/>
 	<acme:input-integer code="developer.training-module.form.label.time" path="time"/>
 	<acme:input-select code="developer.training-module.form.label.project" path="project" choices="${projects}" />
+	<acme:input-moment code="developer.training-module.form.label.creationMoment" path="creationMoment" readonly="true"/>
+	<acme:input-moment code="developer.training-module.form.label.updateMoment" path="updateMoment" readonly="true"/>
 
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="developer.training-module.form.button.create" action="/developer/training-module/create"/>
 		</jstl:when>	
-		<jstl:when test="${_command == 'show' && draftMode == true }">
-				<acme:input-moment code="developer.training-module.form.label.creationMoment" path="creationMoment" readonly="true"/>
-				<acme:input-moment code="developer.training-module.form.label.updateMoment" path="updateMoment" readonly="true"/>
-
+		<jstl:when test="${_command == 'show' && draftMode == false}">
+			<acme:button code="developer.training-session.list.title" action="/developer/training-session/list?trainingModuleId=${id}"/>
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true }">
 				<acme:button code="developer.training-session.list.title" action="/developer/training-session/list?trainingModuleId=${id}"/>
 				<acme:submit code="developer.training-module.form.button.update" action="/developer/training-module/update"/>
 				<acme:submit code="developer.training-module.form.button.delete" action="/developer/training-module/delete"/>

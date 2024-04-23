@@ -1,13 +1,13 @@
 
 package acme.features.developer.trainingModules;
 
-import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -30,7 +30,21 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		TrainingModule trainingModule;
+		Developer developer;
+
+		Principal principal = super.getRequest().getPrincipal();
+		int userId = principal.getAccountId();
+
+		id = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(id);
+		developer = trainingModule == null ? null : trainingModule.getDeveloper();
+
+		status = trainingModule != null && trainingModule.isDraftMode() && principal.hasRole(developer) && trainingModule.getDeveloper().getUserAccount().getId() == userId;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -44,20 +58,18 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		super.getBuffer().addData(object);
 	}
 
-	//DUDA: puedo actualizar el draftMode, pero eso no significa que lo estaría publicando si lo paso a false?
 	@Override
 	public void bind(final TrainingModule object) {
 		assert object != null;
 
-		int projectId;
-		Project project;
-		Date updateMoment;
+		int projectId = super.getRequest().getData("project", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
 
-		projectId = super.getRequest().getData("project", int.class);
-		project = this.repository.findOneProjectById(projectId);
-		updateMoment = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MINUTES);
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date updateMoment = new Date(currentMoment.getTime() - 5000);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "project");
+
 		object.setUpdateMoment(updateMoment);
 		object.setProject(project);
 	}
