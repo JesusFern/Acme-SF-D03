@@ -59,12 +59,12 @@ public class ManagerProjectUserStoryShowService extends AbstractService<Manager,
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
+		userStories = this.repository.findManyUserStoriesByManagerId(principal.getActiveRoleId());
+		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
 
 		dataset = super.unbind(object, "optional");
-		userStories = this.repository.findManyUserStoriesByManagerIdNotInProjectId(principal.getActiveRoleId(), super.getRequest().getData("masterId", int.class));
-		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
+
 		dataset.put("userStories", choicesU);
-		dataset.put("masterId", object.getProject().getId());
 		dataset.put("draftMode", object.getProject().isDraftMode());
 
 		super.getResponse().addData(dataset);

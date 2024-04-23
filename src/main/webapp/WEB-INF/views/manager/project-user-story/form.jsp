@@ -5,7 +5,7 @@
 
 <acme:form> 
 
-<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${userStories}"/>
+<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${userStories}" readonly="${_command != 'create'}"/>
 
 <jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|delete') && draftMode == true}">

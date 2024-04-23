@@ -56,8 +56,6 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 			existing = this.repository.findOneProjectByCode(object.getCode());
 			super.state(existing == null, "code", "manager.project.form.error.duplicated");
 		}
-		if (!super.getBuffer().getErrors().hasErrors("indication"))
-			super.state(!object.isIndication(), "indication", "manager.project.form.error.fatal-error");
 
 	}
 	@Override

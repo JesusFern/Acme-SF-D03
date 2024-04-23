@@ -10,6 +10,7 @@ manager.project.form.button.create = Crear
 
 manager.project.form.button.update = Actualizar
 manager.project.form.button.delete = Borrar
+manager.project.form.button.publish = Publicar
 
 manager.project.form.label.code = Código
 manager.project.form.label.title = Título
@@ -23,5 +24,7 @@ manager.project.form.button.projectUserStories = Añadir o Eliminar una historia
 
 manager.project.form.placeholder.cost = 0 - 10000
 manager.project.form.error.duplicated = Este código no está libre
-manager.project.form.error.fatal-error = No puedes crear un proyecto con errores fatales
+manager.project.form.error.indication = No puedes publicar un proyecto con errores fatales
+manager.project.form.error.userStories = Todas las historias de usuario no han sido publicadas
+manager.project.form.error.existsUserStories = Este proyecto aun no tiene historias de usuario
 

@@ -20,6 +20,9 @@ public interface ManagerProjectUserStoryRepository extends AbstractRepository {
 	@Query("SELECT u FROM UserStory u " + "WHERE u.manager.id = :managerId " + "AND u NOT IN (SELECT pu.userStory FROM ProjectUserStory pu WHERE pu.project.id = :projectId)")
 	Collection<UserStory> findManyUserStoriesByManagerIdNotInProjectId(int managerId, int projectId);
 
+	@Query("select u from UserStory u where u.manager.id = :managerId")
+	Collection<UserStory> findManyUserStoriesByManagerId(int managerId);
+
 	@Query("select pu from ProjectUserStory pu where pu.project.id = :projectId")
 	Collection<ProjectUserStory> findManyProjectUserStoriesByProjectId(int projectId);
 

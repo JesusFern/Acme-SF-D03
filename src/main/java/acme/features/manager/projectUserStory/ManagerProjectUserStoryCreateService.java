@@ -96,7 +96,7 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 
 		principal = super.getRequest().getPrincipal();
 
-		userStories = this.repository.findManyUserStoriesByManagerIdNotInProjectId(principal.getActiveRoleId(), super.getRequest().getData("masterId", int.class));
+		userStories = this.repository.findManyUserStoriesByManagerId(principal.getActiveRoleId());
 		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
 
 		dataset.put("userStories", choicesU);
