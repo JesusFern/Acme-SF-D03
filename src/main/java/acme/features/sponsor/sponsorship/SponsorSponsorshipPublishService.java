@@ -8,17 +8,20 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.projects.Project;
+import acme.entities.sponsorships.Invoice;
 import acme.entities.sponsorships.Sponsorship;
 import acme.entities.sponsorships.Type;
 import acme.roles.Sponsor;
 
 @Service
-public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sponsorship> {
+public class SponsorSponsorshipPublishService extends AbstractService<Sponsor, Sponsorship> {
+
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -30,12 +33,12 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int sponsorshipId;
 		Sponsorship sponsorship;
 		Sponsor sponsor;
 
-		masterId = super.getRequest().getData("id", int.class);
-		sponsorship = this.ssr.findOneSponsorshipById(masterId);
+		sponsorshipId = super.getRequest().getData("id", int.class);
+		sponsorship = this.ssr.findOneSponsorshipById(sponsorshipId);
 		sponsor = sponsorship == null ? null : sponsorship.getSponsor();
 		status = sponsorship != null && sponsorship.isDraftMode() && super.getRequest().getPrincipal().hasRole(sponsor);
 
@@ -86,12 +89,27 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 
 		if (!super.getBuffer().getErrors().hasErrors("amount"))
 			super.state(object.getAmount().getAmount() > 0, "amount", "sponsor.sponsorship.form.error.negative-amount");
+
+		Money totalInvoiceAmount = new Money();
+		totalInvoiceAmount.setAmount(0.00);
+		totalInvoiceAmount.setCurrency(object.getAmount().getCurrency());
+
+		int id;
+		id = object.getId();
+
+		Collection<Invoice> invoices = this.ssr.findManyInvoicesBySponsorshipId(id);
+
+		for (Invoice invoice : invoices)
+			totalInvoiceAmount.setAmount(totalInvoiceAmount.getAmount() + invoice.totalAmount().getAmount());
+
+		super.state(totalInvoiceAmount.getAmount().equals(object.getAmount().getAmount()), "*", "sponsor.sponsorship.form.error.invoice-total-amount-mismatch");
 	}
 
 	@Override
 	public void perform(final Sponsorship object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.ssr.save(object);
 	}
 
