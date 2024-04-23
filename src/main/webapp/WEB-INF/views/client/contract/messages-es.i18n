@@ -10,10 +10,11 @@
 
 client.contract.form.title = Detalles de contratos
 client.contract.list.title = Lista de Contratos
-client.contract.list.button.create = Crear un Contrato
-client.contract.form.button.create = Crear un Contrato
-client.contract.form.button.delete = Eliminar un Contrato
-client.contract.form.button.update = Actualizar un Contrato
+client.contract.list.button.create = Crear Contrato
+client.contract.form.button.create = Crear Contrato
+client.contract.form.button.delete = Eliminar Contrato
+client.contract.form.button.update = Actualizar Contrato
+client.contract.form.button.publish = Publicar Contrato
 
 client.contract.form.label.code = Código:
 client.contract.form.label.instantiationMoment = Momento Iniciación:
@@ -23,6 +24,9 @@ client.contract.form.label.goals = Objetivos:
 client.contract.form.label.budget = Presupuesto:
 client.contract.form.label.project = Projecto:
 
-client.contract.list.label.code = Code
-client.contract.list.label.providerName = Provider Name
-client.contract.list.label.customerName = Customer Name
+client.contract.form.error.duplicated = Código Duplicado
+client.contract.form.error.exceeded-project-cost = Coste del Proyecto Sobrepasado
+
+client.contract.list.label.code = Código
+client.contract.list.label.providerName = Nombre del Proveedor
+client.contract.list.label.customerName = Nombre del Consumidor

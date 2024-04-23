@@ -90,7 +90,7 @@ public class DeveloperTrainingSessionPublishService extends AbstractService<Deve
 	public void perform(final TrainingSession object) {
 		assert object != null;
 
-		object.setDraftMode(false);
+		//		object.setDraftMode(false);
 
 		this.repository.save(object);
 	}

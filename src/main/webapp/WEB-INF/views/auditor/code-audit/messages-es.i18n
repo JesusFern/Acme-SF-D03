@@ -15,5 +15,8 @@ auditor.code-audit.list.button.create= Crear auditoria de codigo
 auditor.codeAudit.form.button.create= Crear
 auditor.code-audit.form.button.delete= Borrar
 auditor.code-audit.form.button.update= Actualizar
+auditor.code-audit.form.button.publish= Publicar
 
 auditor.code-audit.form.error.duplicated= El código ya esta siendo utilizado
+
+auditor.code-audit.form.error.notEnoughMark= La nota no es suficientemente alta

@@ -52,28 +52,32 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		Double minimumNumberOfPeriod;
 		Double maximumNumberOfPeriod;
 
-		totalNumberOfStaticCodeAudit = this.repository.totalNumberOfStaticCodeAudit();
-		totalNumberOfDynamicCodeAudit = this.repository.totalNumberOfDynamicCodeAudit();
-		//		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords();
-		//		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords();
-		//		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords();
-		//		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords();
-		//		averageNumberOfPeriod = this.repository.averageNumberOfPeriod();
-		//		deviationNumberOfPeriod = this.repository.deviationNumberOfPeriod();
-		//		minimumNumberOfPeriod = this.repository.minimumNumberOfPeriod();
-		//		maximumNumberOfPeriod = this.repository.maximumNumberOfPeriod();
+		int id;
+
+		id = super.getRequest().getPrincipal().getActiveRoleId();
+
+		totalNumberOfStaticCodeAudit = this.repository.totalNumberOfStaticCodeAudit(id);
+		totalNumberOfDynamicCodeAudit = this.repository.totalNumberOfDynamicCodeAudit(id);
+		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords(id);
+		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords(id);
+		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords(id);
+		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords(id);
+		averageNumberOfPeriod = this.repository.averageNumberOfPeriod(id);
+		deviationNumberOfPeriod = this.repository.deviationNumberOfPeriod(id);
+		minimumNumberOfPeriod = this.repository.minimumNumberOfPeriod(id);
+		maximumNumberOfPeriod = this.repository.maximumNumberOfPeriod(id);
 
 		dashboard = new AuditorDashboard();
 		dashboard.setTotalNumberOfStaticCodeAudit(totalNumberOfStaticCodeAudit);
 		dashboard.setTotalNumberOfDynamicCodeAudit(totalNumberOfDynamicCodeAudit);
-		//		dashboard.setAverageNumberOfAuditRecords(averageNumberOfAuditRecords);
-		//		dashboard.setDeviationNumberOfAuditRecords(deviationNumberOfAuditRecords);
-		//		dashboard.setMinimumNumberOfAuditRecords(minimumNumberOfAuditRecords);
-		//		dashboard.setMaximumNumberOfAuditRecords(maximumNumberOfAuditRecords);
-		//		dashboard.setAverageNumberOfPeriod(averageNumberOfPeriod);
-		//		dashboard.setDeviationNumberOfPeriod(deviationNumberOfPeriod);
-		//		dashboard.setMinimumNumberOfPeriod(minimumNumberOfPeriod);
-		//		dashboard.setMaximumNumberOfPeriod(maximumNumberOfPeriod);
+		dashboard.setAverageNumberOfAuditRecords(averageNumberOfAuditRecords);
+		dashboard.setDeviationNumberOfAuditRecords(deviationNumberOfAuditRecords);
+		dashboard.setMinimumNumberOfAuditRecords(minimumNumberOfAuditRecords);
+		dashboard.setMaximumNumberOfAuditRecords(maximumNumberOfAuditRecords);
+		dashboard.setAverageNumberOfPeriod(averageNumberOfPeriod);
+		dashboard.setDeviationNumberOfPeriod(deviationNumberOfPeriod);
+		dashboard.setMinimumNumberOfPeriod(minimumNumberOfPeriod);
+		dashboard.setMaximumNumberOfPeriod(maximumNumberOfPeriod);
 
 		super.getBuffer().addData(dashboard);
 	}
