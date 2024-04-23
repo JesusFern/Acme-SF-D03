@@ -83,7 +83,7 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 
 		choices = SelectChoices.from(Priority.class, object.getPriority());
 
-		dataset = super.unbind(object, "title", "description", "acceptanceCriteria", "estimatedCost", "priority", "link");
+		dataset = super.unbind(object, "title", "description", "acceptanceCriteria", "estimatedCost", "priority", "link", "draftMode");
 		dataset.put("priorities", choices);
 
 		super.getResponse().addData(dataset);

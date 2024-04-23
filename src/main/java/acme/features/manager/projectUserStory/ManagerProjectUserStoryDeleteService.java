@@ -1,21 +1,16 @@
 
 package acme.features.manager.projectUserStory;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.projects.ProjectUserStory;
-import acme.entities.projects.UserStory;
 import acme.roles.Manager;
 
 @Service
-public class ManagerProjectUserStoryShowService extends AbstractService<Manager, ProjectUserStory> {
+public class ManagerProjectUserStoryDeleteService extends AbstractService<Manager, ProjectUserStory> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -28,16 +23,17 @@ public class ManagerProjectUserStoryShowService extends AbstractService<Manager,
 	@Override
 	public void authorise() {
 		boolean status;
-		int puId;
+		int masterId;
 		ProjectUserStory pu;
+		Manager manager;
 
-		puId = super.getRequest().getData("id", int.class);
-		pu = this.repository.findOneProjectUserStoryById(puId);
-		status = pu != null && (!pu.getProject().isDraftMode() || super.getRequest().getPrincipal().hasRole(pu.getProject().getManager()));
+		masterId = super.getRequest().getData("id", int.class);
+		pu = this.repository.findOneProjectUserStoryById(masterId);
+		manager = pu == null ? null : pu.getProject().getManager();
+		status = pu != null && pu.getProject().isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
-
 	@Override
 	public void load() {
 		ProjectUserStory object;
@@ -50,21 +46,32 @@ public class ManagerProjectUserStoryShowService extends AbstractService<Manager,
 	}
 
 	@Override
+	public void bind(final ProjectUserStory object) {
+		assert object != null;
+
+		super.bind(object, "optional");
+	}
+
+	@Override
+	public void validate(final ProjectUserStory object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final ProjectUserStory object) {
+		assert object != null;
+
+		this.repository.delete(object);
+	}
+
+	@Override
 	public void unbind(final ProjectUserStory object) {
 		assert object != null;
 
 		Dataset dataset;
-		Collection<UserStory> userStories;
-		SelectChoices choicesU;
-		Principal principal;
-
-		principal = super.getRequest().getPrincipal();
-		userStories = this.repository.findManyUserStoriesByManagerId(principal.getActiveRoleId());
-		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
 
 		dataset = super.unbind(object, "optional");
-
-		dataset.put("userStories", choicesU);
+		dataset.put("masterId", object.getProject().getId());
 		dataset.put("draftMode", object.getProject().isDraftMode());
 
 		super.getResponse().addData(dataset);

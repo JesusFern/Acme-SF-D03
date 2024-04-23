@@ -15,4 +15,5 @@ manager.user-story.list.button.create = Crear
 manager.user-story.form.button.create = Crear
 manager.user-story.form.button.update = Actualizar
 manager.user-story.form.button.delete = Borrar
+manager.user-story.form.button.publish = Publicar
 

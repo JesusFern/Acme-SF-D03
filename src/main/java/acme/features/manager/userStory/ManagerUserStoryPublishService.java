@@ -12,7 +12,7 @@ import acme.entities.projects.UserStory;
 import acme.roles.Manager;
 
 @Service
-public class ManagerUserStoryUpdateService extends AbstractService<Manager, UserStory> {
+public class ManagerUserStoryPublishService extends AbstractService<Manager, UserStory> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -25,15 +25,14 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
-		UserStory us;
+		int usId;
+		UserStory userStory;
 		Manager manager;
 
-		masterId = super.getRequest().getData("id", int.class);
-		us = this.repository.findOneUserStoryById(masterId);
-		manager = us == null ? null : us.getManager();
-
-		status = super.getRequest().getPrincipal().hasRole(manager);
+		usId = super.getRequest().getData("id", int.class);
+		userStory = this.repository.findOneUserStoryById(usId);
+		manager = userStory == null ? null : userStory.getManager();
+		status = userStory != null && userStory.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -59,13 +58,13 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 	@Override
 	public void validate(final UserStory object) {
 		assert object != null;
-
 	}
 
 	@Override
 	public void perform(final UserStory object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 

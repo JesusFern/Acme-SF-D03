@@ -23,5 +23,4 @@
 
 <jstl:if test="${_command == 'list-mine'}">
 	<acme:button code="manager.project.list.button.create" action="/manager/project/create"/>
-	<acme:button code="manager.project.list.button.create-relation" action="/manager/project-user-story/create"/>
 </jstl:if>		
