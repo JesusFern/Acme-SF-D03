@@ -18,10 +18,10 @@ manager.project.form.label.indication= Indicación
 manager.project.form.label.cost = Coste
 manager.project.form.label.link = Enlace
 
-manager.project.form.button.userStories = Historias de usuario
+manager.project.form.button.userStories = Detalles de Historias de usuario
+manager.project.form.button.projectUserStories = Añadir o Eliminar una historia de usuario
 
 manager.project.form.placeholder.cost = 0 - 10000
 manager.project.form.error.duplicated = Este código no está libre
 manager.project.form.error.fatal-error = No puedes crear un proyecto con errores fatales
 
-manager.project.list.button.create-relation = Añade una HU a un proyecto
