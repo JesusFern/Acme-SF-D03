@@ -4,8 +4,11 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-<acme:input-select code="manager.project-user-story.form.label.project" path="project"  choices="${projects}"/>
-<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${user-stories}"/>
+
+<acme:input-select code="manager.project-user-story.form.label.project" path="project" choices="${projects}" />	
+<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${userStories}"/>
+<%-- <acme:input-select code="manager.project-user-story.form.label.project" path="project"  choices="${projects}"/>
+<acme:input-select code="manager.project-user-story.form.label.userStory" path="userStory"  choices="${user-stories}"/> --%>
 
 <jstl:choose>
 		<jstl:when test="${_command == 'create'}">

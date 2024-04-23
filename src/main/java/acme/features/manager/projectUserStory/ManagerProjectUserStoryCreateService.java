@@ -33,11 +33,11 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 
 	@Override
 	public void load() {
-		Project project;
-		UserStory userStory;
 		ProjectUserStory object;
 
 		object = new ProjectUserStory();
+		object.setProject(null);
+		object.setUserStory(null);
 
 		super.getBuffer().addData(object);
 	}
@@ -49,7 +49,7 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 		Project project;
 		UserStory userStory;
 
-		super.bind(object, "");
+		super.bind(object, "id");
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
@@ -58,6 +58,7 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 		userStoryId = super.getRequest().getData("userStory", int.class);
 		userStory = this.repository.findOneUserStoryById(userStoryId);
 		object.setUserStory(userStory);
+
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 
 		SelectChoices choicesP;
 		SelectChoices choicesU;
-		Dataset dataset;
+		Dataset dataset = new Dataset();
 
 		Principal principal;
 
@@ -96,9 +97,8 @@ public class ManagerProjectUserStoryCreateService extends AbstractService<Manage
 		userStories = this.repository.findManyUserStoriesByManagerId(principal.getActiveRoleId());
 		choicesU = SelectChoices.from(userStories, "title", object.getUserStory());
 
-		dataset = super.unbind(object, "");
 		dataset.put("projects", choicesP);
-		dataset.put("user-stories", choicesU);
+		dataset.put("userStories", choicesU);
 
 		super.getResponse().addData(dataset);
 	}
