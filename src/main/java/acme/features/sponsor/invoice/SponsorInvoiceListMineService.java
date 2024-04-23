@@ -52,7 +52,7 @@ public class SponsorInvoiceListMineService extends AbstractService<Sponsor, Invo
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "link");
+		dataset = super.unbind(object, "code", "quantity");
 
 		super.getResponse().addData(dataset);
 	}
