@@ -49,6 +49,8 @@
 			<acme:menu-suboption code="master.menu.manager.all-projects" action="/manager/project/list-all"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.manager.my-user-stories" action="/manager/user-story/list-mine"/>
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.manager.my-dashboard" action="/manager/manager-dashboard/show"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">	

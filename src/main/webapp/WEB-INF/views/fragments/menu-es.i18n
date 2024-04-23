@@ -60,6 +60,7 @@ master.menu.manager.favourite-link = Enlace favorito
 master.menu.manager.my-projects = Ver mis proyectos	
 master.menu.manager.all-projects = Ver todos los proyectos
 master.menu.manager.my-user-stories = Ver mis historias de usuario
+master.menu.manager.my-dashboard = Ver mi panel
 
 # master.menu.sponsor ####################################################
 
