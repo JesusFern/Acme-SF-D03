@@ -9,17 +9,20 @@
 # they accept any liabilities with respect to them.
 
 developer.training-session.list.title = Listado de sesiones de entrenamiento
-# developer.training-session.form.title = Details of training module
+developer.training-session.form.title = Detalles de sesiones de entrenamiento
 
 developer.training-session.list.label.code = Código
 developer.training-session.list.label.location = Localización
 developer.training-session.list.label.instructor = Instructor
 
-# developer.training-session.form.label.code = Code:
-# developer.training-session.form.label.creationMoment = Creation Moment:
-# developer.training-session.form.label.details = Details:
-# developer.training-session.form.label.difficultyLevel = Difficulty Level:
-# developer.training-session.form.label.updateMoment = Update Moment:
-# developer.training-session.form.label.link = Link:
-# developer.training-session.form.label.time = Time:
+developer.training-session.form.label.code = Código:
+developer.training-session.form.label.timeBeforePeriod = Período de inicio:
+developer.training-session.form.label.timeAfterPeriod = Período final:
+developer.training-session.form.label.location = Localización:
+developer.training-session.form.label.instructor = Instructor:
+developer.training-session.form.label.email = Email:
+developer.training-session.form.label.link = Link:
 
+developer.training-session.list.button.create = Crear módulo de entrenamiento
+developer.training-session.form.button.delete = Eliminar
+developer.training-session.form.button.update = Actualizar

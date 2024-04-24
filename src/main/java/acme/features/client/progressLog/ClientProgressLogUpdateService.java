@@ -46,7 +46,7 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 	public void bind(final ProgressLog object) {
 		assert object != null;
 
-		super.bind(object, "recordId", "percentageCompleteness", "comment", "registrationMoment", "responsiblePerson");
+		super.bind(object, "recordId", "percentageCompleteness", "comment", "responsiblePerson");
 
 	}
 
@@ -57,7 +57,7 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 			ProgressLog existing;
 
 			existing = this.cpr.findOneProgressLogByRecordId(object.getRecordId());
-			super.state(existing == null, "recordId", "client.progress-log.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "recordId", "client.progress-log.form.error.duplicated");
 		}
 	}
 

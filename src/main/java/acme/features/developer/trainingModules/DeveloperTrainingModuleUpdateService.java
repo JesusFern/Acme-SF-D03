@@ -2,11 +2,13 @@
 package acme.features.developer.trainingModules;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.projects.Project;
@@ -27,7 +29,17 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		TrainingModule trainingModule;
+		Developer developer;
+
+		id = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(id);
+		developer = trainingModule == null ? null : trainingModule.getDeveloper();
+		status = trainingModule != null && trainingModule.isDraftMode() && super.getRequest().getPrincipal().hasRole(developer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -41,26 +53,32 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		super.getBuffer().addData(object);
 	}
 
-	//Poner lo de las fechas y el project
 	@Override
 	public void bind(final TrainingModule object) {
 		assert object != null;
 
-		int projectId;
-		Project project;
+		int projectId = super.getRequest().getData("project", int.class);
+		Project project = this.repository.findOneProjectById(projectId);
 
-		projectId = super.getRequest().getData("project", int.class);
-		project = this.repository.findOneProjectById(projectId);
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date updateMoment = new Date(currentMoment.getTime() - 5000);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "startMoment", "endMoment", "link", "time");
+		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "project");
 
+		object.setUpdateMoment(updateMoment);
 		object.setProject(project);
 	}
 
-	//Hacer validaciones
 	@Override
 	public void validate(final TrainingModule object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			TrainingModule existing;
+
+			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "developer.tranining-module.form.error.duplicated");
+		}
 	}
 
 	@Override
@@ -83,7 +101,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		projectChoices = SelectChoices.from(projects, "code", object.getProject());
 		levelChoices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "draftMode");
+		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "draftMode", "project");
 		dataset.put("project", projectChoices.getSelected().getKey());
 		dataset.put("projects", projectChoices);
 		dataset.put("difficultyLevels", levelChoices);

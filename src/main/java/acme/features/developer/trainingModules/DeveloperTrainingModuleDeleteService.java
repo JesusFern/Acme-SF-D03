@@ -53,7 +53,7 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "startMoment", "endMoment", "link", "time");
+		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "time", "project");
 
 		object.setProject(project);
 	}

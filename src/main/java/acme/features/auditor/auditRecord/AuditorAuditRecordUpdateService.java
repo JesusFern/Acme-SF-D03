@@ -24,7 +24,6 @@ import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.auditRecords.AuditRecord;
 import acme.entities.auditRecords.Mark;
-import acme.entities.codeAudits.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
@@ -55,13 +54,8 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 		AuditRecord object;
 
 		int id;
-		CodeAudit codeAudit;
 		id = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(id);
-
-		object = new AuditRecord();
-		object.setCode("");
-		object.setCodeAudit(codeAudit);
+		object = this.repository.findOneAuditRecordById(id);
 		super.getBuffer().addData(object);
 	}
 

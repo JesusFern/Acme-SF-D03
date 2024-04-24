@@ -17,7 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="sponsor.invoice.list.label.code" path="code" width="10%"/>
-	<acme:list-column code="sponsor.invoice.list.label.link" path="link" width="10%"/>
+	<acme:list-column code="sponsor.invoice.list.label.quantity" path="quantity" width="10%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list-mine'}">

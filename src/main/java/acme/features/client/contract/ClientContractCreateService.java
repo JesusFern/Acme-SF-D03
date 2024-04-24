@@ -38,13 +38,8 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		client = this.ccr.findOneClientById(super.getRequest().getPrincipal().getActiveRoleId());
 		moment = MomentHelper.getCurrentMoment();
 		object = new Contract();
-		object.setCode("");
-		object.setCustomerName("");
-		object.setGoals("");
 		object.setDraftMode(true);
 		object.setInstantiationMoment(moment);
-		object.setProject(null);
-		object.setProviderName("");
 		object.setClient(client);
 
 		super.getBuffer().addData(object);
@@ -56,11 +51,12 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 		Project project;
 		int projectId;
-		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
-
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.ccr.findOneProjectById(projectId);
+
+		super.bind(object, "code", "providerName", "customerName", "goals", "budget");
 		object.setProject(project);
+
 	}
 
 	@Override
@@ -72,7 +68,8 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 			existing = this.ccr.findOneContractByCode(object.getCode());
 			super.state(existing == null, "code", "client.contract.form.error.duplicated");
 		}
-
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(object.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
 	}
 
 	@Override
@@ -84,17 +81,13 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	@Override
 	public void unbind(final Contract object) {
 		assert object != null;
-		Dataset dataset;
+
 		SelectChoices choicesP;
-		int clientId;
+		Dataset dataset;
 		Collection<Project> projects;
-
-		clientId = object.getClient().getId();
-
-		projects = this.ccr.findManyAvailableProjectByClientId(clientId);
+		projects = this.ccr.findManyProjectsByAvailability();
 		choicesP = SelectChoices.from(projects, "code", object.getProject());
-
-		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
+		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "draftMode");
 		dataset.put("project", choicesP.getSelected().getKey());
 		dataset.put("projects", choicesP);
 

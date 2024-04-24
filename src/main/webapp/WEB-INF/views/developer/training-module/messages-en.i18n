@@ -22,12 +22,18 @@ developer.training-module.form.label.updateMoment = Update Moment:
 developer.training-module.form.label.link = Link:
 developer.training-module.form.label.time = Time:
 developer.training-module.form.label.project  = Project:
+developer.training-module.form.label.draftMode  = Draft Mode:
 
 developer.training-module.form.button.trainingsessions = List training sessions
+
 
 developer.training-module.form.button.update = Update
 developer.training-module.form.button.delete = Delete
 developer.training-module.form.button.publish = Publish
-developer.training-module.list.button.create = Create a new module
+developer.training-module.list.button.create = Create a new training module
 
 developer.training-module.form.button.create = Create module
+
+
+developer.training-module.form.error.duplicated = Duplicated code
+developer.training-module.form.error.existsTrainingSessions = This training module has no user training sessions yet

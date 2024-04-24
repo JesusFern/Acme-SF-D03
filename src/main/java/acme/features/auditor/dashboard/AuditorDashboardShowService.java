@@ -47,33 +47,37 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		Double minimumNumberOfAuditRecords;
 		Double maximumNumberOfAuditRecords;
 
-		Double averageNumberOfPeriod;
-		Double deviationNumberOfPeriod;
-		Double minimumNumberOfPeriod;
-		Double maximumNumberOfPeriod;
+		Double averageTimeOfPeriod;
+		Double deviationTimeOfPeriod;
+		Double minimumTimeOfPeriod;
+		Double maximumTimeOfPeriod;
 
-		totalNumberOfStaticCodeAudit = this.repository.totalNumberOfStaticCodeAudit();
-		totalNumberOfDynamicCodeAudit = this.repository.totalNumberOfDynamicCodeAudit();
-		//		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords();
-		//		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords();
-		//		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords();
-		//		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords();
-		//		averageNumberOfPeriod = this.repository.averageNumberOfPeriod();
-		//		deviationNumberOfPeriod = this.repository.deviationNumberOfPeriod();
-		//		minimumNumberOfPeriod = this.repository.minimumNumberOfPeriod();
-		//		maximumNumberOfPeriod = this.repository.maximumNumberOfPeriod();
+		int id;
+
+		id = super.getRequest().getPrincipal().getActiveRoleId();
+
+		totalNumberOfStaticCodeAudit = this.repository.totalNumberOfStaticCodeAudit(id);
+		totalNumberOfDynamicCodeAudit = this.repository.totalNumberOfDynamicCodeAudit(id);
+		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords(id);
+		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords(id);
+		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords(id);
+		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords(id);
+		averageTimeOfPeriod = this.repository.averageTimeOfPeriod(id);
+		deviationTimeOfPeriod = this.repository.deviationTimeOfPeriod(id);
+		minimumTimeOfPeriod = this.repository.minimumTimeOfPeriod(id);
+		maximumTimeOfPeriod = this.repository.maximumTimeOfPeriod(id);
 
 		dashboard = new AuditorDashboard();
 		dashboard.setTotalNumberOfStaticCodeAudit(totalNumberOfStaticCodeAudit);
 		dashboard.setTotalNumberOfDynamicCodeAudit(totalNumberOfDynamicCodeAudit);
-		//		dashboard.setAverageNumberOfAuditRecords(averageNumberOfAuditRecords);
-		//		dashboard.setDeviationNumberOfAuditRecords(deviationNumberOfAuditRecords);
-		//		dashboard.setMinimumNumberOfAuditRecords(minimumNumberOfAuditRecords);
-		//		dashboard.setMaximumNumberOfAuditRecords(maximumNumberOfAuditRecords);
-		//		dashboard.setAverageNumberOfPeriod(averageNumberOfPeriod);
-		//		dashboard.setDeviationNumberOfPeriod(deviationNumberOfPeriod);
-		//		dashboard.setMinimumNumberOfPeriod(minimumNumberOfPeriod);
-		//		dashboard.setMaximumNumberOfPeriod(maximumNumberOfPeriod);
+		dashboard.setAverageNumberOfAuditRecords(averageNumberOfAuditRecords);
+		dashboard.setDeviationNumberOfAuditRecords(deviationNumberOfAuditRecords);
+		dashboard.setMinimumNumberOfAuditRecords(minimumNumberOfAuditRecords);
+		dashboard.setMaximumNumberOfAuditRecords(maximumNumberOfAuditRecords);
+		dashboard.setAverageTimeOfPeriod(averageTimeOfPeriod / 10000);
+		dashboard.setDeviationTimeOfPeriod(deviationTimeOfPeriod / 10000);
+		dashboard.setMinimumTimeOfPeriod(minimumTimeOfPeriod / 10000);
+		dashboard.setMaximumTimeOfPeriod(maximumTimeOfPeriod / 10000);
 
 		super.getBuffer().addData(dashboard);
 	}
@@ -85,8 +89,8 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		dataset = super.unbind(object, //
 			"totalNumberOfStaticCodeAudit", "totalNumberOfDynamicCodeAudit", // 
 			"averageNumberOfAuditRecords", "deviationNumberOfAuditRecords", //
-			"minimumNumberOfAuditRecords", "maximumNumberOfAuditRecords", "averageNumberOfPeriod", "deviationNumberOfPeriod" //
-			, "minimumNumberOfPeriod", "maximumNumberOfPeriod");
+			"minimumNumberOfAuditRecords", "maximumNumberOfAuditRecords", "averageTimeOfPeriod", "deviationTimeOfPeriod" //
+			, "minimumTimeOfPeriod", "maximumTimeOfPeriod");
 
 		super.getResponse().addData(dataset);
 	}
