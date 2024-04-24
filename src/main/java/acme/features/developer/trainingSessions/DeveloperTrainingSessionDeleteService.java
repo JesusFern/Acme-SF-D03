@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
 
@@ -22,24 +23,27 @@ public class DeveloperTrainingSessionDeleteService extends AbstractService<Devel
 
 	@Override
 	public void authorise() {
-		//		int id = super.getRequest().getData("id", int.class);
-		//		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
-		//
-		//		final Principal principal = super.getRequest().getPrincipal();
-		//		final int userAccountId = principal.getAccountId();
-		//
-		//		final boolean authorise = trainingSession != null && trainingSession.isDraftMode() && principal.hasRole(Developer.class) && trainingSession.getTrainingModule().getDeveloper().getUserAccount().getId() == userAccountId;
-		//
-		//		super.getResponse().setAuthorised(authorise);
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int trainingSessionId;
+		TrainingModule trainingModule;
+
+		trainingSessionId = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleByTrainingSessionId(trainingSessionId);
+		status = trainingModule != null && (!trainingModule.isDraftMode() || super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper()));
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
 	public void load() {
-		int id = super.getRequest().getData("id", int.class);
-		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
+		TrainingSession object;
+		int id;
 
-		super.getBuffer().addData(trainingSession);
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneTrainingSessionById(id);
+
+		super.getBuffer().addData(object);
 	}
 
 	@Override
@@ -65,7 +69,7 @@ public class DeveloperTrainingSessionDeleteService extends AbstractService<Devel
 	public void unbind(final TrainingSession object) {
 		assert object != null;
 
-		Dataset dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link", "draftMode");
+		Dataset dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 
 		super.getResponse().addData(dataset);
 	}

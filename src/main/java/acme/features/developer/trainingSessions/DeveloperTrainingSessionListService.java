@@ -47,7 +47,7 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 		Collection<TrainingModule> modules = this.repository.findAllTrainingModules();
 		SelectChoices choices = SelectChoices.from(modules, "code", object.getTrainingModule());
 
-		final Dataset dataset = super.unbind(object, "code", "instructor", "email");
+		final Dataset dataset = super.unbind(object, "code", "instructor");
 		dataset.put("trainingModule", choices.getSelected().getLabel());
 		dataset.put("trainingModules", choices);
 
