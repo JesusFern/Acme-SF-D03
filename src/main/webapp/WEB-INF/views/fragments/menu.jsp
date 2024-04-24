@@ -87,7 +87,7 @@
 			<acme:menu-suboption code="master.menu.sponsor.my-dashboard" action="/sponsor/sponsor-dashboard/show"/>
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.sponsor" access="isAuthenticated()">	
+		<acme:menu-option code="master.menu.claim" access="isAuthenticated()">	
 		<acme:menu-suboption code="master.menu.user-account.claim" action="/authenticated/claim/list-all"/>
 		</acme:menu-option>
 	</acme:menu-left>

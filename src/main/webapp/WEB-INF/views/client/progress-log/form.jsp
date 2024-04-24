@@ -19,10 +19,13 @@
 	<acme:input-textarea code="client.progress-log.form.label.recordId" path="recordId"/>
 	<acme:input-double code="client.progress-log.form.label.percentageCompleteness" path="percentageCompleteness"/>
 	<acme:input-textarea code="client.progress-log.form.label.comment" path="comment"/>
-	<acme:input-moment code="client.progress-log.form.label.registrationMoment" path="registrationMoment"/>
 	<acme:input-textarea code="client.progress-log.form.label.responsiblePerson" path="responsiblePerson"/>
 
-
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show') }">
+	<acme:input-moment code="client.progress-log.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
+			</jstl:when>
+	</jstl:choose>
 	<jstl:choose>
    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') }">
             <acme:submit code="client.progress-log.form.button.delete" action="/client/progress-log/delete"/>

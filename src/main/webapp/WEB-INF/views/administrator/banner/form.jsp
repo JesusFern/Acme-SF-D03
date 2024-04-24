@@ -17,12 +17,15 @@
 
 <acme:form>
 	<acme:input-textarea code="administrator.banner.form.label.slogan" path="slogan" />
-	<acme:input-moment code="administrator.banner.form.label.instantiationMoment" path="instantiationMoment"/>
 	<acme:input-moment code="administrator.banner.form.label.startDisplayPeriod" path="startDisplayPeriod"/>
 	<acme:input-moment code="administrator.banner.form.label.endDisplayPeriod" path="endDisplayPeriod"/>
 	<acme:input-url code="administrator.banner.form.label.pictureLink" path="pictureLink"/>
 	<acme:input-url code="administrator.banner.form.label.targetWebDocumentLink" path="targetWebDocumentLink"/>
-
+<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show') }">
+	<acme:input-moment code="administrator.banner.form.label.instantiationMoment" path="instantiationMoment" readonly=true/>
+			</jstl:when>
+	</jstl:choose>
 
 	<jstl:choose>
    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') }">

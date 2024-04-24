@@ -46,7 +46,7 @@ master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
 # master.menu.claim ##########################################################
-
+master.menu.claim = Claim
 master.menu.user-account.claim= Claims
 
 # master.menu.user-account ####################################################
