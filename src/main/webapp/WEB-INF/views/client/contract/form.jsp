@@ -24,7 +24,6 @@
 	<acme:input-select code="client.contract.form.label.project" path="project" choices="${projects}" />
 	<acme:input-money code="client.contract.form.label.budget" path="budget"/>
 
-
 	<jstl:choose>
 	<jstl:when test="${_command == 'show' && draftMode == false}">
 			<acme:button code="client.progress-log.list.title" action="/client/progress-log/list?masterId=${id}"/>			
