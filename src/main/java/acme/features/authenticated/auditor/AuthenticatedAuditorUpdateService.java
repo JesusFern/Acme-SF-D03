@@ -1,5 +1,5 @@
 /*
- * AuditorCodeAuditCreateService.java
+ * AuthenticatedConsumerUpdateService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,27 +10,27 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.claim;
-
-import java.util.Date;
+package acme.features.authenticated.auditor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Authenticated;
+import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
-import acme.client.helpers.MomentHelper;
+import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
-import acme.entities.claims.Claim;
+import acme.roles.Auditor;
 
 @Service
-public class AuthenticatedClaimCreateService extends AbstractService<Authenticated, Claim> {
+public class AuthenticatedAuditorUpdateService extends AbstractService<Authenticated, Auditor> {
 
 	// Internal state ---------------------------------------------------------
-	@Autowired
-	private AuthenticatedClaimRepository repository;
 
-	// AbstractService interface ----------------------------------------------
+	@Autowired
+	private AuthenticatedAuditorRepository repository;
+
+	// AbstractService interface ----------------------------------------------ç
 
 
 	@Override
@@ -40,47 +40,50 @@ public class AuthenticatedClaimCreateService extends AbstractService<Authenticat
 
 	@Override
 	public void load() {
-		Claim object;
-		Date moment;
-		moment = MomentHelper.getCurrentMoment();
-		object = new Claim();
-		object.setInstantiationMoment(moment);
+		Auditor object;
+		Principal principal;
+		int userAccountId;
+
+		principal = super.getRequest().getPrincipal();
+		userAccountId = principal.getAccountId();
+		object = this.repository.findOneAuditorByUserAccountId(userAccountId);
+
 		super.getBuffer().addData(object);
 	}
 
 	@Override
-	public void bind(final Claim object) {
+	public void bind(final Auditor object) {
 		assert object != null;
 
-		super.bind(object, "code", "heading", "description", "department", "email", "link");
-
+		super.bind(object, "firm", "professionalId", "certifications", "link");
 	}
 
 	@Override
-	public void validate(final Claim object) {
+	public void validate(final Auditor object) {
 		assert object != null;
-		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			Claim existing;
-
-			existing = this.repository.findOneClaimByCode(object.getCode());
-			super.state(existing == null, "code", "authenticated.claim.form.error.duplicated");
-		}
 	}
 
 	@Override
-	public void perform(final Claim object) {
+	public void perform(final Auditor object) {
 		assert object != null;
+
 		this.repository.save(object);
 	}
 
 	@Override
-	public void unbind(final Claim object) {
+	public void unbind(final Auditor object) {
 		assert object != null;
+
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "email", "link");
-
+		dataset = super.unbind(object, "firm", "professionalId", "certifications", "link");
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals("POST"))
+			PrincipalHelper.handleUpdate();
 	}
 
 }

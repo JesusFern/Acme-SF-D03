@@ -80,7 +80,7 @@
 			<acme:message code="auditor.dashboard.form.label.averageNumberOfPeriod"/>
 		</th>
 		<td>
-			<acme:print value="${averageNumberOfPeriod}"/>
+			<acme:print value="${averageTimeOfPeriod}"/>
 		</td>
 	</tr>	
 
@@ -89,7 +89,7 @@
 			<acme:message code="auditor.dashboard.form.label.deviationNumberOfPeriod"/>
 		</th>
 		<td>
-			<acme:print value="${deviationNumberOfPeriod}"/>
+			<acme:print value="${deviationTimeOfPeriod}"/>
 		</td>
 	</tr>	
 
@@ -98,7 +98,7 @@
 			<acme:message code="auditor.dashboard.form.label.minimumNumberOfPeriod"/>
 		</th>
 		<td>
-			<acme:print value="${minimumNumberOfPeriod}"/>
+			<acme:print value="${minimumTimeOfPeriod}"/>
 		</td>
 	</tr>	
 
@@ -107,7 +107,7 @@
 			<acme:message code="auditor.dashboard.form.label.maximumNumberOfPeriod"/>
 		</th>
 		<td>
-			<acme:print value="${maximumNumberOfPeriod}"/>
+			<acme:print value="${maximumTimeOfPeriod}" />
 		</td>
 	</tr>	
 </table>

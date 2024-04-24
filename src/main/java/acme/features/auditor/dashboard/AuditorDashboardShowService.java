@@ -47,10 +47,10 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		Double minimumNumberOfAuditRecords;
 		Double maximumNumberOfAuditRecords;
 
-		Double averageNumberOfPeriod;
-		Double deviationNumberOfPeriod;
-		Double minimumNumberOfPeriod;
-		Double maximumNumberOfPeriod;
+		Double averageTimeOfPeriod;
+		Double deviationTimeOfPeriod;
+		Double minimumTimeOfPeriod;
+		Double maximumTimeOfPeriod;
 
 		int id;
 
@@ -62,10 +62,10 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords(id);
 		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords(id);
 		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords(id);
-		averageNumberOfPeriod = this.repository.averageNumberOfPeriod(id);
-		deviationNumberOfPeriod = this.repository.deviationNumberOfPeriod(id);
-		minimumNumberOfPeriod = this.repository.minimumNumberOfPeriod(id);
-		maximumNumberOfPeriod = this.repository.maximumNumberOfPeriod(id);
+		averageTimeOfPeriod = this.repository.averageTimeOfPeriod(id);
+		deviationTimeOfPeriod = this.repository.deviationTimeOfPeriod(id);
+		minimumTimeOfPeriod = this.repository.minimumTimeOfPeriod(id);
+		maximumTimeOfPeriod = this.repository.maximumTimeOfPeriod(id);
 
 		dashboard = new AuditorDashboard();
 		dashboard.setTotalNumberOfStaticCodeAudit(totalNumberOfStaticCodeAudit);
@@ -74,10 +74,10 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		dashboard.setDeviationNumberOfAuditRecords(deviationNumberOfAuditRecords);
 		dashboard.setMinimumNumberOfAuditRecords(minimumNumberOfAuditRecords);
 		dashboard.setMaximumNumberOfAuditRecords(maximumNumberOfAuditRecords);
-		dashboard.setAverageNumberOfPeriod(averageNumberOfPeriod);
-		dashboard.setDeviationNumberOfPeriod(deviationNumberOfPeriod);
-		dashboard.setMinimumNumberOfPeriod(minimumNumberOfPeriod);
-		dashboard.setMaximumNumberOfPeriod(maximumNumberOfPeriod);
+		dashboard.setAverageTimeOfPeriod(averageTimeOfPeriod / 10000);
+		dashboard.setDeviationTimeOfPeriod(deviationTimeOfPeriod / 10000);
+		dashboard.setMinimumTimeOfPeriod(minimumTimeOfPeriod / 10000);
+		dashboard.setMaximumTimeOfPeriod(maximumTimeOfPeriod / 10000);
 
 		super.getBuffer().addData(dashboard);
 	}
@@ -89,8 +89,8 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		dataset = super.unbind(object, //
 			"totalNumberOfStaticCodeAudit", "totalNumberOfDynamicCodeAudit", // 
 			"averageNumberOfAuditRecords", "deviationNumberOfAuditRecords", //
-			"minimumNumberOfAuditRecords", "maximumNumberOfAuditRecords", "averageNumberOfPeriod", "deviationNumberOfPeriod" //
-			, "minimumNumberOfPeriod", "maximumNumberOfPeriod");
+			"minimumNumberOfAuditRecords", "maximumNumberOfAuditRecords", "averageTimeOfPeriod", "deviationTimeOfPeriod" //
+			, "minimumTimeOfPeriod", "maximumTimeOfPeriod");
 
 		super.getResponse().addData(dataset);
 	}
