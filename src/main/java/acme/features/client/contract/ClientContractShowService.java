@@ -44,8 +44,6 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 	public void unbind(final Contract object) {
 		assert object != null;
 
-		assert object != null;
-
 		SelectChoices choicesP;
 		Dataset dataset;
 

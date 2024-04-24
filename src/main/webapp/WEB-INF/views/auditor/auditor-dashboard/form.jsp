@@ -16,14 +16,14 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <h2>
-	<acme:message code="sponsor.dashboard.form.title.general-indicators"/>
+	<acme:message code="auditor.dashboard.form.title.general-indicators"/>
 </h2>
 
 <table class="table table-sm">
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.total-invoices-with-tax-less-or-equals-21"/>
+			<acme:message code="auditor.dashboard.form.label.totalNumberOfStaticCodeAudit"/>
 		</th>
 		<td>
 			<acme:print value="${totalNumberOfStaticCodeAudit}"/>
@@ -33,7 +33,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.total-sponsorships-link"/>
+			<acme:message code="auditor.dashboard.form.label.totalNumberOfDynamicCodeAudit"/>
 		</th>
 		<td>
 			<acme:print value="${totalNumberOfDynamicCodeAudit}"/>
@@ -42,7 +42,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.average-sponsorships-amount"/>
+			<acme:message code="auditor.dashboard.form.label.averageNumberOfAuditRecords"/>
 		</th>
 		<td>
 			<acme:print value="${averageNumberOfAuditRecords}"/>
@@ -51,7 +51,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.deviation-sponsorships-amount"/>
+			<acme:message code="auditor.dashboard.form.label.deviationNumberOfAuditRecords"/>
 		</th>
 		<td>
 			<acme:print value="${deviationNumberOfAuditRecords}"/>
@@ -60,7 +60,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.minimum-sponsorships-amount"/>
+			<acme:message code="auditor.dashboard.form.label.minimumNumberOfAuditRecords"/>
 		</th>
 		<td>
 			<acme:print value="${minimumNumberOfAuditRecords}"/>
@@ -69,7 +69,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.maximum-sponsorships-amount"/>
+			<acme:message code="auditor.dashboard.form.label.maximumNumberOfAuditRecords"/>
 		</th>
 		<td>
 			<acme:print value="${maximumNumberOfAuditRecords}"/>
@@ -77,7 +77,7 @@
 	</tr>	
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.average-invoices-quantity"/>
+			<acme:message code="auditor.dashboard.form.label.averageNumberOfPeriod"/>
 		</th>
 		<td>
 			<acme:print value="${averageNumberOfPeriod}"/>
@@ -86,7 +86,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.deviation-invoices-quantity"/>
+			<acme:message code="auditor.dashboard.form.label.deviationNumberOfPeriod"/>
 		</th>
 		<td>
 			<acme:print value="${deviationNumberOfPeriod}"/>
@@ -95,7 +95,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.minimum-invoices-quantity"/>
+			<acme:message code="auditor.dashboard.form.label.minimumNumberOfPeriod"/>
 		</th>
 		<td>
 			<acme:print value="${minimumNumberOfPeriod}"/>
@@ -104,7 +104,7 @@
 
 	<tr>
 		<th scope="row">
-			<acme:message code="sponsor.dashboard.form.label.maximum-invoices-quantity"/>
+			<acme:message code="auditor.dashboard.form.label.maximumNumberOfPeriod"/>
 		</th>
 		<td>
 			<acme:print value="${maximumNumberOfPeriod}"/>

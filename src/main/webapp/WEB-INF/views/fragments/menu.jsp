@@ -34,6 +34,8 @@
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-down" action="/administrator/system/shut-down"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.banner" action="/administrator/banner/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
@@ -49,11 +51,15 @@
 			<acme:menu-suboption code="master.menu.manager.all-projects" action="/manager/project/list-all"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.manager.my-user-stories" action="/manager/user-story/list-mine"/>
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.manager.my-dashboard" action="/manager/manager-dashboard/show"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">	
 			<acme:menu-suboption code="master.menu.auditor.my-code-audit" action="/auditor/code-audit/list-mine"/>
 			<acme:menu-suboption code="master.menu.auditor.all-code-audit" action="/auditor/code-audit/list-all"/>
+			<acme:menu-separator/>	
+			<acme:menu-suboption code="master.menu.auditor.my-dashboard" action="/auditor/auditor-dashboard/show"/>
 		</acme:menu-option>
 		
 
@@ -89,6 +95,7 @@
 			<acme:menu-suboption code="master.menu.user-account.provider" action="/authenticated/provider/update" access="hasRole('Provider')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRole('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update" access="hasRole('Consumer')"/>
+			<acme:menu-suboption code="master.menu.user-account.claim" action="/authenticated/claim/list-all"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/authenticated/system/sign-out" access="isAuthenticated()"/>

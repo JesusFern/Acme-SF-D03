@@ -70,28 +70,15 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void validate(final TrainingModule object) {
 		assert object != null;
 
-		//		final String CREATION_MOMENT = "creationMoment";
-		//		final String UPDATE_MOMENT = "updateMoment";
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors(CREATION_MOMENT) && !super.getBuffer().getErrors().hasErrors(UPDATE_MOMENT)) {
-		//			final boolean startBeforeEnd = MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment());
-		//			super.state(startBeforeEnd, UPDATE_MOMENT, "developer.trainingModule.form.error.end-before-start");
-		//		}
+		boolean sameCode;
 
-		//		if (!super.getBuffer().getErrors().hasErrors("code")) {
-		//			final boolean duplicatedCode = this.repository.findAllTrainingModules().stream().anyMatch(e -> e.getCode().equals(object.getCode()));
-		//
-		//			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
-		//		}
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors("time")) {
-		//			final boolean duplicatedCode = object.getTime() < 0;
-		//
-		//			super.state(!duplicatedCode, "time", "developer.trainingModule.form.error.negative-time");
-		//		}
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			sameCode = this.repository.findAllTrainingModules().stream().anyMatch(t -> t.getCode().equals(object.getCode()));
 
+			super.state(!sameCode, "code", "developer.training-module.form.error.same-code");
+
+		}
 	}
-
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;

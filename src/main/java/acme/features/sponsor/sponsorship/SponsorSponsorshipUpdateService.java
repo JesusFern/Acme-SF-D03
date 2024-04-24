@@ -74,14 +74,14 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 			Sponsorship existing;
 
 			existing = this.ssr.findOneSponsorshipByCode(object.getCode());
-			super.state(existing == null, "code", "sponsor.sponsorship.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "sponsor.sponsorship.form.error.duplicated");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("periodEnd")) {
+		if (!super.getBuffer().getErrors().hasErrors("endSponsor")) {
 			Date minimumEnd;
 
-			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MONTHS);
-			super.state(MomentHelper.isBefore(object.getEndSponsor(), minimumEnd), "periodEnd", "sponsor.sponsorship.form.error.too-close");
+			minimumEnd = MomentHelper.deltaFromMoment(object.getStartSponsor(), 1, ChronoUnit.MONTHS);
+			super.state(MomentHelper.isAfter(object.getEndSponsor(), minimumEnd), "endSponsor", "sponsor.sponsorship.form.error.too-close");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("amount"))
