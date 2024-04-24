@@ -17,6 +17,21 @@ public interface ManagerProjectUserStoryRepository extends AbstractRepository {
 	@Query("select pu from ProjectUserStory pu where pu.project.manager.id = :managerId")
 	Collection<ProjectUserStory> findManyProjectUserStoriesByManagerId(int managerId);
 
+	@Query("SELECT u FROM UserStory u " + "WHERE u.manager.id = :managerId " + "AND u NOT IN (SELECT pu.userStory FROM ProjectUserStory pu WHERE pu.project.id = :projectId)")
+	Collection<UserStory> findManyUserStoriesByManagerIdNotInProjectId(int managerId, int projectId);
+
+	@Query("select u from UserStory u where u.manager.id = :managerId")
+	Collection<UserStory> findManyUserStoriesByManagerId(int managerId);
+
+	@Query("select pu from ProjectUserStory pu where pu.project.id = :projectId")
+	Collection<ProjectUserStory> findManyProjectUserStoriesByProjectId(int projectId);
+
+	@Query("select pu from ProjectUserStory pu where pu.project.id = :projectId and pu.userStory.id= :userStoryId")
+	ProjectUserStory findOneProjectUserStoriesByProjectAndUserStoryId(int projectId, int userStoryId);
+
+	@Query("select pu from ProjectUserStory pu where pu.id = :id")
+	ProjectUserStory findOneProjectUserStoryById(int id);
+
 	@Query("select p from Project p where p.id = :id")
 	Project findOneProjectById(int id);
 
@@ -25,8 +40,5 @@ public interface ManagerProjectUserStoryRepository extends AbstractRepository {
 
 	@Query("select p from Project p where p.manager.id = :managerId")
 	Collection<Project> findManyProjectsByManagerId(int managerId);
-
-	@Query("select u from UserStory u where u.manager.id = :managerId")
-	Collection<UserStory> findManyUserStoriesByManagerId(int managerId);
 
 }

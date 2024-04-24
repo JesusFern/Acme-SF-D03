@@ -1,24 +1,24 @@
 
-package acme.features.manager.projectUserStory;
+package acme.features.authenticated.claim;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Authenticated;
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.projects.ProjectUserStory;
-import acme.roles.Manager;
+import acme.entities.claims.Claim;
 
 @Service
-public class ManagerProjectUserStoryListMineService extends AbstractService<Manager, ProjectUserStory> {
+public class AuthenticatedClaimListAllService extends AbstractService<Authenticated, Claim> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerProjectUserStoryRepository repository;
+	private AuthenticatedClaimRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -30,25 +30,23 @@ public class ManagerProjectUserStoryListMineService extends AbstractService<Mana
 
 	@Override
 	public void load() {
-		Collection<ProjectUserStory> objects;
+		Collection<Claim> objects;
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyProjectUserStoriesByManagerId(principal.getActiveRoleId());
+		objects = this.repository.findAllClaims();
 
 		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final ProjectUserStory object) {
+	public void unbind(final Claim object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "");
-		dataset.put("project", object.getProject().getCode());
+		dataset = super.unbind(object, "code", "heading");
 
 		super.getResponse().addData(dataset);
 	}
-
 }

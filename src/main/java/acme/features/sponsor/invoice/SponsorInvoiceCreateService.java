@@ -1,6 +1,7 @@
 
 package acme.features.sponsor.invoice;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +62,29 @@ public class SponsorInvoiceCreateService extends AbstractService<Sponsor, Invoic
 	public void bind(final Invoice object) {
 		assert object != null;
 
-		super.bind(object, "code", "registrationTime", "startDate", "endDate", "quantity", "tax", "link");
+		super.bind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "link");
 	}
 
 	@Override
 	public void validate(final Invoice object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Invoice existing;
+
+			existing = this.sir.findOneInvoiceByCode(object.getCode());
+			super.state(existing == null, "code", "sponsor.invoice.form.error.duplicated");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("dueDate")) {
+			Date minimumEnd;
+
+			minimumEnd = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MONTHS);
+			super.state(MomentHelper.isAfter(object.getDueDate(), minimumEnd), "dueDate", "sponsor.invoice.form.error.too-close");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("quantity"))
+			super.state(object.getQuantity().getAmount() > 0, "quantity", "sponsor.invoice.form.error.negative-quantity");
 	}
 
 	@Override
@@ -82,7 +100,7 @@ public class SponsorInvoiceCreateService extends AbstractService<Sponsor, Invoic
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "registrationTime", "startDate", "endDate", "quantity", "tax", "link");
+		dataset = super.unbind(object, "code", "registrationTime", "dueDate", "quantity", "tax", "link");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 		dataset.put("draftMode", object.getSponsorship().isDraftMode());
 

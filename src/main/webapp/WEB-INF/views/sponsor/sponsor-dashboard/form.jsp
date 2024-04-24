@@ -20,7 +20,7 @@
 	<acme:message code="sponsor.dashboard.form.title.general-indicators"/>
 </h2>
 
-<table class="table table-sm">
+ <table class="table table-sm">
 
 	<tr>
 		<th scope="row">
@@ -112,6 +112,5 @@
 		</td>
 	</tr>	
 </table>
-
 
 <acme:return/>
