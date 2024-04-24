@@ -1,5 +1,5 @@
 
-package acme.features.client.dashboards;
+package acme.features.client.dashboard;
 
 import javax.annotation.PostConstruct;
 
