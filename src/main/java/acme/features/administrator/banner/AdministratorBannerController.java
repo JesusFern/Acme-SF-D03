@@ -15,13 +15,13 @@ public class AdministratorBannerController extends AbstractController<Administra
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorBannerListService	listService;
+	private AdministratorBannerListService		listService;
 
 	@Autowired
-	private AdministratorBannerShowService	showService;
+	private AdministratorBannerShowService		showService;
 
 	@Autowired
-	private AdministratorBannerShowService	deleteService;
+	private AdministratorBannerDeleteService	deleteService;
 
 	// Constructors -----------------------------------------------------------
 
