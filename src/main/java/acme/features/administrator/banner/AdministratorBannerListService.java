@@ -13,7 +13,7 @@ import acme.client.services.AbstractService;
 import acme.entities.banners.Banner;
 
 @Service
-public class AdministratorBannerListMineService extends AbstractService<Administrator, Banner> {
+public class AdministratorBannerListService extends AbstractService<Administrator, Banner> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -34,7 +34,7 @@ public class AdministratorBannerListMineService extends AbstractService<Administ
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyBannerByAdministratorId(principal.getActiveRoleId());
+		objects = this.repository.findAllBanners();
 
 		super.getBuffer().addData(objects);
 	}
