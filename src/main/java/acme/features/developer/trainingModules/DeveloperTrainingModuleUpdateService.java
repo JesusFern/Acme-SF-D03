@@ -77,7 +77,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 			TrainingModule existing;
 
 			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
-			super.state(existing == null || existing.equals(object), "code", "developer.tranining-module.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "developer.training-module.form.error.duplicated");
 		}
 	}
 
