@@ -1,11 +1,16 @@
 
 package acme.features.developer.trainingSessions;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
 
@@ -50,7 +55,7 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 	public void bind(final TrainingSession object) {
 		assert object != null;
 
-		super.bind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
+		super.bind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 	}
 
 	@Override
@@ -62,6 +67,22 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 
 			existing = this.repository.findOneTrainingSessionByCode(object.getCode());
 			super.state(existing == null || existing.equals(object), "code", "developer.tranining-session.form.error.duplicated");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("startPeriod")) {
+			TrainingModule module;
+			int id;
+
+			id = super.getRequest().getData("id", int.class);
+			module = this.repository.findOneTrainingModuleByTrainingSessionId(id);
+			super.state(MomentHelper.isAfter(object.getStartPeriod(), module.getCreationMoment()), "startPeriod", "developer.training-session.form.error.invalid-creation-moment");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("endPeriod")) {
+			Date minimumTime;
+
+			minimumTime = MomentHelper.deltaFromMoment(object.getStartPeriod(), 7, ChronoUnit.DAYS);
+			super.state(MomentHelper.isAfter(object.getEndPeriod(), minimumTime), "endPeriod", "developer.training-session.form.error.minimum-time");
 		}
 	}
 
@@ -77,8 +98,9 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 		assert object != null;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
+		dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("draftMode", object.getTrainingModule().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
