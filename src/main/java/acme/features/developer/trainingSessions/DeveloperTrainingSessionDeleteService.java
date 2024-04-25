@@ -50,7 +50,7 @@ public class DeveloperTrainingSessionDeleteService extends AbstractService<Devel
 	public void bind(final TrainingSession object) {
 		assert object != null;
 
-		super.bind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
+		super.bind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 	}
 
 	@Override

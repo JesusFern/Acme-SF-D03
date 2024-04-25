@@ -51,7 +51,7 @@ public class DeveloperTrainingSessionShowService extends AbstractService<Develop
 		assert object != null;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
+		dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 		dataset.put("masterId", object.getTrainingModule().getId());
 		dataset.put("draftMode", object.getTrainingModule().isDraftMode());
 
