@@ -96,6 +96,11 @@
 		<acme:menu-option code="master.menu.sponsorship" access="isAuthenticated()">	
 		<acme:menu-suboption code="master.menu.any.all-sponsorship" action="/any/sponsorship/list-all"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.project" access="isAuthenticated()">	
+		<acme:menu-suboption code="master.menu.any.all-projects" action="/any/project/list-all"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
 
 	<acme:menu-right>

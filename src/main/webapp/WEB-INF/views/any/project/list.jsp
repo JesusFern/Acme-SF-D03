@@ -16,8 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="administrator.banner.list.label.instantiationMoment" path="instantiationMoment" width="20%"/>
-	<acme:list-column code="administrator.banner.list.label.slogan" path="slogan" width="60%"/>
-</acme:list>
-
-<acme:button code="administrator.banner.list.button.create" action="/administrator/banner/create"/>
+	<acme:list-column code="any.project.list.label.code" path="code" width="10%"/>
+	<acme:list-column code="any.project.list.label.title" path="title" width="40%"/>
+	<acme:list-column code="any.project.list.label.abstractString" path="abstractString" width="40%"/>
+</acme:list>	

@@ -58,6 +58,9 @@ master.menu.any.all-contracts= Ver Contratos
 master.menu.sponsorship = Patrocinio
 master.menu.any.all-sponsorship = Ver patrocinios
 
+master.menu.project = Proyecto
+master.menu.any.all-projects = Ver proyectos
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
