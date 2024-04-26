@@ -1,5 +1,5 @@
 
-package acme.features.auditor.codeAudit;
+package acme.features.authenticated.codeAudit;
 
 import java.util.Collection;
 
@@ -12,12 +12,12 @@ import acme.client.services.AbstractService;
 import acme.entities.codeAudits.CodeAudit;
 
 @Service
-public class AuditorCodeAuditListAllService extends AbstractService<Authenticated, CodeAudit> {
+public class AuthenticatedCodeAuditListAllService extends AbstractService<Authenticated, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorCodeAuditRepository repository;
+	private AuthenticatedCodeAuditRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
