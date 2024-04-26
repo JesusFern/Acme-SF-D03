@@ -55,6 +55,9 @@ master.menu.user-account.claim= Reclamaciones
 master.menu.contract = Contrato
 master.menu.any.all-contracts= Ver Contratos
 
+master.menu.training-module = Módulo de entrenamiento
+master.menu.any.all-training-module= Ver módulos de entrenamiento
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
@@ -70,7 +73,10 @@ master.menu.user-account.become-auditor = Hazte auditor
 master.menu.user-account.become-client = Hazte cliente
 master.menu.user-account.become-sponsor = Hazte patrocinador
 master.menu.user-account.become-manager = Hazte director
+master.menu.user-account.become-developer = Hazte desarrollador
 master.menu.user-account.manager = Datos de director
+master.menu.user-account.developer = Datos de desarrollador
+
 
 # master.menu.manager ####################################################
 

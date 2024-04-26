@@ -52,6 +52,9 @@ master.menu.user-account.claim= Claims
 master.menu.contract = Contract
 master.menu.any.all-contracts= Lists of Contracts
 
+master.menu.training-module = Training Module
+master.menu.any.all-training-module= Lists of Training Modules
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -67,7 +70,9 @@ master.menu.user-account.become-auditor = Become an auditor
 master.menu.user-account.become-client = Become a client
 master.menu.user-account.become-sponsor = Become an sponsor
 master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.become-developer = Become a developer
 master.menu.user-account.manager = Manager data
+master.menu.user-account.developer = Developer data
 
 # master.menu.manager ####################################################
 
