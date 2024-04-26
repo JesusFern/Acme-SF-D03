@@ -8,24 +8,24 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-developer.client-dashboards.form.title = Panel de cliente
-developer.client-dashboard.form.title.general-indicators = Indicaciones Generales
+client.client-dashboard-dashboards.form.title = Panel del Cliente
+client.client-dashboard-dashboard.form.title.general-indicators = Indicaciones Generales
 
-developer.client.form.title.total-progress-log-with-completeness-below-25 = Número de Registros de Proceso con un indicador de completitud debajo del 25% 
-developer.client.form.label.total-progress-log-with-completeness-below-25 = Número total de Registros de Proceso con un indicador de completitud debajo del 25%
-developer.client.form.title.total-progress-log-with-completeness-between-25-50 = Número de Registros de Proceso con un indicador de completitud entre el 25% y el 50%
-developer.client.form.label.total-progress-log-with-completeness-between-25-50 = Número total de Registros de Proceso con un indicador de completitud entre el 25% y el 50%
-developer.client.form.title.total-progress-log-with-completeness-between-50-75 = Número de Registros de Proceso con un indicador de completitud entre el 50% y el 75%
-developer.client.form.label.total-progress-log-with-completeness-between-50-75 = Número total de Registros de Proceso con un indicador de completitud entre el 50% y el 75%
-developer.client.form.title.total-progress-log-with-completeness-above-75 = Número de Registros de Proceso con un indicador de completitud encima del 75%
-developer.client.form.label.total-progress-log-with-completeness-above-75 = Número total de Registros de Proceso con un indicador de completitud encima del 75%
+client.client-dashboard.form.title.total-progress-log-with-completeness-below-25 = Número de Registros de Proceso con un indicador de completitud debajo del 25% 
+client.client-dashboard.form.label.total-progress-log-with-completeness-below-25 = Número total de Registros de Proceso con un indicador de completitud debajo del 25%
+client.client-dashboard.form.title.total-progress-log-with-completeness-between-25-50 = Número de Registros de Proceso con un indicador de completitud entre el 25% y el 50%
+client.client-dashboard.form.label.total-progress-log-with-completeness-between-25-50 = Número total de Registros de Proceso con un indicador de completitud entre el 25% y el 50%
+client.client-dashboard.form.title.total-progress-log-with-completeness-between-50-75 = Número de Registros de Proceso con un indicador de completitud entre el 50% y el 75%
+client.client-dashboard.form.label.total-progress-log-with-completeness-between-50-75 = Número total de Registros de Proceso con un indicador de completitud entre el 50% y el 75%
+client.client-dashboard.form.title.total-progress-log-with-completeness-above-75 = Número de Registros de Proceso con un indicador de completitud encima del 75%
+client.client-dashboard.form.label.total-progress-log-with-completeness-above-75 = Número total de Registros de Proceso con un indicador de completitud encima del 75%
 
-developer.client.form.title.average-budget-contracts = Presupuesto medio de los Contratos
-developer.client.form.label.average-budget-contracts = Presupuesto medio de los Contratos
-developer.client.form.title.deviation-budget-contracts = Desviación de Presupuesto de los Contratos
-developer.client.form.label.deviation-budget-contracts = Desviación de Presupuesto de los Contratos
-developer.client.form.title.minimum-budget-contracts = Presupuesto mínimo de los Contratos
-developer.client.form.label.minimum-budget-contracts = Presupuesto mínimo de los Contratos
-developer.client.form.title.maximum-budget-contracts = Presupuesto máximo de los Contratos
-developer.client.form.label.maximum-budget-contracts = Presupuesto máximo de los Contratos
+client.client-dashboard.form.title.average-budget-contracts = Presupuesto medio de los Contratos
+client.client-dashboard.form.label.average-budget-contracts = Presupuesto medio de los Contratos
+client.client-dashboard.form.title.deviation-budget-contracts = Desviación de Presupuesto de los Contratos
+client.client-dashboard.form.label.deviation-budget-contracts = Desviación de Presupuesto de los Contratos
+client.client-dashboard.form.title.minimum-budget-contracts = Presupuesto mínimo de los Contratos
+client.client-dashboard.form.label.minimum-budget-contracts = Presupuesto mínimo de los Contratos
+client.client-dashboard.form.title.maximum-budget-contracts = Presupuesto máximo de los Contratos
+client.client-dashboard.form.label.maximum-budget-contracts = Presupuesto máximo de los Contratos
 

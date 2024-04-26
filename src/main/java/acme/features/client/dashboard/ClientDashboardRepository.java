@@ -1,10 +1,13 @@
 
 package acme.features.client.dashboard;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.contracts.Contract;
 
 @Repository
 public interface ClientDashboardRepository extends AbstractRepository {
@@ -32,5 +35,8 @@ public interface ClientDashboardRepository extends AbstractRepository {
 
 	@Query("select max(c.budget.amount) from Contract c where c.client.id = :id and c.draftMode = false")
 	Double maximumContractsBudget(int id);
+
+	@Query("select c from Contract c where c.client.id = :id")
+	Collection<Contract> findManyContractByClientId(int id);
 
 }
