@@ -26,3 +26,9 @@ administrator.banner.form.label.targetWebDocumentLink = Enlace de Documento Web 
 
 administrator.banner.list.label.slogan = Eslogan
 administrator.banner.list.label.instantiationMoment = Momento de Instanciación
+
+administrator.banner.form.error.first-date = Esta fecha es anterior a la fecha admitida
+administrator.banner.form.error.start-period = Esta fecha es posterior a la fecha admitida
+administrator.banner.form.error.after-instantiation-moment = Esta fecha es posterior al momento de instanciación
+administrator.banner.form.error.end-period = Esta fecha es posterior al periodo final
+administrator.banner.form.error.short-period = Debe durar al menos 1 semana

@@ -17,6 +17,7 @@
 
 <acme:form>
 	<acme:input-textarea code="administrator.banner.form.label.slogan" path="slogan" />
+	<acme:input-moment code="administrator.banner.form.label.instantiationMoment" path="instantiationMoment" readonly ="true"/>
 	<acme:input-moment code="administrator.banner.form.label.startDisplayPeriod" path="startDisplayPeriod"/>
 	<acme:input-moment code="administrator.banner.form.label.endDisplayPeriod" path="endDisplayPeriod"/>
 	<acme:input-url code="administrator.banner.form.label.pictureLink" path="pictureLink"/>

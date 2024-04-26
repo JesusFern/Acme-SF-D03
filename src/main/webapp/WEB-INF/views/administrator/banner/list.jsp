@@ -20,6 +20,4 @@
 	<acme:list-column code="administrator.banner.list.label.slogan" path="slogan" width="60%"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list-mine'}">
-	<acme:button code="administrator.banner.list.button.create" action="/administrator/contract/create"/>
-</jstl:if>	
+<acme:button code="administrator.banner.list.button.create" action="/administrator/banner/create"/>
