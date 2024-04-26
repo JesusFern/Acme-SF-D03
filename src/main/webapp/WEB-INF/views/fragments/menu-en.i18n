@@ -51,6 +51,8 @@ master.menu.user-account.claim= Claims
 
 master.menu.contract = Contract
 master.menu.any.all-contracts= Lists of Contracts
+master.menu.project = Project
+master.menu.any.all-projects = List of projects
 
 # master.menu.user-account ####################################################
 
