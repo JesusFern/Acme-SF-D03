@@ -54,6 +54,9 @@ master.menu.any.all-contracts= Lists of Contracts
 master.menu.project = Project
 master.menu.any.all-projects = List of projects
 
+master.menu.sponsorship = Sponsorship
+master.menu.any.all-sponsorship = List of Sponsorships
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

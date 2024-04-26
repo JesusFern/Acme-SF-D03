@@ -62,7 +62,7 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.ssr.findOneProjectById(projectId);
 
-		super.bind(object, "code", "moment", "startSponsor", "endSponsor", "amount", "type", "email", "link");
+		super.bind(object, "code", "startSponsor", "endSponsor", "amount", "type", "email", "link");
 		object.setProject(project);
 	}
 
@@ -77,6 +77,9 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 			super.state(existing == null || existing.equals(object), "code", "sponsor.sponsorship.form.error.duplicated");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("startSponsor"))
+			super.state(MomentHelper.isAfter(object.getStartSponsor(), object.getMoment()), "startSponsor", "sponsor.sponsorship.form.error.wrong-date");
+
 		if (!super.getBuffer().getErrors().hasErrors("endSponsor")) {
 			Date minimumEnd;
 
@@ -84,8 +87,10 @@ public class SponsorSponsorshipUpdateService extends AbstractService<Sponsor, Sp
 			super.state(MomentHelper.isAfter(object.getEndSponsor(), minimumEnd), "endSponsor", "sponsor.sponsorship.form.error.too-close");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("amount"))
+		if (!super.getBuffer().getErrors().hasErrors("amount")) {
 			super.state(object.getAmount().getAmount() > 0, "amount", "sponsor.sponsorship.form.error.negative-amount");
+			super.state(object.getAmount().getAmount() < 1000000, "amount", "sponsor.sponsorship.form.error.too-high-amount");
+		}
 	}
 
 	@Override

@@ -17,12 +17,16 @@
 
 <acme:form>
 	<acme:input-textbox code="sponsor.invoice.form.label.code" path="code"/>
-	<acme:input-moment code="sponsor.invoice.form.label.registrationTime" path="registrationTime"/>
 	<acme:input-moment code="sponsor.invoice.form.label.dueDate" path="dueDate"/>
 	<acme:input-money code="sponsor.invoice.form.label.quantity" path="quantity"/>
 	<acme:input-double code="sponsor.invoice.form.label.tax" path="tax"/>
 	<acme:input-url code="sponsor.invoice.form.label.link" path="link"/>
 
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show') }">
+			<acme:input-moment code="sponsor.invoice.form.label.registrationTime" path="registrationTime"/>
+		</jstl:when>
+	</jstl:choose>
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
 			<acme:submit code="sponsor.invoice.form.button.update" action="/sponsor/invoice/update"/>
