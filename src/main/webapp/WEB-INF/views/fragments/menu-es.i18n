@@ -49,14 +49,23 @@ master.menu.consumer.favourite-link = Enlace favorito
 
 
 # master.menu.claim ##########################################################
-master.menu.claim = Reclamación
+master.menu.actions = Acciones
 master.menu.user-account.claim= Reclamaciones
+master.menu.auditor.all-code-audit= Ver todas las auditorias de código
 
 master.menu.contract = Contrato
 master.menu.any.all-contracts= Ver Contratos
 
+
 master.menu.training-module = Módulo de entrenamiento
 master.menu.any.all-training-module= Ver módulos de entrenamiento
+
+master.menu.sponsorship = Patrocinio
+master.menu.any.all-sponsorship = Ver patrocinios
+
+master.menu.project = Proyecto
+master.menu.any.all-projects = Ver proyectos
+
 
 # master.menu.user-account ####################################################
 
@@ -107,7 +116,6 @@ master.menu.developer.my-dashboard = Ver mi panel de desarrollador
 master.menu.auditor = Auditor
 master.menu.auditor.favourite-link = Enlace favorito
 master.menu.auditor.my-code-audit = Ver mis auditorias de código	
-master.menu.auditor.all-code-audit= Ver todas las auditorias de código
 master.menu.auditor.my-dashboard= Ver mi panel de auditor
 
 

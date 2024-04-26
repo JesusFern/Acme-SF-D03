@@ -34,7 +34,7 @@ public class AuditorAuditRecordListMineService extends AbstractService<Auditor, 
 		int masterId;
 		masterId = super.getRequest().getData("masterId", int.class);
 
-		objects = this.repository.findManyAuditRecordByMasterId(masterId);
+		objects = this.repository.findManyAuditRecordByCodeAuditId(masterId);
 
 		super.getBuffer().addData(objects);
 

@@ -45,7 +45,7 @@ public class SponsorSponsorshipListMineService extends AbstractService<Sponsor, 
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "amount", "type", "amount");
+		dataset = super.unbind(object, "code", "amount", "type");
 
 		super.getResponse().addData(dataset);
 	}

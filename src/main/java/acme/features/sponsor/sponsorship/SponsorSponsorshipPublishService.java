@@ -65,7 +65,7 @@ public class SponsorSponsorshipPublishService extends AbstractService<Sponsor, S
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.ssr.findOneProjectById(projectId);
 
-		super.bind(object, "code", "moment", "startSponsor", "endSponsor", "amount", "type", "email", "link");
+		super.bind(object, "code", "startSponsor", "endSponsor", "amount", "type", "email", "link");
 		object.setProject(project);
 	}
 

@@ -6,13 +6,13 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Authenticated;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.codeAudits.CodeAudit;
-import acme.roles.Auditor;
 
 @Service
-public class AuditorCodeAuditListAllService extends AbstractService<Auditor, CodeAudit> {
+public class AuditorCodeAuditListAllService extends AbstractService<Authenticated, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
