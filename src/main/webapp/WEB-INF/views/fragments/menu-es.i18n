@@ -55,6 +55,9 @@ master.menu.user-account.claim= Reclamaciones
 master.menu.contract = Contrato
 master.menu.any.all-contracts= Ver Contratos
 
+master.menu.sponsorship = Patrocinio
+master.menu.any.all-sponsorship = Ver patrocinios
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta

@@ -1,19 +1,19 @@
 
-package acme.features.sponsor.sponsorship;
+package acme.features.any.sponsorship;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
+import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.sponsorships.Sponsorship;
-import acme.roles.Sponsor;
+import acme.features.sponsor.sponsorship.SponsorSponsorshipRepository;
 
 @Service
-public class SponsorSponsorshipListMineService extends AbstractService<Sponsor, Sponsorship> {
+public class AnySponsorshipListAllService extends AbstractService<Any, Sponsorship> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -31,10 +31,8 @@ public class SponsorSponsorshipListMineService extends AbstractService<Sponsor, 
 	@Override
 	public void load() {
 		Collection<Sponsorship> objects;
-		Principal principal;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.ssr.findManySponsorshipsBySponsorId(principal.getActiveRoleId());
+		objects = this.ssr.findManySponsorshipsByAvailability();
 
 		super.getBuffer().addData(objects);
 	}
@@ -45,8 +43,9 @@ public class SponsorSponsorshipListMineService extends AbstractService<Sponsor, 
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "amount", "type");
+		dataset = super.unbind(object, "code", "amount", "type", "amount");
 
 		super.getResponse().addData(dataset);
 	}
+
 }
