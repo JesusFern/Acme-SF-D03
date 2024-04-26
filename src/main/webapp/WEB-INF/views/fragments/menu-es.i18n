@@ -65,8 +65,10 @@ master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.auditor = Datos de auditor
 master.menu.user-account.auditor = Datos de Cliente
+master.menu.user-account.sponsor = Datos de patrocinador
 master.menu.user-account.become-auditor = Hazte auditor
 master.menu.user-account.become-client = Hazte cliente
+master.menu.user-account.become-sponsor = Hazte patrocinador
 master.menu.user-account.become-manager = Hazte director
 master.menu.user-account.manager = Datos de director
 
