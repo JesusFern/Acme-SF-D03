@@ -26,6 +26,7 @@ any.contract.form.label.project = Projecto:
 
 any.contract.form.error.duplicated = Código Duplicado
 any.contract.form.error.exceeded-project-cost = Coste del Proyecto Sobrepasado
+any.contract.form.error.much-budget = El coste debe ser inferior a 1000000.
 
 any.contract.list.label.code = Código
 any.contract.list.label.providerName = Nombre del Proveedor

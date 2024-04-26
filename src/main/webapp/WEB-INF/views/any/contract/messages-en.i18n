@@ -27,6 +27,7 @@ any.contract.form.label.project = Project:
 any.contract.form.error.duplicated = Code Duplicated
 any.contract.form.error.exceeded-project-cost = Exceeded Project Cost
 any.contract.form.error.negative-budget = The budget must be positive
+any.contract.form.error.much-budget = The budget must be less than 1000000
 
 any.contract.list.label.code = Code
 any.contract.list.label.providerName = Provider Name
