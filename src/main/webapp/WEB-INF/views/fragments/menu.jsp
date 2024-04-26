@@ -90,6 +90,9 @@
 		<acme:menu-option code="master.menu.claim" access="isAuthenticated()">	
 		<acme:menu-suboption code="master.menu.user-account.claim" action="/authenticated/claim/list-all"/>
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.contract" access="isAuthenticated()">	
+		<acme:menu-suboption code="master.menu.any.all-contracts" action="/any/contract/list-all"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>
@@ -104,6 +107,10 @@
 			<acme:menu-suboption code="master.menu.user-account.client" action="/authenticated/client/update" access="hasRole('Client')"/>
 			<acme:menu-suboption code="master.menu.user-account.auditor" action="/authenticated/auditor/update" access="hasRole('Auditor')"/>
 			<acme:menu-suboption code="master.menu.user-account.sponsor" action="/authenticated/sponsor/update" access="hasRole('Sponsor')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/manager/create" access="!hasRole('Manager')"/>
+			<acme:menu-suboption code="master.menu.user-account.client" action="/authenticated/client/update" access="hasRole('Client')"/>
+			<acme:menu-suboption code="master.menu.user-account.auditor" action="/authenticated/auditor/update" access="hasRole('Auditor')"/>
+			<acme:menu-suboption code="master.menu.user-account.manager" action="/authenticated/manager/update" access="hasRole('Manager')"/>
 			
 		</acme:menu-option>
 

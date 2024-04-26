@@ -72,8 +72,10 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 			existing = this.ccr.findOneContractByCode(object.getCode());
 			super.state(existing == null || existing.equals(object), "code", "client.contract.form.error.duplicated");
 		}
-		if (!super.getBuffer().getErrors().hasErrors("budget"))
+		if (!super.getBuffer().getErrors().hasErrors("budget")) {
 			super.state(object.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
+			super.state(object.getBudget().getAmount() <= 1000000, "budget", "client.contract.form.error.much-budget");
+		}
 
 	}
 

@@ -49,6 +49,9 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.claim = Claim
 master.menu.user-account.claim= Claims
 
+master.menu.contract = Contract
+master.menu.any.all-contracts= Lists of Contracts
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -63,6 +66,8 @@ master.menu.user-account.sponsor = Sponsor data
 master.menu.user-account.become-auditor = Become an auditor
 master.menu.user-account.become-client = Become a client
 master.menu.user-account.become-sponsor = Become an sponsor
+master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.manager = Manager data
 
 # master.menu.manager ####################################################
 
@@ -72,6 +77,7 @@ master.menu.manager.my-projects = List my projects
 master.menu.manager.all-projects = List all Projects
 master.menu.manager.my-user-stories = List my user stories
 master.menu.manager.my-dashboard = Show my Dashboard
+
 
 # master.menu.developer ####################################################
 
