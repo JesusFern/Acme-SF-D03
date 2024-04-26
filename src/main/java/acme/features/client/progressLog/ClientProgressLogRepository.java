@@ -28,4 +28,10 @@ public interface ClientProgressLogRepository extends AbstractRepository {
 	@Query("select c from Contract c where c.id = :masterId")
 	Contract findOneContractById(int masterId);
 
+	@Query("select p from ProgressLog p where p.recordId = :recordId")
+	ProgressLog findOneProgressLogByRecordId(String recordId);
+
+	@Query("select pl.contract from ProgressLog pl where pl.id = :id")
+	Contract findOneContractByProgressLogId(int id);
+
 }
