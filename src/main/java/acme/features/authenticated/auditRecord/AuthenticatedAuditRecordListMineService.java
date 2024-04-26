@@ -1,24 +1,24 @@
 
-package acme.features.auditor.auditRecord;
+package acme.features.authenticated.auditRecord;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Authenticated;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.auditRecords.AuditRecord;
 import acme.entities.codeAudits.CodeAudit;
-import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordListMineService extends AbstractService<Auditor, AuditRecord> {
+public class AuthenticatedAuditRecordListMineService extends AbstractService<Authenticated, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorAuditRecordRepository repository;
+	private AuthenticatedAuditRecordRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -59,10 +59,7 @@ public class AuditorAuditRecordListMineService extends AbstractService<Auditor, 
 		final boolean showCreate;
 
 		masterId = super.getRequest().getData("masterId", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
-		showCreate = codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().addGlobal("masterId", masterId);
-		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 }

@@ -46,8 +46,9 @@ master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
 # master.menu.claim ##########################################################
-master.menu.claim = Claim
+master.menu.actions = Actions
 master.menu.user-account.claim= Claims
+master.menu.auditor.all-code-audit= List all Code audits
 
 master.menu.contract = Contract
 master.menu.any.all-contracts= Lists of Contracts
@@ -100,7 +101,6 @@ master.menu.auditor.create-code-audit = Create Code audits
 
 
 master.menu.auditor.my-audit-record= List my Audit records	
-master.menu.auditor.all-code-audit= List all Code audit
 master.menu.auditor.my-dashboard= Show my dashboard
 
 # master.menu.client ####################################################

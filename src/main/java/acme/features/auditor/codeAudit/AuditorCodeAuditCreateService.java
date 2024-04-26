@@ -52,8 +52,6 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 
 		moment = MomentHelper.getCurrentMoment();
 		object = new CodeAudit();
-		object.setCode("");
-		object.setCorrectiveActions("");
 		object.setDraftMode(true);
 		object.setExecution(moment);
 		object.setProject(null);
