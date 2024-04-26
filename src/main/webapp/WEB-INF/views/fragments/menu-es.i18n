@@ -46,9 +46,14 @@ master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
 
+
+
 # master.menu.claim ##########################################################
 master.menu.claim = Reclamación
 master.menu.user-account.claim= Reclamaciones
+
+master.menu.contract = Contrato
+master.menu.any.all-contracts= Ver Contratos
 
 # master.menu.user-account ####################################################
 

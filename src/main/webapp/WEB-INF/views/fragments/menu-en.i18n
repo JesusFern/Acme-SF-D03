@@ -49,6 +49,9 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.claim = Claim
 master.menu.user-account.claim= Claims
 
+master.menu.contract = Contract
+master.menu.any.all-contracts= Lists of Contracts
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

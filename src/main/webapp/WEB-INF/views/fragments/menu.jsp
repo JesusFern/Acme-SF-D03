@@ -90,6 +90,9 @@
 		<acme:menu-option code="master.menu.claim" access="isAuthenticated()">	
 		<acme:menu-suboption code="master.menu.user-account.claim" action="/authenticated/claim/list-all"/>
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.contract" access="isAuthenticated()">	
+		<acme:menu-suboption code="master.menu.any.all-contracts" action="/any/contract/list-all"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>
