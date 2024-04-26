@@ -14,7 +14,7 @@ import acme.client.services.AbstractService;
 import acme.entities.banners.Banner;
 
 @Service
-public class AdministratorBannerCreateService extends AbstractService<Administrator, Banner> {
+public class AdministratorBannerUpdateService extends AbstractService<Administrator, Banner> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -32,8 +32,10 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 	@Override
 	public void load() {
 		Banner object;
+		int id;
 
-		object = new Banner();
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneBannerById(id);
 
 		super.getBuffer().addData(object);
 	}
@@ -46,6 +48,7 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 		instantiationMoment = MomentHelper.getCurrentMoment();
 		super.bind(object, "startDisplayPeriod", "endDisplayPeriod", "pictureLink", "slogan", "targetWebDocumentLink");
 		object.setInstantiationMoment(instantiationMoment);
+
 	}
 
 	@Override
@@ -65,10 +68,10 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 			super.state(MomentHelper.isAfterOrEqual(object.getStartDisplayPeriod(), object.getInstantiationMoment()), "startDisplayPeriod", "administrator.banner.form.error.after-instantiation-moment");
 
 		if (!super.getBuffer().getErrors().hasErrors("endDisplayPeriod"))
-			super.state(MomentHelper.isAfterOrEqual(object.getEndDisplayPeriod(), firstDate), "endDisplayPeriod", "administrator.banner.form.error.first-date");
+			super.state(MomentHelper.isAfterOrEqual(object.getEndDisplayPeriod(), firstDate), "endDisplayPeriod", "administrator.banner.form.error.after-first-date");
 
 		if (!super.getBuffer().getErrors().hasErrors("endDisplayPeriod"))
-			super.state(MomentHelper.isBeforeOrEqual(object.getEndDisplayPeriod(), lastDate), "endDisplayPeriod", "administrator.banner.form.error.start-period");
+			super.state(MomentHelper.isBeforeOrEqual(object.getEndDisplayPeriod(), lastDate), "endDisplayPeriod", "administrator.banner.form.error.before-last-date");
 
 		if (!super.getBuffer().getErrors().hasErrors("endDisplayPeriod"))
 			super.state(MomentHelper.isAfterOrEqual(object.getEndDisplayPeriod(), MomentHelper.deltaFromMoment(firstDate, 7, ChronoUnit.DAYS)), "endDisplayPeriod", "administrator.banner.form.error.end-period");
@@ -96,8 +99,7 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 		Dataset dataset;
 
 		dataset = super.unbind(object, "startDisplayPeriod", "endDisplayPeriod", "pictureLink", "slogan", "targetWebDocumentLink");
-		dataset.put("instantiationLastUpdateMoment", object.getInstantiationMoment());
+		dataset.put("instantiationMoment", object.getInstantiationMoment());
 		super.getResponse().addData(dataset);
 	}
-
 }
