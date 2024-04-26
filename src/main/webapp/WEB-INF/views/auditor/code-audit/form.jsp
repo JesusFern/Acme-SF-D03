@@ -20,10 +20,13 @@
 	<acme:input-select code="auditor.code-audit.form.label.project" path="project" choices="${projects}" />	
 	<acme:input-select code="auditor.code-audit.form.label.type" path="type" choices="${types}" />
 	<acme:input-textarea code="auditor.code-audit.form.label.correctiveActions" path="correctiveActions"  />
-	 <acme:input-textarea code="auditor.code-audit.form.label.execution" path="execution" readonly="true" />
 	<acme:input-textarea code="auditor.code-audit.form.label.draftMode" path="draftMode" readonly="true" />
 	<acme:input-textarea code="auditor.code-audit.form.label.link" path="link"/>
-	
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show') }">
+	 <acme:input-textarea code="auditor.code-audit.form.label.execution" path="execution" readonly="true" />
+			</jstl:when>
+	</jstl:choose>
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="auditor.codeAudit.form.button.create" action="/auditor/code-audit/create"/>

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
@@ -33,8 +32,8 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 	public void load() {
 		Collection<TrainingSession> objects;
 
-		final int trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
-		objects = this.repository.findAllTrainingSessionsByTrainingModuleId(trainingModuleId);
+		final int masterId = super.getRequest().getData("masterId", int.class);
+		objects = this.repository.findAllTrainingSessionsByTrainingModuleId(masterId);
 
 		super.getBuffer().addData(objects);
 	}
@@ -42,20 +41,27 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 	@Override
 	public void unbind(final TrainingSession object) {
 		assert object != null;
-		int trainingModuleId;
 
-		Collection<TrainingModule> modules = this.repository.findAllTrainingModules();
-		SelectChoices choices = SelectChoices.from(modules, "code", object.getTrainingModule());
+		Dataset dataset;
 
-		final Dataset dataset = super.unbind(object, "code", "instructor", "email");
-		dataset.put("trainingModule", choices.getSelected().getLabel());
-		dataset.put("trainingModules", choices);
-
-		trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
-
-		super.getResponse().addGlobal("trainingModuleId", trainingModuleId);
+		dataset = super.unbind(object, "code", "instructor");
 
 		super.getResponse().addData(dataset);
 	}
 
+	@Override
+	public void unbind(final Collection<TrainingSession> objects) {
+		assert objects != null;
+
+		int masterId;
+		TrainingModule module;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		module = this.repository.findOneTrainingModuleById(masterId);
+		showCreate = module.isDraftMode() && super.getRequest().getPrincipal().hasRole(module.getDeveloper());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
+	}
 }

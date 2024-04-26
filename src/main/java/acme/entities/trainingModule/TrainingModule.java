@@ -61,7 +61,7 @@ public class TrainingModule extends AbstractEntity {
 	@URL
 	private String				link;
 
-	@Min(0)
+	@Min(1)
 	@Max(10000)
 	private int					time;
 

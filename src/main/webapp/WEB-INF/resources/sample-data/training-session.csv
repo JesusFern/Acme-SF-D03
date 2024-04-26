@@ -1,4 +1,4 @@
-key,code,time-before-period,time-after-period,location,instructor,email,link,key:training-module
+key,code,start-period,end-period,location,instructor,email,link,key:training-module
 training-session-01,TS-A-000,2022/07/30 00:00,2022/07/30 12:00,Title,Title,usuario1@acme.com,https://example.com/objective,training-module-01
 training-session-02,TS-AB-555,2022/07/30 00:00,2022/07/30 12:00,Title,Title,usuario2@acme.com,https://example.com/objective,training-module-01
 training-session-03,TS-ZZZ-999,2022/07/30 00:00,2022/07/30 12:00,Title,Title,usuario3@acme.com,https://example.com/objective,training-module-01

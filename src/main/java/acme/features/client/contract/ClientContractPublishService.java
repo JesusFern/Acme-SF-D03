@@ -57,7 +57,7 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.ccr.findOneProjectById(projectId);
-		super.bind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget");
+		super.bind(object, "code", "providerName", "customerName", "goals", "budget");
 		object.setProject(project);
 
 	}
@@ -71,14 +71,15 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 			super.state(existing == null || existing.equals(object), "code", "client.contract.form.error.duplicated");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("project")) {
+		{
 			double totalBudgets = 0.0;
 			Project project = object.getProject();
 			Collection<Contract> contracts = this.ccr.findManyContractsAvailableByProjectId(project.getId());
 			for (Contract c : contracts)
 				totalBudgets += c.getBudget().getAmount();
 			double projectCost = object.getProject().getCost();
-			super.state(totalBudgets <= projectCost, "project", "client.contract.form.error.exceeded-project-cost");
+			super.state(totalBudgets <= projectCost, "*", "client.contract.form.error.exceeded-project-cost");
+
 		}
 	}
 
@@ -95,12 +96,9 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		assert object != null;
 		Dataset dataset;
 		SelectChoices choicesP;
-		int clientId;
 		Collection<Project> projects;
 
-		clientId = super.getRequest().getPrincipal().getActiveRoleId();
-
-		projects = this.ccr.findManyAvailableProjectByClientId(clientId);
+		projects = this.ccr.findManyProjects();
 		choicesP = SelectChoices.from(projects, "code", object.getProject());
 
 		dataset = super.unbind(object, "code", "instantiationMoment", "providerName", "customerName", "goals", "budget", "draftMode");

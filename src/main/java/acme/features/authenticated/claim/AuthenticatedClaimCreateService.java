@@ -21,7 +21,6 @@ import acme.client.data.accounts.Authenticated;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.claims.Claim;
 
 @Service
@@ -53,7 +52,7 @@ public class AuthenticatedClaimCreateService extends AbstractService<Authenticat
 	public void bind(final Claim object) {
 		assert object != null;
 
-		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "email", "link");
+		super.bind(object, "code", "heading", "description", "department", "email", "link");
 
 	}
 
@@ -77,8 +76,6 @@ public class AuthenticatedClaimCreateService extends AbstractService<Authenticat
 	@Override
 	public void unbind(final Claim object) {
 		assert object != null;
-		SelectChoices choices;
-		SelectChoices choicesP;
 		Dataset dataset;
 
 		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "email", "link");

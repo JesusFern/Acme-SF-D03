@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
 
@@ -22,7 +23,16 @@ public class DeveloperTrainingSessionShowService extends AbstractService<Develop
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int trainingSessionId;
+		TrainingModule trainingModule;
+
+		trainingSessionId = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleByTrainingSessionId(trainingSessionId);
+		status = trainingModule != null && (!trainingModule.isDraftMode() || super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper()));
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -41,8 +51,9 @@ public class DeveloperTrainingSessionShowService extends AbstractService<Develop
 		assert object != null;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
-		dataset.put("trainingModuleId", object.getTrainingModule().getId());
+		dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
+		dataset.put("masterId", object.getTrainingModule().getId());
+		dataset.put("draftMode", object.getTrainingModule().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

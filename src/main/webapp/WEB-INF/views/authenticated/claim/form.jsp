@@ -17,13 +17,16 @@
 
 <acme:form>
 	<acme:input-textbox code="authenticated.claim.form.label.code" path="code"/>
-	<acme:input-moment code="authenticated.claim.form.label.instantiationMoment" path="instantiationMoment" readonly="true"/>
 	<acme:input-textarea code="authenticated.claim.form.label.heading" path="heading"/>
 	<acme:input-textarea code="authenticated.claim.form.label.description" path="description"/>
 	<acme:input-textbox code="authenticated.claim.form.label.department" path="department"/>
 	<acme:input-textbox code="authenticated.claim.form.label.email" path="email"/>
 	<acme:input-url code="authenticated.claim.form.label.link" path="link"/>
-	
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show') }">
+	<acme:input-moment code="authenticated.claim.form.label.instantiationMoment" path="instantiationMoment" readonly="true"/>
+			</jstl:when>
+	</jstl:choose>
 	<acme:submit test="${_command == 'create'}" 
 	code="authenticated.claim.form.button.create" action="/authenticated/claim/create"/>
 </acme:form>

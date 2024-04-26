@@ -73,13 +73,11 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 	public void validate(final TrainingModule object) {
 		assert object != null;
 
-		boolean sameCode;
-
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			sameCode = this.repository.findAllTrainingModules().stream().anyMatch(t -> t.getCode().equals(object.getCode()));
+			TrainingModule existing;
 
-			super.state(!sameCode, "code", "developer.training-module.form.error.same-code");
-
+			existing = this.repository.findOneTrainingModuleByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "developer.training-module.form.error.duplicated");
 		}
 	}
 

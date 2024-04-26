@@ -39,11 +39,11 @@ public class TrainingSession extends AbstractEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	private Date				timeBeforePeriod;
+	private Date				startPeriod;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	private Date				timeAfterPeriod;
+	private Date				endPeriod;
 
 	@Length(max = 75)
 	@NotBlank
@@ -61,8 +61,6 @@ public class TrainingSession extends AbstractEntity {
 	@URL
 	@Length(max = 255)
 	private String				link;
-
-	private boolean				draftMode;
 
 	@ManyToOne(optional = false)
 	@Valid

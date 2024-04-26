@@ -1,11 +1,16 @@
 
 package acme.features.developer.trainingSessions;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
 
@@ -17,73 +22,68 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 	@Autowired
 	protected DeveloperTrainingSessionRepository repository;
 
-	// AbstractService<Authenticated, TrainingModule> ---------------------------
+	// AbstractService ---------------------------
 
 
 	@Override
 	public void authorise() {
-		//		int id = super.getRequest().getData("id", int.class);
-		//		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
-		//
-		//		final Principal principal = super.getRequest().getPrincipal();
-		//		final int userAccountId = principal.getAccountId();
-		//
-		//		final boolean authorise = trainingSession != null && trainingSession.isDraftMode() && trainingSession.getTrainingModule().getDeveloper().getUserAccount().getId() == userAccountId;
-		//
-		//		super.getResponse().setAuthorised(authorise);
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		TrainingSession trainingSession;
+		Developer developer;
+
+		masterId = super.getRequest().getData("id", int.class);
+		trainingSession = this.repository.findOneTrainingSessionById(masterId);
+		developer = trainingSession == null ? null : trainingSession.getTrainingModule().getDeveloper();
+		status = trainingSession != null && super.getRequest().getPrincipal().hasRole(developer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int id = super.getRequest().getData("id", int.class);
-		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
+		TrainingSession object;
+		int id;
 
-		super.getBuffer().addData(trainingSession);
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneTrainingSessionById(id);
+
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final TrainingSession object) {
 		assert object != null;
 
-		super.bind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link");
+		super.bind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
 	}
 
 	@Override
 	public void validate(final TrainingSession object) {
 		assert object != null;
 
-		//		final String PERIOD_START = "startPeriod";
-		//		final String PERIOD_END = "endPeriod";
-		//		final String CREATION_MOMENT = "creationMoment";
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors(PERIOD_START) && !super.getBuffer().getErrors().hasErrors(PERIOD_END)) {
-		//			final boolean startBeforeEnd = MomentHelper.isAfter(object.getTimeAfterPeriod(), object.getTimeBeforePeriod());
-		//			super.state(startBeforeEnd, PERIOD_END, "developer.trainingSession.form.error.end-before-start");
-		//
-		//			if (startBeforeEnd) {
-		//				final boolean startOneWeekBeforeEndMinimum = MomentHelper.isLongEnough(object.getTimeBeforePeriod(), object.getTimeAfterPeriod(), 7, ChronoUnit.DAYS);
-		//
-		//				super.state(startOneWeekBeforeEndMinimum, PERIOD_END, "developer.trainingSession.form.error.small-display-period");
-		//			}
-		//		}
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors(CREATION_MOMENT) && !super.getBuffer().getErrors().hasErrors(PERIOD_START)) {
-		//			final boolean startBeforeCreation = MomentHelper.isAfter(object.getTimeBeforePeriod(), object.getTrainingModule().getCreationMoment());
-		//			super.state(startBeforeCreation, PERIOD_START, "developer.trainingSession.form.error.start-before-creation");
-		//		}
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors(CREATION_MOMENT) && !super.getBuffer().getErrors().hasErrors(PERIOD_END)) {
-		//			final boolean endBeforeCreation = MomentHelper.isAfter(object.getTimeAfterPeriod(), object.getTrainingModule().getCreationMoment());
-		//			super.state(endBeforeCreation, PERIOD_END, "developer.trainingSession.form.error.end-before-creation");
-		//		}
-		//
-		//		if (!super.getBuffer().getErrors().hasErrors("code")) {
-		//			final int trainingSessionId = super.getRequest().getData("id", int.class);
-		//			final boolean duplicatedCode = this.repository.findAllTrainingSessions().stream().filter(e -> e.getId() != trainingSessionId).anyMatch(e -> e.getCode().equals(object.getCode()));
-		//
-		//			super.state(!duplicatedCode, "code", "developer.trainingSession.form.error.duplicated-code");
-		//		}
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			TrainingSession existing;
+
+			existing = this.repository.findOneTrainingSessionByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "developer.tranining-session.form.error.duplicated");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("startPeriod")) {
+			TrainingModule module;
+			int id;
+
+			id = super.getRequest().getData("id", int.class);
+			module = this.repository.findOneTrainingModuleByTrainingSessionId(id);
+			super.state(MomentHelper.isAfter(object.getStartPeriod(), module.getCreationMoment()), "startPeriod", "developer.training-session.form.error.invalid-creation-moment");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("endPeriod")) {
+			Date minimumTime;
+
+			minimumTime = MomentHelper.deltaFromMoment(object.getStartPeriod(), 7, ChronoUnit.DAYS);
+			super.state(MomentHelper.isAfter(object.getEndPeriod(), minimumTime), "endPeriod", "developer.training-session.form.error.minimum-time");
+		}
 	}
 
 	@Override
@@ -96,8 +96,11 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 	@Override
 	public void unbind(final TrainingSession object) {
 		assert object != null;
+		Dataset dataset;
 
-		Dataset dataset = super.unbind(object, "code", "timeBeforePeriod", "timeAfterPeriod", "location", "instructor", "email", "link", "draftMode");
+		dataset = super.unbind(object, "code", "startPeriod", "endPeriod", "location", "instructor", "email", "link");
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("draftMode", object.getTrainingModule().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

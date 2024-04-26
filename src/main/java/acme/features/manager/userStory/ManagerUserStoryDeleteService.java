@@ -35,7 +35,7 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 		masterId = super.getRequest().getData("id", int.class);
 		us = this.repository.findOneUserStoryById(masterId);
 		manager = us == null ? null : us.getManager();
-		status = super.getRequest().getPrincipal().hasRole(manager);
+		status = us != null && us.isDraftMode() && super.getRequest().getPrincipal().hasRole(manager);
 
 		super.getResponse().setAuthorised(status);
 	}

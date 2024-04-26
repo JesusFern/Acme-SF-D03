@@ -35,4 +35,5 @@ developer.training-module.list.button.create = Create a new training module
 developer.training-module.form.button.create = Create module
 
 
-developer.training-module.form.error.same-code = Existing code
+developer.training-module.form.error.duplicated = Duplicated code
+developer.training-module.form.error.existsTrainingSessions = This training module has no user training sessions yet

@@ -46,9 +46,14 @@ master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
 
-# master.menu.claim ##########################################################
 
+
+# master.menu.claim ##########################################################
+master.menu.claim = Reclamación
 master.menu.user-account.claim= Reclamaciones
+
+master.menu.contract = Contrato
+master.menu.any.all-contracts= Ver Contratos
 
 # master.menu.user-account ####################################################
 
@@ -58,6 +63,14 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+master.menu.user-account.auditor = Datos de auditor
+master.menu.user-account.auditor = Datos de Cliente
+master.menu.user-account.sponsor = Datos de patrocinador
+master.menu.user-account.become-auditor = Hazte auditor
+master.menu.user-account.become-client = Hazte cliente
+master.menu.user-account.become-sponsor = Hazte patrocinador
+master.menu.user-account.become-manager = Hazte director
+master.menu.user-account.manager = Datos de director
 
 # master.menu.manager ####################################################
 
@@ -98,6 +111,7 @@ master.menu.client = Cliente
 master.menu.client.my-contracts = Ver mis contratos
 master.menu.client.create-contracts = Crear un contrato
 master.menu.client.all-contracts = Ver todos los contratos
+master.menu.client.my-dashboard = Ver mi panel
 
 master.menu.client.my-progressLogs = Ver mis registros de proceso
 
